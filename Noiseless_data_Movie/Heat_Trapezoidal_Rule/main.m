@@ -1,8 +1,8 @@
-clear all; clc; close all
+function main()
+clc; close all
 
 addpath ./Kernels
 addpath ./Utilities
-addpath ~/export_fig
 
 rng('default')
 
@@ -37,13 +37,12 @@ xstar = reshape([Xplot Yplot], nn^2, 2);
 u_star = Exact_solution(0,xstar);
 u_star_plot = griddata(xstar(:,1),xstar(:,2),u_star,Xplot,Yplot,'cubic');
 
-num_plots = 2;
 
-cc = [202,0,32;
+colors = [202,0,32;
     5,113,176;
     244,165,130]/255;
 
-movObj = QTWriter('Heat_noisless.mov');
+movObj = QTWriter('./Movies/Heat_noisless.mov');
 movObj.FrameRate = 2.0;
 
 %% Optimize model
@@ -68,12 +67,8 @@ ModelInfo.hyp = log([1 1 1 1 1 1 exp(-6)]);
 
 if plt == 1
     fig = figure(1);
-%     set(fig,'units','normalized','outerposition',[0 0 1 .5])
     set(fig,'units','normalized','outerposition',[0 0 1 1])
     clf
-    color2 = [217,95,2]/255;
-%     k = 1;
-%     subplot(2,num_plots,k)
     hold
     
     bb = boundary(xstar(:,1),xstar(:,2));
@@ -86,11 +81,11 @@ if plt == 1
     shading interp
     material dull
     lighting flat
-    set(s1,'FaceColor',cc(2,:),'FaceAlpha',0.50);
+    set(s1,'FaceColor',colors(2,:),'FaceAlpha',0.50);
     
-    plot3(xstar(bb,1),xstar(bb,2),u_star(bb),'Color',cc(2,:),'LineWidth',3);
+    plot3(xstar(bb,1),xstar(bb,2),u_star(bb),'Color',colors(2,:),'LineWidth',3);
     
-    plot3(ModelInfo.x_u(:,1), ModelInfo.x_u(:,2), ModelInfo.u,'o','Color',cc(1,:),'MarkerEdgeColor',cc(1,:),'MarkerSize',12,'LineWidth',3);
+    plot3(ModelInfo.x_u(:,1), ModelInfo.x_u(:,2), ModelInfo.u,'o','Color',colors(1,:),'MarkerEdgeColor',colors(1,:),'MarkerSize',12,'LineWidth',3);
     
     ylabel('$x_2$')
     xlabel('$x_1$')
@@ -100,7 +95,6 @@ if plt == 1
     tit = sprintf('Time: %.2f\n%d training points', 0,Ntr);
     title(tit);
     
-    % w = waitforbuttonpress;
     drawnow;
     
     writeMovie(movObj, getframe(fig));
@@ -111,7 +105,6 @@ for i = 1:nsteps
     
     [ModelInfo.hyp,~,~] = minimize(ModelInfo.hyp, @likelihood, -5000);
     [NLML,~]=likelihood(ModelInfo.hyp);
-    % exp(ModelInfo.hyp)
     
     [Kpred, Kvar] = predictor(xstar);
     Kvar = abs(diag(Kvar));
@@ -126,9 +119,7 @@ for i = 1:nsteps
     [ModelInfo.u, ModelInfo.S0] = predictor(x_u);
     ModelInfo.x_u = x_u;
     
-    if plt == 1 %&& mod(i,floor(nsteps/(2*num_plots-1)))==0
-%         k = k+1;
-%         subplot(2,num_plots,k)
+    if plt == 1 
         clf
         hold
         Kpred_plot = griddata(xstar(:,1),xstar(:,2),Kpred,Xplot,Yplot,'cubic');
@@ -149,15 +140,15 @@ for i = 1:nsteps
         shading interp
         material dull
         lighting flat
-        set(s1,'FaceColor',cc(1,:),'FaceAlpha',0.50);
-        set(s2,'FaceColor',cc(2,:),'FaceAlpha',0.50);
-        set(s3,'FaceColor',cc(3,:),'FaceAlpha',0.50);
-        set(s4,'FaceColor',cc(3,:),'FaceAlpha',0.50);
+        set(s1,'FaceColor',colors(1,:),'FaceAlpha',0.50);
+        set(s2,'FaceColor',colors(2,:),'FaceAlpha',0.50);
+        set(s3,'FaceColor',colors(3,:),'FaceAlpha',0.50);
+        set(s4,'FaceColor',colors(3,:),'FaceAlpha',0.50);
         
-        plot3(xstar(bb,1),xstar(bb,2),Kpred(bb),'--','Color',cc(1,:),'LineWidth',3);
-        plot3(xstar(bb,1),xstar(bb,2),Exact(bb),'Color',cc(2,:),'LineWidth',3);
-        plot3(xstar(bb,1),xstar(bb,2),Kpred_upper_bound(bb),':','Color',cc(3,:),'LineWidth',3);
-        plot3(xstar(bb,1),xstar(bb,2),Kpred_lower_bound(bb),':','Color',cc(3,:),'LineWidth',3);
+        plot3(xstar(bb,1),xstar(bb,2),Kpred(bb),'--','Color',colors(1,:),'LineWidth',3);
+        plot3(xstar(bb,1),xstar(bb,2),Exact(bb),'Color',colors(2,:),'LineWidth',3);
+        plot3(xstar(bb,1),xstar(bb,2),Kpred_upper_bound(bb),':','Color',colors(3,:),'LineWidth',3);
+        plot3(xstar(bb,1),xstar(bb,2),Kpred_lower_bound(bb),':','Color',colors(3,:),'LineWidth',3);
         
         zlim([0 1]);
 
@@ -169,7 +160,6 @@ for i = 1:nsteps
         tit = sprintf('Time: %.2f\n%d artificial data', i*dt , Ntr_artificial);
         title(tit);
         
-        % w = waitforbuttonpress;
         drawnow;
         
         writeMovie(movObj, getframe(fig));
@@ -181,4 +171,5 @@ end
 movObj.Loop = 'backandforth';
 close(movObj);
 
-export_fig ./Figures/Heat.png -r300
+rmpath ./Kernels
+rmpath ./Utilities
