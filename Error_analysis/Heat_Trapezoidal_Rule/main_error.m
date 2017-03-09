@@ -1,8 +1,9 @@
-clear all;clc; close all
+function main_error()
+clc; close all
 
 addpath ./Kernels
 addpath ./Utilities
-addpath ~/export_fig
+addpath ./export_fig
 
 rng('default')
 
@@ -64,9 +65,7 @@ ModelInfo.hyp = log([1 1 1 1 1 1 exp(-6)]);
 if plt == 1
     fig = figure(1);
     set(fig,'units','normalized','outerposition',[0 0 1 .5])
-    %set(fig,'units','normalized','outerposition',[0 0 1 1])
     clf
-    color2 = [217,95,2]/255;
     k = 1;
     subplot(2,num_plots,k)
     hold
@@ -77,7 +76,6 @@ if plt == 1
     axis tight
     s1 = surf(Xplot,Yplot,u_star_plot);
     set(s1,'FaceLighting','flat','FaceColor','b','EdgeColor','b', 'LineStyle','-','LineWidth',1,'FaceAlpha',0.25);
-    %set(s1,'FaceColor','b','EdgeColor','k', 'LineWidth',1e-12,'FaceAlpha',0.5);
     plot3(ModelInfo.x_u(:,1), ModelInfo.x_u(:,2), ModelInfo.u,'ro', 'MarkerEdgeColor','r','MarkerSize',12,'LineWidth',3);
     ylabel('$x_2$')
     xlabel('$x_1$')
@@ -87,7 +85,6 @@ if plt == 1
     tit = sprintf('Time: %.2f\n%d training points', 0,Ntr);
     title(tit);
     
-    % w = waitforbuttonpress;
     drawnow;
 end
 
@@ -96,7 +93,6 @@ for i = 1:nsteps
     
     [ModelInfo.hyp,~,~] = minimize(ModelInfo.hyp, @likelihood, -5000);
     [NLML,~]=likelihood(ModelInfo.hyp);
-    % exp(ModelInfo.hyp)
     
     [Kpred, Kvar] = predictor(xstar);
     Kvar = abs(diag(Kvar));
@@ -123,7 +119,7 @@ for i = 1:nsteps
         az = -120;
         el = 25;
         view(az, el);
-    axis tight
+        axis tight
         s1 = surf(Xplot,Yplot,Kpred_plot);
         set(s1,'FaceLighting','flat', 'FaceColor','r','EdgeColor','r', 'LineStyle','--','LineWidth',1,'FaceAlpha',0.5);
         s2 = surf(Xplot,Yplot,Exact_plot);
@@ -132,7 +128,6 @@ for i = 1:nsteps
         set(s3,'FaceLighting','flat','FaceColor','k','EdgeColor','k', 'LineStyle',':','LineWidth',1.5,'FaceAlpha',0);
         s4 = surf(Xplot,Yplot,Kpred_lower_bound_plot);
         set(s4,'FaceLighting','flat','FaceColor','k','EdgeColor','k', 'LineStyle',':','LineWidth',1.5,'FaceAlpha',0);
-        %plot3(ModelInfo.x_u(:,1), ModelInfo.x_u(:,2), ModelInfo.u,'ro', 'MarkerEdgeColor','r','MarkerSize',12,'LineWidth',3);
         ylabel('$x_2$')
         xlabel('$x_1$')
         zlabel('$u(t,x_1,x_2)$')
@@ -141,7 +136,6 @@ for i = 1:nsteps
         tit = sprintf('Time: %.2f\n%d artificial data', i*dt , Ntr_artificial);
         title(tit);
         
-        % w = waitforbuttonpress;
         drawnow;
         
     end
@@ -159,3 +153,7 @@ set(gca,'FontSize',14);
 set(gcf, 'Color', 'w');
 
 export_fig ./Figures/Heat_Error_versus_Time.png -r300
+
+rmpath ./Kernels
+rmpath ./Utilities
+rmpath ./export_fig
