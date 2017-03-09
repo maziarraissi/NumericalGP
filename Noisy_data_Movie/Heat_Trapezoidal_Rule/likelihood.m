@@ -47,7 +47,6 @@ K = [K_n1n1_DD K_n1n1_DN zeros(N_D,N_D) zeros(N_D,N_N) K_n1n_D3 zeros(N_D,N_u);
      K_n1n_D3' K_n1n_N3' K_nn_D3' K_nn_N3' K_nn_33 K_nn_31;
      zeros(N_u,N_D) zeros(N_u,N_N) K_nn_D1' K_nn_N1' K_nn_31' K_nn_11];
 
-% K = K + eye(n).*jitter;
 
 % Cholesky factorisation
 [L,p]=chol(K,'lower');
