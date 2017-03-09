@@ -26,7 +26,6 @@ psi = [K1 K2];
 
 L=ModelInfo.L;
 
-% calculate prediction
 f = psi*(L'\(L\y));
 
 alpha = (L'\(L\psi'));
