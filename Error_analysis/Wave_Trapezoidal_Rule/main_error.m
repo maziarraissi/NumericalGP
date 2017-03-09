@@ -1,7 +1,8 @@
-clear all; clc; close all;
+function main_error()
+clc; close all;
 
 addpath ./Utilities
-addpath ~/export_fig
+addpath ./export_fig
 addpath ./Kernels
 
 rng('default')
@@ -62,7 +63,6 @@ ModelInfo.hyp = log([1 1 1 1 exp(-6) exp(-6)]);
 if plt == 1 
         fig = figure(1);
         set(fig,'units','normalized','outerposition',[0 0 1 .4])
-        %set(fig,'units','normalized','outerposition',[0 0 1 1])
         clf
         color2 = [217,95,2]/255;
         k=1;
@@ -70,12 +70,10 @@ if plt == 1
         hold
         plot(x_star_u,Exact_solution(0, x_star_u),'b','LineWidth',3);
         plot(ModelInfo.x_u, ModelInfo.u,'ro','MarkerSize',12,'LineWidth',3);
-        %yLimits = get(gca,'YLim');
         xlabel('$x$')
         ylabel('$u(t,x)$')
         axis square
         ylim([-1 1]);
-        %ylim([yLimits(1) yLimits(2)]);
         set(gca,'FontSize',14);
         set(gcf, 'Color', 'w');
         tit = sprintf('Time: %.2f\n%d initial data', 0,Ntr_u);
@@ -85,19 +83,15 @@ if plt == 1
         hold
         plot(x_star_v,Exact_solution_derivative(0, x_star_v),'b','LineWidth',3);
         plot(ModelInfo.x_v, ModelInfo.v,'ro','MarkerSize',12,'LineWidth',3);
-        %yLimits = get(gca,'YLim');
         xlabel('$x$')
         ylabel('$v(t,x)$')
         axis square
         ylim([-5 5]);
-        %ylim([yLimits(1) yLimits(2)]);
         set(gca,'FontSize',14);
         set(gcf, 'Color', 'w');
         tit = sprintf('%d initial data',Ntr_v);
         title(tit);
 
-             
-        % w = waitforbuttonpress;
         drawnow;
 end
 
@@ -107,7 +101,6 @@ for i = 1:nsteps
 
     [ModelInfo.hyp,~,~] = minimize(ModelInfo.hyp, @likelihood, -5000);   
     [NLML,~]=likelihood(ModelInfo.hyp);
-%     exp(ModelInfo.hyp)
     
     [Kpred, Kvar] = predictor(x_star_u, x_star_v);
     Kvar = abs(diag(Kvar));
@@ -132,22 +125,16 @@ for i = 1:nsteps
     ModelInfo.x_v = x_v;
     
     if plt == 1 && mod(i,ceil(nsteps/num_plots))==0 && i < nsteps
-%   if plt == 1
         k = k+1;
         subplot(2,num_plots,k)
         hold
         plot(x_star_u,Exact,'b','LineWidth',3);
         plot(x_star_u, u_star_mean,'r--','LineWidth',3);
-        %plot(ModelInfo.x_u, ModelInfo.u,'ro','MarkerSize',12,'LineWidth',1);
         [l,p] = boundedline(x_star_u, u_star_mean, 2.0*sqrt(u_star_var), ':', 'alpha','cmap', color2);
         outlinebounds(l,p);
-        %plot(ModelInfo.x0, ModelInfo.y0,'o','MarkerSize',10,'LineWidth',3);
-        %yLimits = get(gca,'YLim');
         xlabel('$x$')
-        %ylabel('$u(t,x)$')
         axis square
         ylim([-1 1]);
-        %ylim([yLimits(1) yLimits(2)]);
         set(gca,'FontSize',14);
         set(gcf, 'Color', 'w');
         tit = sprintf('Time: %.2f\n%d artificial data', i*dt ,Ntr_u_artificial);
@@ -157,22 +144,16 @@ for i = 1:nsteps
         hold
         plot(x_star_v,Exact_derivative,'b','LineWidth',3);
         plot(x_star_v, v_star_mean,'r--','LineWidth',3);
-        %plot(ModelInfo.x_v, ModelInfo.v,'ro','MarkerSize',12,'LineWidth',1);
         [l,p] = boundedline(x_star_v, v_star_mean, 2.0*sqrt(v_star_var), ':', 'alpha','cmap', color2);
         outlinebounds(l,p);
-        %plot(ModelInfo.x0, ModelInfo.y0,'o','MarkerSize',10,'LineWidth',3);
-        %yLimits = get(gca,'YLim');
         xlabel('$x$')
-        %ylabel('$v(t,x)$')
         axis square
         ylim([-5 5]);
-        %ylim([yLimits(1) yLimits(2)]);
         set(gca,'FontSize',14);
         set(gcf, 'Color', 'w');
         tit = sprintf('%d artificial data', Ntr_v_artificial);
         title(tit);
         
-        % w = waitforbuttonpress;
         drawnow;
 
     end
@@ -190,3 +171,7 @@ set(gca,'FontSize',14);
 set(gcf, 'Color', 'w');
 
 export_fig ./Figures/Wave_Error_versus_Time.png -r300
+
+rmpath ./Utilities
+rmpath ./export_fig
+rmpath ./Kernels
