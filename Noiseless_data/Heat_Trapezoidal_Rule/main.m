@@ -1,8 +1,9 @@
-clear all; clc; close all
+function main()
+clc; close all
 
 addpath ./Kernels
 addpath ./Utilities
-addpath ~/export_fig
+addpath ./export_fig
 
 rng('default')
 
@@ -39,7 +40,7 @@ u_star_plot = griddata(xstar(:,1),xstar(:,2),u_star,Xplot,Yplot,'cubic');
 
 num_plots = 2;
 
-cc = [202,0,32;
+colors = [202,0,32;
     5,113,176;
     244,165,130]/255;
 
@@ -66,9 +67,7 @@ ModelInfo.hyp = log([1 1 1 1 1 1 exp(-6)]);
 if plt == 1
     fig = figure(1);
     set(fig,'units','normalized','outerposition',[0 0 1 .5])
-    %set(fig,'units','normalized','outerposition',[0 0 1 1])
     clf
-    color2 = [217,95,2]/255;
     k = 1;
     subplot(2,num_plots,k)
     hold
@@ -83,11 +82,11 @@ if plt == 1
     shading interp
     material dull
     lighting flat
-    set(s1,'FaceColor',cc(2,:),'FaceAlpha',0.50);
+    set(s1,'FaceColor',colors(2,:),'FaceAlpha',0.50);
     
-    plot3(xstar(bb,1),xstar(bb,2),u_star(bb),'Color',cc(2,:),'LineWidth',3);
+    plot3(xstar(bb,1),xstar(bb,2),u_star(bb),'Color',colors(2,:),'LineWidth',3);
     
-    plot3(ModelInfo.x_u(:,1), ModelInfo.x_u(:,2), ModelInfo.u,'o','Color',cc(1,:),'MarkerEdgeColor',cc(1,:),'MarkerSize',12,'LineWidth',3);
+    plot3(ModelInfo.x_u(:,1), ModelInfo.x_u(:,2), ModelInfo.u,'o','Color',colors(1,:),'MarkerEdgeColor',colors(1,:),'MarkerSize',12,'LineWidth',3);
     
     ylabel('$x_2$')
     xlabel('$x_1$')
@@ -97,7 +96,6 @@ if plt == 1
     tit = sprintf('Time: %.2f\n%d training points', 0,Ntr);
     title(tit);
     
-    % w = waitforbuttonpress;
     drawnow;
 end
 
@@ -144,15 +142,15 @@ for i = 1:nsteps
         shading interp
         material dull
         lighting flat
-        set(s1,'FaceColor',cc(1,:),'FaceAlpha',0.50);
-        set(s2,'FaceColor',cc(2,:),'FaceAlpha',0.50);
-        set(s3,'FaceColor',cc(3,:),'FaceAlpha',0.50);
-        set(s4,'FaceColor',cc(3,:),'FaceAlpha',0.50);
+        set(s1,'FaceColor',colors(1,:),'FaceAlpha',0.50);
+        set(s2,'FaceColor',colors(2,:),'FaceAlpha',0.50);
+        set(s3,'FaceColor',colors(3,:),'FaceAlpha',0.50);
+        set(s4,'FaceColor',colors(3,:),'FaceAlpha',0.50);
         
-        plot3(xstar(bb,1),xstar(bb,2),Kpred(bb),'--','Color',cc(1,:),'LineWidth',3);
-        plot3(xstar(bb,1),xstar(bb,2),Exact(bb),'Color',cc(2,:),'LineWidth',3);
-        plot3(xstar(bb,1),xstar(bb,2),Kpred_upper_bound(bb),':','Color',cc(3,:),'LineWidth',3);
-        plot3(xstar(bb,1),xstar(bb,2),Kpred_lower_bound(bb),':','Color',cc(3,:),'LineWidth',3);
+        plot3(xstar(bb,1),xstar(bb,2),Kpred(bb),'--','Color',colors(1,:),'LineWidth',3);
+        plot3(xstar(bb,1),xstar(bb,2),Exact(bb),'Color',colors(2,:),'LineWidth',3);
+        plot3(xstar(bb,1),xstar(bb,2),Kpred_upper_bound(bb),':','Color',colors(3,:),'LineWidth',3);
+        plot3(xstar(bb,1),xstar(bb,2),Kpred_lower_bound(bb),':','Color',colors(3,:),'LineWidth',3);
         
         ylabel('$x_2$')
         xlabel('$x_1$')
@@ -162,7 +160,6 @@ for i = 1:nsteps
         tit = sprintf('Time: %.2f\nError: %e\n%d artificial data', i*dt , error(i), Ntr_artificial);
         title(tit);
         
-        % w = waitforbuttonpress;
         drawnow;
         
     end
@@ -172,3 +169,7 @@ end
 
 
 export_fig ./Figures/Heat_noiseless.png -r300
+
+rmpath ./Kernels
+rmpath ./Utilities
+rmpath ./export_fig
