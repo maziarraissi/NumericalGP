@@ -1,0 +1,4523 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[    165460,       4513]
+NotebookOptionsPosition[    158937,       4284]
+NotebookOutlinePosition[    159273,       4299]
+CellTagsIndexPosition[    159230,       4296]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"<<", "ToMatlab.m"}]], "Input",
+ CellChangeTimes->{{3.6972423593857403`*^9, 3.697242364596126*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"k", " ", "=", " ", 
+  RowBox[{
+   FractionBox["2", "Pi"], 
+   RowBox[{"ArcSin", "[", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"Exp", "[", "logsigma", "]"}], " ", "+", " ", 
+       RowBox[{
+        RowBox[{"Exp", "[", "logtheta", "]"}], " ", "x", " ", "y"}]}], ")"}], 
+     "/", 
+     RowBox[{"(", 
+      RowBox[{"\[Sqrt]", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"1", " ", "+", " ", 
+           RowBox[{"Exp", "[", "logsigma", "]"}], " ", "+", " ", 
+           RowBox[{
+            RowBox[{"Exp", "[", "logtheta", "]"}], " ", 
+            SuperscriptBox["x", "2"]}]}], ")"}], 
+         RowBox[{"(", 
+          RowBox[{"1", " ", "+", " ", 
+           RowBox[{"Exp", "[", "logsigma", "]"}], " ", "+", " ", 
+           RowBox[{
+            RowBox[{"Exp", "[", "logtheta", "]"}], " ", 
+            SuperscriptBox["y", "2"]}]}], ")"}]}], ")"}]}], ")"}]}], 
+    "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.697242236763699*^9, 3.697242332801202*^9}}],
+
+Cell[BoxData[
+ FractionBox[
+  RowBox[{"2", " ", 
+   RowBox[{"ArcSin", "[", 
+    FractionBox[
+     RowBox[{
+      SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+      RowBox[{
+       SuperscriptBox["\[ExponentialE]", "logtheta"], " ", "x", " ", "y"}]}], 
+     
+     SqrtBox[
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"1", "+", 
+         SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+          SuperscriptBox["x", "2"]}]}], ")"}], " ", 
+       RowBox[{"(", 
+        RowBox[{"1", "+", 
+         SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+          SuperscriptBox["y", "2"]}]}], ")"}]}]]], "]"}]}], 
+  "\[Pi]"]], "Output",
+ CellChangeTimes->{3.697242337395138*^9, 3.6972428719917583`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ToMatlab", "[", "k", "]"}]], "Input",
+ CellChangeTimes->{{3.6972423688024197`*^9, 3.697242372547855*^9}}],
+
+Cell[BoxData["\<\"2.*pi.^(-1).*asin((exp(1).^logsigma+exp(1).^logtheta.*x.*y).\
+*((1+ ...\\n  \
+exp(1).^logsigma+exp(1).^logtheta.*x.^2).*(1+exp(1).^logsigma+exp( ...\\n  \
+1).^logtheta.*y.^2)).^(-1/2));\\n\"\>"], "Output",
+ CellChangeTimes->{3.6972423731868143`*^9, 3.697242872001409*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"DkDlogsigma", " ", "=", " ", 
+  RowBox[{
+   RowBox[{"D", "[", 
+    RowBox[{"k", ",", "logsigma"}], "]"}], "//", "FullSimplify"}]}]], "Input",\
+
+ CellChangeTimes->{{3.6972427416101*^9, 3.6972427838144903`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(", 
+   RowBox[{
+    SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+    RowBox[{"(", 
+     RowBox[{"2", "+", 
+      RowBox[{"2", " ", 
+       SuperscriptBox["\[ExponentialE]", "logsigma"]}], "+", 
+      RowBox[{
+       SuperscriptBox["\[ExponentialE]", 
+        RowBox[{"logsigma", "+", "logtheta"}]], " ", 
+       SuperscriptBox[
+        RowBox[{"(", 
+         RowBox[{"x", "-", "y"}], ")"}], "2"]}], "-", 
+      RowBox[{
+       SuperscriptBox["\[ExponentialE]", 
+        RowBox[{"2", " ", "logtheta"}]], " ", "x", " ", 
+       SuperscriptBox[
+        RowBox[{"(", 
+         RowBox[{"x", "-", "y"}], ")"}], "2"], " ", "y"}], "+", 
+      RowBox[{"2", " ", 
+       SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+       RowBox[{"(", 
+        RowBox[{
+         SuperscriptBox["x", "2"], "-", 
+         RowBox[{"x", " ", "y"}], "+", 
+         SuperscriptBox["y", "2"]}], ")"}]}]}], ")"}]}], ")"}], "/", 
+  RowBox[{"(", 
+   RowBox[{"\[Pi]", " ", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"1", "+", 
+         SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+          SuperscriptBox["x", "2"]}]}], ")"}], " ", 
+       RowBox[{"(", 
+        RowBox[{"1", "+", 
+         SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+          SuperscriptBox["y", "2"]}]}], ")"}]}], ")"}], 
+     RowBox[{"3", "/", "2"}]], " ", 
+    SqrtBox[
+     RowBox[{"1", "-", 
+      FractionBox[
+       SuperscriptBox[
+        RowBox[{"(", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logtheta"], " ", "x", " ", 
+           "y"}]}], ")"}], "2"], 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+           SuperscriptBox["x", "2"]}]}], ")"}], " ", 
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+           SuperscriptBox["y", "2"]}]}], ")"}]}]]}]]}], ")"}]}]], "Output",
+ CellChangeTimes->{{3.697242778220662*^9, 3.6972427854548883`*^9}, 
+   3.697242873411706*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ToMatlab", "[", "DkDlogsigma", "]"}]], "Input",
+ CellChangeTimes->{{3.697242792594857*^9, 3.697242801886545*^9}}],
+
+Cell[BoxData["\<\"exp(1).^logsigma.*pi.^(-1).*((1+exp(1).^logsigma+exp(1) ...\
+\\n  .^logtheta.*x.^2).*(1+exp(1).^logsigma+exp(1).^logtheta.*y.^2)).^( \
+...\\n  -3/2).*(2+2.*exp(1).^logsigma+exp(1).^(logsigma+logtheta).*(x+(-1) \
+...\\n  .*y).^2+(-1).*exp(1).^(2.*logtheta).*x.*(x+(-1).*y).^2.*y+2.*exp( ...\
+\\n  1).^logtheta.*(x.^2+(-1).*x.*y+y.^2)).*(1+(-1).*(1+exp(1) ...\\n  \
+.^logsigma+exp(1).^logtheta.*x.^2).^(-1).*(exp(1).^logsigma+exp(1) ...\\n  \
+.^logtheta.*x.*y).^2.*(1+exp(1).^logsigma+exp(1).^logtheta.*y.^2) ...\\n  \
+.^(-1)).^(-1/2);\\n\"\>"], "Output",
+ CellChangeTimes->{3.697242802357675*^9, 3.697242873482277*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"DkDlogtheta", " ", "=", " ", 
+  RowBox[{
+   RowBox[{"D", "[", 
+    RowBox[{"k", ",", "logtheta"}], "]"}], "//", "FullSimplify"}]}]], "Input",\
+
+ CellChangeTimes->{{3.6972428152322807`*^9, 3.69724284222816*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(", 
+   RowBox[{
+    SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"-", 
+        SuperscriptBox["\[ExponentialE]", 
+         RowBox[{"2", " ", "logsigma"}]]}], " ", 
+       SuperscriptBox[
+        RowBox[{"(", 
+         RowBox[{"x", "-", "y"}], ")"}], "2"]}], "+", 
+      RowBox[{
+       SuperscriptBox["\[ExponentialE]", 
+        RowBox[{"logsigma", "+", "logtheta"}]], " ", "x", " ", 
+       SuperscriptBox[
+        RowBox[{"(", 
+         RowBox[{"x", "-", "y"}], ")"}], "2"], " ", "y"}], "-", 
+      RowBox[{
+       SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+       RowBox[{"(", 
+        RowBox[{
+         SuperscriptBox["x", "2"], "-", 
+         RowBox[{"4", " ", "x", " ", "y"}], "+", 
+         SuperscriptBox["y", "2"]}], ")"}]}], "+", 
+      RowBox[{"x", " ", "y", " ", 
+       RowBox[{"(", 
+        RowBox[{"2", "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+          RowBox[{"(", 
+           RowBox[{
+            SuperscriptBox["x", "2"], "+", 
+            SuperscriptBox["y", "2"]}], ")"}]}]}], ")"}]}]}], ")"}]}], ")"}], 
+  "/", 
+  RowBox[{"(", 
+   RowBox[{"\[Pi]", " ", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"1", "+", 
+         SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+          SuperscriptBox["x", "2"]}]}], ")"}], " ", 
+       RowBox[{"(", 
+        RowBox[{"1", "+", 
+         SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+          SuperscriptBox["y", "2"]}]}], ")"}]}], ")"}], 
+     RowBox[{"3", "/", "2"}]], " ", 
+    SqrtBox[
+     RowBox[{"1", "-", 
+      FractionBox[
+       SuperscriptBox[
+        RowBox[{"(", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logtheta"], " ", "x", " ", 
+           "y"}]}], ")"}], "2"], 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+           SuperscriptBox["x", "2"]}]}], ")"}], " ", 
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+           SuperscriptBox["y", "2"]}]}], ")"}]}]]}]]}], ")"}]}]], "Output",
+ CellChangeTimes->{{3.697242822052112*^9, 3.697242874177497*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ToMatlab", "[", "DkDlogtheta", "]"}]], "Input",
+ CellChangeTimes->{{3.6972428510719767`*^9, 3.697242851585256*^9}}],
+
+Cell[BoxData["\<\"exp(1).^logtheta.*pi.^(-1).*((1+exp(1).^logsigma+exp(1) ...\
+\\n  .^logtheta.*x.^2).*(1+exp(1).^logsigma+exp(1).^logtheta.*y.^2)).^( \
+...\\n  -3/2).*(1+(-1).*(1+exp(1).^logsigma+exp(1).^logtheta.*x.^2).^(-1) ...\
+\\n  .*(exp(1).^logsigma+exp(1).^logtheta.*x.*y).^2.*(1+exp(1) ...\\n  \
+.^logsigma+exp(1).^logtheta.*y.^2).^(-1)).^(-1/2).*((-1).*exp(1) ...\\n  \
+.^(2.*logsigma).*(x+(-1).*y).^2+exp(1).^(logsigma+logtheta).*x.*( ...\\n  \
+x+(-1).*y).^2.*y+(-1).*exp(1).^logsigma.*(x.^2+(-4).*x.*y+y.^2)+ ...\\n  \
+x.*y.*(2+exp(1).^logtheta.*(x.^2+y.^2)));\\n\"\>"], "Output",
+ CellChangeTimes->{3.697242874195685*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"DkDy", " ", "=", " ", 
+  RowBox[{
+   RowBox[{"D", "[", 
+    RowBox[{"k", ",", "y"}], "]"}], "//", "FullSimplify"}]}]], "Input",
+ CellChangeTimes->{{3.697243276767004*^9, 3.697243325574733*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(", 
+   RowBox[{"2", " ", 
+    SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+    RowBox[{"(", 
+     RowBox[{"1", "+", 
+      SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+      RowBox[{
+       SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+       SuperscriptBox["x", "2"]}]}], ")"}], " ", 
+    RowBox[{"(", 
+     RowBox[{"x", "+", 
+      RowBox[{
+       SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+       RowBox[{"(", 
+        RowBox[{"x", "-", "y"}], ")"}]}]}], ")"}]}], ")"}], "/", 
+  RowBox[{"(", 
+   RowBox[{"\[Pi]", " ", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"1", "+", 
+         SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+          SuperscriptBox["x", "2"]}]}], ")"}], " ", 
+       RowBox[{"(", 
+        RowBox[{"1", "+", 
+         SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+          SuperscriptBox["y", "2"]}]}], ")"}]}], ")"}], 
+     RowBox[{"3", "/", "2"}]], " ", 
+    SqrtBox[
+     RowBox[{"1", "-", 
+      FractionBox[
+       SuperscriptBox[
+        RowBox[{"(", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logtheta"], " ", "x", " ", 
+           "y"}]}], ")"}], "2"], 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+           SuperscriptBox["x", "2"]}]}], ")"}], " ", 
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+           SuperscriptBox["y", "2"]}]}], ")"}]}]]}]]}], ")"}]}]], "Output",
+ CellChangeTimes->{{3.697243320670704*^9, 3.6972433272132263`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ToMatlab", "[", "DkDy", "]"}]], "Input",
+ CellChangeTimes->{{3.6972433314112453`*^9, 3.6972433377072287`*^9}}],
+
+Cell[BoxData["\<\"2.*exp(1).^logtheta.*pi.^(-1).*(1+exp(1).^logsigma+exp(1) \
+...\\n  .^logtheta.*x.^2).*(x+exp(1).^logsigma.*(x+(-1).*y)).*((1+exp(1) \
+...\\n  .^logsigma+exp(1).^logtheta.*x.^2).*(1+exp(1).^logsigma+exp(1) ...\\n \
+ .^logtheta.*y.^2)).^(-3/2).*(1+(-1).*(1+exp(1).^logsigma+exp(1) ...\\n  \
+.^logtheta.*x.^2).^(-1).*(exp(1).^logsigma+exp(1).^logtheta.*x.*y) ...\\n  \
+.^2.*(1+exp(1).^logsigma+exp(1).^logtheta.*y.^2).^(-1)).^(-1/2);\\n\"\>"], \
+"Output",
+ CellChangeTimes->{3.697243338138274*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"DDkDyDlogsigma", " ", "=", " ", 
+  RowBox[{
+   RowBox[{"D", "[", 
+    RowBox[{"DkDy", ",", " ", "logsigma"}], "]"}], "//", 
+   "FullSimplify"}]}]], "Input",
+ CellChangeTimes->{{3.697243433760911*^9, 3.697243466756246*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(", 
+   RowBox[{
+    SuperscriptBox["\[ExponentialE]", 
+     RowBox[{"logsigma", "+", "logtheta"}]], " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{
+       SuperscriptBox["\[ExponentialE]", 
+        RowBox[{"2", " ", "logtheta"}]], " ", 
+       SuperscriptBox["y", "2"], " ", 
+       RowBox[{"(", 
+        RowBox[{
+         SuperscriptBox["x", "3"], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"x", "-", "y"}], ")"}], "3"]}], "+", 
+         RowBox[{"x", " ", 
+          SuperscriptBox["y", "2"]}], "-", 
+         RowBox[{"2", " ", 
+          SuperscriptBox["y", "3"]}]}], ")"}]}], "+", 
+      RowBox[{
+       SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"-", 
+          SuperscriptBox["x", "3"]}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "logsigma"}]], " ", 
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"x", "-", "y"}], ")"}], "3"]}], "-", 
+         RowBox[{"x", " ", 
+          SuperscriptBox["y", "2"]}], "-", 
+         RowBox[{"4", " ", 
+          SuperscriptBox["y", "3"]}], "-", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"2", " ", "x"}], "-", 
+            RowBox[{"3", " ", "y"}]}], ")"}], " ", 
+          RowBox[{"(", 
+           RowBox[{"x", "-", "y"}], ")"}], " ", 
+          RowBox[{"(", 
+           RowBox[{"x", "+", "y"}], ")"}]}]}], ")"}]}], "-", 
+      RowBox[{"2", " ", 
+       SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"2", " ", "x"}], "+", "y", "+", 
+         RowBox[{"2", " ", "x", " ", 
+          RowBox[{"Cosh", "[", "logsigma", "]"}]}], "-", 
+         RowBox[{"2", " ", "y", " ", 
+          RowBox[{"Sinh", "[", "logsigma", "]"}]}]}], ")"}]}]}], ")"}]}], 
+   ")"}], "/", 
+  RowBox[{"(", 
+   RowBox[{"\[Pi]", " ", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"1", "+", 
+       SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+       RowBox[{
+        SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+        SuperscriptBox["y", "2"]}]}], ")"}], "2"], " ", 
+    SqrtBox[
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"1", "+", 
+        SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+        RowBox[{
+         SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+         SuperscriptBox["x", "2"]}]}], ")"}], " ", 
+      RowBox[{"(", 
+       RowBox[{"1", "+", 
+        SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+        RowBox[{
+         SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+         SuperscriptBox["y", "2"]}]}], ")"}]}]], " ", 
+    RowBox[{"(", 
+     RowBox[{"1", "+", 
+      RowBox[{"2", " ", 
+       SuperscriptBox["\[ExponentialE]", "logsigma"]}], "+", 
+      RowBox[{
+       SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+       RowBox[{"(", 
+        RowBox[{
+         SuperscriptBox["x", "2"], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"x", "-", "y"}], ")"}], "2"]}], "+", 
+         SuperscriptBox["y", "2"]}], ")"}]}]}], ")"}], " ", 
+    SqrtBox[
+     RowBox[{"1", "-", 
+      FractionBox[
+       SuperscriptBox[
+        RowBox[{"(", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logtheta"], " ", "x", " ", 
+           "y"}]}], ")"}], "2"], 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+           SuperscriptBox["x", "2"]}]}], ")"}], " ", 
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+           SuperscriptBox["y", "2"]}]}], ")"}]}]]}]]}], ")"}]}]], "Output",
+ CellChangeTimes->{{3.697243461568321*^9, 3.697243471908628*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ToMatlab", "[", "DDkDyDlogsigma", "]"}]], "Input",
+ CellChangeTimes->{{3.697243475026911*^9, 3.697243483133308*^9}}],
+
+Cell[BoxData["\<\"exp(1).^(logsigma+logtheta).*pi.^(-1).*(1+exp(1).^logsigma+\
+exp(1) ...\\n  \
+.^logtheta.*y.^2).^(-2).*((1+exp(1).^logsigma+exp(1).^logtheta.* ...\\n  \
+x.^2).*(1+exp(1).^logsigma+exp(1).^logtheta.*y.^2)).^(-1/2).*(1+ ...\\n  \
+2.*exp(1).^logsigma+exp(1).^logtheta.*(x.^2+exp(1).^logsigma.*(x+( ...\\n  \
+-1).*y).^2+y.^2)).^(-1).*(1+(-1).*(1+exp(1).^logsigma+exp(1) ...\\n  \
+.^logtheta.*x.^2).^(-1).*(exp(1).^logsigma+exp(1).^logtheta.*x.*y) ...\\n  \
+.^2.*(1+exp(1).^logsigma+exp(1).^logtheta.*y.^2).^(-1)).^(-1/2).*( ...\\n  \
+exp(1).^(2.*logtheta).*y.^2.*(x.^3+exp(1).^logsigma.*(x+(-1).*y) ...\\n  \
+.^3+x.*y.^2+(-2).*y.^3)+exp(1).^logtheta.*((-1).*x.^3+(-1).*exp(1) ...\\n  \
+.^(2.*logsigma).*(x+(-1).*y).^3+(-1).*x.*y.^2+(-4).*y.^3+(-1).* ...\\n  \
+exp(1).^logsigma.*(2.*x+(-3).*y).*(x+(-1).*y).*(x+y))+(-2).*exp(1) ...\\n  \
+.^logsigma.*(2.*x+y+2.*x.*cosh(logsigma)+(-2).*y.*sinh(logsigma))) ...\\n  \
+;\\n\"\>"], "Output",
+ CellChangeTimes->{3.697243483623621*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"DDkDyDlogtheta", " ", "=", " ", 
+  RowBox[{
+   RowBox[{"D", "[", 
+    RowBox[{"DkDy", ",", " ", "logtheta"}], "]"}], "//", 
+   "FullSimplify"}]}]], "Input",
+ CellChangeTimes->{{3.697243585454378*^9, 3.6972435907154903`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(", 
+   RowBox[{
+    SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+    RowBox[{"(", 
+     RowBox[{"x", "+", 
+      RowBox[{
+       SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+       RowBox[{"(", 
+        RowBox[{"x", "-", "y"}], ")"}]}]}], ")"}], " ", 
+    RowBox[{"(", 
+     RowBox[{"2", "+", 
+      RowBox[{"2", " ", 
+       SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+       RowBox[{"(", 
+        RowBox[{"3", "+", 
+         RowBox[{"2", " ", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"]}]}], ")"}]}], "+", 
+      RowBox[{
+       SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+       RowBox[{"(", 
+        RowBox[{"1", "+", 
+         SuperscriptBox["\[ExponentialE]", "logsigma"]}], ")"}], " ", 
+       RowBox[{"(", 
+        RowBox[{
+         SuperscriptBox["x", "2"], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"x", "-", "y"}], ")"}], "2"]}], "+", 
+         SuperscriptBox["y", "2"]}], ")"}]}], "-", 
+      RowBox[{
+       SuperscriptBox["\[ExponentialE]", 
+        RowBox[{"2", " ", "logtheta"}]], " ", 
+       SuperscriptBox["y", "2"], " ", 
+       RowBox[{"(", 
+        RowBox[{
+         SuperscriptBox["x", "2"], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"x", "-", "y"}], ")"}], "2"]}], "+", 
+         SuperscriptBox["y", "2"]}], ")"}]}]}], ")"}]}], ")"}], "/", 
+  RowBox[{"(", 
+   RowBox[{"\[Pi]", " ", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"1", "+", 
+       SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+       RowBox[{
+        SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+        SuperscriptBox["y", "2"]}]}], ")"}], "2"], " ", 
+    SqrtBox[
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"1", "+", 
+        SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+        RowBox[{
+         SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+         SuperscriptBox["x", "2"]}]}], ")"}], " ", 
+      RowBox[{"(", 
+       RowBox[{"1", "+", 
+        SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+        RowBox[{
+         SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+         SuperscriptBox["y", "2"]}]}], ")"}]}]], " ", 
+    RowBox[{"(", 
+     RowBox[{"1", "+", 
+      RowBox[{"2", " ", 
+       SuperscriptBox["\[ExponentialE]", "logsigma"]}], "+", 
+      RowBox[{
+       SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+       RowBox[{"(", 
+        RowBox[{
+         SuperscriptBox["x", "2"], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"x", "-", "y"}], ")"}], "2"]}], "+", 
+         SuperscriptBox["y", "2"]}], ")"}]}]}], ")"}], " ", 
+    SqrtBox[
+     RowBox[{"1", "-", 
+      FractionBox[
+       SuperscriptBox[
+        RowBox[{"(", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logtheta"], " ", "x", " ", 
+           "y"}]}], ")"}], "2"], 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+           SuperscriptBox["x", "2"]}]}], ")"}], " ", 
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+           SuperscriptBox["y", "2"]}]}], ")"}]}]]}]]}], ")"}]}]], "Output",
+ CellChangeTimes->{3.697243596320981*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ToMatlab", "[", "DDkDyDlogtheta", "]"}]], "Input",
+ CellChangeTimes->{{3.697243607376368*^9, 3.697243608002697*^9}}],
+
+Cell[BoxData["\<\"exp(1).^logtheta.*pi.^(-1).*(x+exp(1).^logsigma.*(x+(-1).*y)\
+).*(1+ ...\\n  exp(1).^logsigma+exp(1).^logtheta.*y.^2).^(-2).*((1+exp(1) ...\
+\\n  .^logsigma+exp(1).^logtheta.*x.^2).*(1+exp(1).^logsigma+exp(1) ...\\n  \
+.^logtheta.*y.^2)).^(-1/2).*(1+2.*exp(1).^logsigma+exp(1) ...\\n  \
+.^logtheta.*(x.^2+exp(1).^logsigma.*(x+(-1).*y).^2+y.^2)).^(-1).*( ...\\n  \
+2+2.*exp(1).^logsigma.*(3+2.*exp(1).^logsigma)+exp(1).^logtheta.*( ...\\n  \
+1+exp(1).^logsigma).*(x.^2+exp(1).^logsigma.*(x+(-1).*y).^2+y.^2)+ ...\\n  \
+(-1).*exp(1).^(2.*logtheta).*y.^2.*(x.^2+exp(1).^logsigma.*(x+(-1) ...\\n  \
+.*y).^2+y.^2)).*(1+(-1).*(1+exp(1).^logsigma+exp(1).^logtheta.* ...\\n  \
+x.^2).^(-1).*(exp(1).^logsigma+exp(1).^logtheta.*x.*y).^2.*(1+exp( ...\\n  \
+1).^logsigma+exp(1).^logtheta.*y.^2).^(-1)).^(-1/2);\\n\"\>"], "Output",
+ CellChangeTimes->{3.697243608892223*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"D2kDy2", " ", "=", " ", 
+  RowBox[{
+   RowBox[{"D", "[", 
+    RowBox[{"k", ",", 
+     RowBox[{"{", 
+      RowBox[{"y", ",", "2"}], "}"}]}], "]"}], "//", 
+   "FullSimplify"}]}]], "Input",
+ CellChangeTimes->{{3.697243782367176*^9, 3.697243795772872*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(", 
+   RowBox[{"2", " ", 
+    SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"-", 
+        SuperscriptBox["\[ExponentialE]", "logsigma"]}], " ", 
+       RowBox[{"(", 
+        RowBox[{"1", "+", 
+         SuperscriptBox["\[ExponentialE]", "logsigma"]}], ")"}], " ", 
+       RowBox[{"(", 
+        RowBox[{"1", "+", 
+         RowBox[{"2", " ", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"]}]}], ")"}]}], "+", 
+      RowBox[{
+       SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+       RowBox[{"(", 
+        RowBox[{"1", "+", 
+         RowBox[{"2", " ", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"]}]}], ")"}], " ", "y", 
+       " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"-", "3"}], " ", 
+          RowBox[{"(", 
+           RowBox[{"1", "+", 
+            SuperscriptBox["\[ExponentialE]", "logsigma"]}], ")"}], " ", 
+          "x"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", "logsigma"], " ", "y"}]}], 
+        ")"}]}], "+", 
+      RowBox[{
+       SuperscriptBox["\[ExponentialE]", 
+        RowBox[{"2", " ", "logtheta"}]], " ", "y", " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"-", "2"}], " ", 
+          SuperscriptBox["x", "3"]}], "-", 
+         RowBox[{"3", " ", "x", " ", 
+          SuperscriptBox["y", "2"]}], "+", 
+         RowBox[{"2", " ", 
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "logsigma"}]], " ", 
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"-", "x"}], "+", "y"}], ")"}], "3"]}], "-", 
+         RowBox[{"2", " ", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"2", " ", "x"}], "-", "y"}], ")"}], " ", 
+          RowBox[{"(", 
+           RowBox[{
+            SuperscriptBox["x", "2"], "-", 
+            RowBox[{"x", " ", "y"}], "+", 
+            SuperscriptBox["y", "2"]}], ")"}]}]}], ")"}]}]}], ")"}]}], ")"}], 
+  "/", 
+  RowBox[{"(", 
+   RowBox[{"\[Pi]", " ", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"1", "+", 
+       SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+       RowBox[{
+        SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+        SuperscriptBox["y", "2"]}]}], ")"}], "2"], " ", 
+    SqrtBox[
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"1", "+", 
+        SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+        RowBox[{
+         SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+         SuperscriptBox["x", "2"]}]}], ")"}], " ", 
+      RowBox[{"(", 
+       RowBox[{"1", "+", 
+        SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+        RowBox[{
+         SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+         SuperscriptBox["y", "2"]}]}], ")"}]}]], " ", 
+    RowBox[{"(", 
+     RowBox[{"1", "+", 
+      RowBox[{"2", " ", 
+       SuperscriptBox["\[ExponentialE]", "logsigma"]}], "+", 
+      RowBox[{
+       SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+       RowBox[{"(", 
+        RowBox[{
+         SuperscriptBox["x", "2"], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"x", "-", "y"}], ")"}], "2"]}], "+", 
+         SuperscriptBox["y", "2"]}], ")"}]}]}], ")"}], " ", 
+    SqrtBox[
+     RowBox[{"1", "-", 
+      FractionBox[
+       SuperscriptBox[
+        RowBox[{"(", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logtheta"], " ", "x", " ", 
+           "y"}]}], ")"}], "2"], 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+           SuperscriptBox["x", "2"]}]}], ")"}], " ", 
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+           SuperscriptBox["y", "2"]}]}], ")"}]}]]}]]}], ")"}]}]], "Output",
+ CellChangeTimes->{3.697243800185302*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ToMatlab", "[", "D2kDy2", "]"}]], "Input",
+ CellChangeTimes->{{3.697243803770822*^9, 3.697243810460618*^9}}],
+
+Cell[BoxData["\<\"2.*exp(1).^logtheta.*pi.^(-1).*(1+exp(1).^logsigma+exp(1) \
+...\\n  .^logtheta.*y.^2).^(-2).*((1+exp(1).^logsigma+exp(1).^logtheta.* \
+...\\n  x.^2).*(1+exp(1).^logsigma+exp(1).^logtheta.*y.^2)).^(-1/2).*(1+ \
+...\\n  2.*exp(1).^logsigma+exp(1).^logtheta.*(x.^2+exp(1).^logsigma.*(x+( \
+...\\n  -1).*y).^2+y.^2)).^(-1).*(1+(-1).*(1+exp(1).^logsigma+exp(1) ...\\n  \
+.^logtheta.*x.^2).^(-1).*(exp(1).^logsigma+exp(1).^logtheta.*x.*y) ...\\n  \
+.^2.*(1+exp(1).^logsigma+exp(1).^logtheta.*y.^2).^(-1)).^(-1/2).*( ...\\n  \
+(-1).*exp(1).^logsigma.*(1+exp(1).^logsigma).*(1+2.*exp(1) ...\\n  \
+.^logsigma)+exp(1).^logtheta.*(1+2.*exp(1).^logsigma).*y.*((-3).*( ...\\n  \
+1+exp(1).^logsigma).*x+exp(1).^logsigma.*y)+exp(1).^(2.*logtheta) ...\\n  \
+.*y.*((-2).*x.^3+(-3).*x.*y.^2+2.*exp(1).^(2.*logsigma).*((-1).*x+ ...\\n  \
+y).^3+(-2).*exp(1).^logsigma.*(2.*x+(-1).*y).*(x.^2+(-1).*x.*y+ ...\\n  \
+y.^2)));\\n\"\>"], "Output",
+ CellChangeTimes->{3.6972438108956757`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"DD2kDy2Dlogsigma", " ", "=", " ", 
+  RowBox[{
+   RowBox[{"D", "[", 
+    RowBox[{"D2kDy2", ",", " ", "logsigma"}], "]"}], "//", 
+   "FullSimplify"}]}]], "Input",
+ CellChangeTimes->{{3.697243902416239*^9, 3.697243934506774*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(", 
+   RowBox[{
+    SuperscriptBox["\[ExponentialE]", 
+     RowBox[{"logsigma", "+", "logtheta"}]], " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"3", " ", 
+       SuperscriptBox["\[ExponentialE]", 
+        RowBox[{"2", " ", "logtheta"}]], " ", "y", " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"5", " ", 
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"1", "+", 
+             SuperscriptBox["\[ExponentialE]", "logsigma"]}], ")"}], "2"], 
+          " ", 
+          RowBox[{"(", 
+           RowBox[{"1", "+", 
+            RowBox[{"2", " ", 
+             SuperscriptBox["\[ExponentialE]", "logsigma"]}]}], ")"}], " ", 
+          SuperscriptBox["x", "3"]}], "-", 
+         RowBox[{"2", " ", 
+          RowBox[{"(", 
+           RowBox[{"1", "+", 
+            SuperscriptBox["\[ExponentialE]", "logsigma"]}], ")"}], " ", 
+          RowBox[{"(", 
+           RowBox[{"1", "+", 
+            RowBox[{"2", " ", 
+             SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+             RowBox[{"(", 
+              RowBox[{"5", "+", 
+               RowBox[{"7", " ", 
+                SuperscriptBox["\[ExponentialE]", "logsigma"]}]}], ")"}]}]}], 
+           ")"}], " ", 
+          SuperscriptBox["x", "2"], " ", "y"}], "+", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"7", "+", 
+            RowBox[{
+             SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+             RowBox[{"(", 
+              RowBox[{"20", "+", 
+               RowBox[{
+                SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+                RowBox[{"(", 
+                 RowBox[{"29", "+", 
+                  RowBox[{"26", " ", 
+                   SuperscriptBox["\[ExponentialE]", "logsigma"]}]}], 
+                 ")"}]}]}], ")"}]}]}], ")"}], " ", "x", " ", 
+          SuperscriptBox["y", "2"]}], "-", 
+         RowBox[{"2", " ", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"-", "1"}], "+", 
+            RowBox[{
+             SuperscriptBox["\[ExponentialE]", 
+              RowBox[{"2", " ", "logsigma"}]], " ", 
+             RowBox[{"(", 
+              RowBox[{"5", "+", 
+               RowBox[{"4", " ", 
+                SuperscriptBox["\[ExponentialE]", "logsigma"]}]}], ")"}]}]}], 
+           ")"}], " ", 
+          SuperscriptBox["y", "3"]}]}], ")"}]}], "+", 
+      RowBox[{
+       SuperscriptBox["\[ExponentialE]", 
+        RowBox[{"4", " ", "logtheta"}]], " ", 
+       SuperscriptBox["y", "3"], " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"-", "2"}], " ", 
+          SuperscriptBox["x", "5"]}], "-", 
+         RowBox[{"5", " ", 
+          SuperscriptBox["x", "3"], " ", 
+          SuperscriptBox["y", "2"]}], "-", 
+         RowBox[{"2", " ", 
+          SuperscriptBox["x", "2"], " ", 
+          SuperscriptBox["y", "3"]}], "-", 
+         RowBox[{"3", " ", "x", " ", 
+          SuperscriptBox["y", "4"]}], "+", 
+         RowBox[{"4", " ", 
+          SuperscriptBox["y", "5"]}], "+", 
+         RowBox[{"2", " ", 
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "logsigma"}]], " ", 
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"-", "x"}], "+", "y"}], ")"}], "5"]}], "+", 
+         RowBox[{"2", " ", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"x", "-", "y"}], ")"}], "2"], " ", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"-", "2"}], " ", 
+             SuperscriptBox["x", "3"]}], "+", 
+            RowBox[{
+             SuperscriptBox["x", "2"], " ", "y"}], "-", 
+            RowBox[{"x", " ", 
+             SuperscriptBox["y", "2"]}], "+", 
+            RowBox[{"3", " ", 
+             SuperscriptBox["y", "3"]}]}], ")"}]}]}], ")"}]}], "+", 
+      RowBox[{
+       SuperscriptBox["\[ExponentialE]", 
+        RowBox[{"3", " ", "logtheta"}]], " ", "y", " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"6", " ", 
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"3", " ", "logsigma"}]], " ", 
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"x", "-", "y"}], ")"}], "5"]}], "-", 
+         RowBox[{"2", " ", 
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "logsigma"}]], " ", 
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"x", "-", "y"}], ")"}], "2"], " ", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"-", "9"}], " ", 
+             SuperscriptBox["x", "3"]}], "+", 
+            RowBox[{"12", " ", 
+             SuperscriptBox["x", "2"], " ", "y"}], "-", 
+            RowBox[{"7", " ", "x", " ", 
+             SuperscriptBox["y", "2"]}], "+", 
+            SuperscriptBox["y", "3"]}], ")"}]}], "+", 
+         RowBox[{"2", " ", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"3", " ", 
+             SuperscriptBox["x", "5"]}], "+", 
+            RowBox[{"5", " ", 
+             SuperscriptBox["x", "3"], " ", 
+             SuperscriptBox["y", "2"]}], "-", 
+            RowBox[{"3", " ", 
+             SuperscriptBox["x", "2"], " ", 
+             SuperscriptBox["y", "3"]}], "+", 
+            RowBox[{"3", " ", "x", " ", 
+             SuperscriptBox["y", "4"]}], "+", 
+            RowBox[{"5", " ", 
+             SuperscriptBox["y", "5"]}]}], ")"}]}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"18", " ", 
+             SuperscriptBox["x", "5"]}], "-", 
+            RowBox[{"30", " ", 
+             SuperscriptBox["x", "4"], " ", "y"}], "+", 
+            RowBox[{"30", " ", 
+             SuperscriptBox["x", "3"], " ", 
+             SuperscriptBox["y", "2"]}], "-", 
+            RowBox[{"45", " ", 
+             SuperscriptBox["x", "2"], " ", 
+             SuperscriptBox["y", "3"]}], "-", 
+            RowBox[{"6", " ", "x", " ", 
+             SuperscriptBox["y", "4"]}], "+", 
+            RowBox[{"13", " ", 
+             SuperscriptBox["y", "5"]}]}], ")"}]}]}], ")"}]}], "+", 
+      RowBox[{"2", " ", 
+       SuperscriptBox["\[ExponentialE]", 
+        RowBox[{"2", " ", "logsigma"}]], " ", 
+       RowBox[{"(", 
+        RowBox[{"3", "+", 
+         RowBox[{"3", " ", 
+          RowBox[{"Cosh", "[", "logsigma", "]"}]}], "+", 
+         RowBox[{"Sinh", "[", "logsigma", "]"}]}], ")"}], " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"-", "1"}], "+", 
+         RowBox[{"2", " ", 
+          RowBox[{"Sinh", "[", "logsigma", "]"}]}]}], ")"}]}], "+", 
+      RowBox[{
+       SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"-", "2"}], " ", 
+          RowBox[{"(", 
+           RowBox[{"1", "+", 
+            SuperscriptBox["\[ExponentialE]", "logsigma"]}], ")"}], " ", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"-", "6"}], "+", 
+            RowBox[{
+             SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+             RowBox[{"(", 
+              RowBox[{
+               RowBox[{"-", "20"}], "+", 
+               RowBox[{
+                SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+                RowBox[{"(", 
+                 RowBox[{
+                  RowBox[{"-", "17"}], "+", 
+                  RowBox[{"2", " ", 
+                   SuperscriptBox["\[ExponentialE]", "logsigma"]}]}], 
+                 ")"}]}]}], ")"}]}]}], ")"}], " ", "x", " ", "y"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"1", "+", 
+             SuperscriptBox["\[ExponentialE]", "logsigma"]}], ")"}], "2"], 
+          " ", 
+          SuperscriptBox["x", "2"], " ", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"-", "5"}], "+", 
+            RowBox[{"4", " ", 
+             RowBox[{"Sinh", "[", "logsigma", "]"}]}]}], ")"}]}], "-", 
+         RowBox[{"2", " ", 
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "logsigma"}]], " ", 
+          SuperscriptBox["y", "2"], " ", 
+          RowBox[{"(", 
+           RowBox[{"17", "-", 
+            RowBox[{"4", " ", 
+             RowBox[{"Cosh", "[", "logsigma", "]"}], " ", 
+             RowBox[{"(", 
+              RowBox[{
+               RowBox[{"-", "5"}], "+", 
+               RowBox[{"Sinh", "[", "logsigma", "]"}]}], ")"}]}], "+", 
+            RowBox[{"5", " ", 
+             RowBox[{"Sinh", "[", "logsigma", "]"}]}]}], ")"}]}]}], ")"}]}]}],
+      ")"}]}], ")"}], "/", 
+  RowBox[{"(", 
+   RowBox[{"\[Pi]", " ", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"1", "+", 
+       SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+       RowBox[{
+        SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+        SuperscriptBox["y", "2"]}]}], ")"}], "3"], " ", 
+    SqrtBox[
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"1", "+", 
+        SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+        RowBox[{
+         SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+         SuperscriptBox["x", "2"]}]}], ")"}], " ", 
+      RowBox[{"(", 
+       RowBox[{"1", "+", 
+        SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+        RowBox[{
+         SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+         SuperscriptBox["y", "2"]}]}], ")"}]}]], " ", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"1", "+", 
+       RowBox[{"2", " ", 
+        SuperscriptBox["\[ExponentialE]", "logsigma"]}], "+", 
+       RowBox[{
+        SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+        RowBox[{"(", 
+         RowBox[{
+          SuperscriptBox["x", "2"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+           SuperscriptBox[
+            RowBox[{"(", 
+             RowBox[{"x", "-", "y"}], ")"}], "2"]}], "+", 
+          SuperscriptBox["y", "2"]}], ")"}]}]}], ")"}], "2"], " ", 
+    SqrtBox[
+     RowBox[{"1", "-", 
+      FractionBox[
+       SuperscriptBox[
+        RowBox[{"(", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logtheta"], " ", "x", " ", 
+           "y"}]}], ")"}], "2"], 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+           SuperscriptBox["x", "2"]}]}], ")"}], " ", 
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+           SuperscriptBox["y", "2"]}]}], ")"}]}]]}]]}], ")"}]}]], "Output",
+ CellChangeTimes->{3.697243928107984*^9, 3.697244049399157*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ToMatlab", "[", "DD2kDy2Dlogsigma", "]"}]], "Input",
+ CellChangeTimes->{{3.697244060712802*^9, 3.6972440649857616`*^9}}],
+
+Cell[BoxData["\<\"exp(1).^(logsigma+logtheta).*pi.^(-1).*(1+exp(1).^logsigma+\
+exp(1) ...\\n  \
+.^logtheta.*y.^2).^(-3).*((1+exp(1).^logsigma+exp(1).^logtheta.* ...\\n  \
+x.^2).*(1+exp(1).^logsigma+exp(1).^logtheta.*y.^2)).^(-1/2).*(1+ ...\\n  \
+2.*exp(1).^logsigma+exp(1).^logtheta.*(x.^2+exp(1).^logsigma.*(x+( ...\\n  \
+-1).*y).^2+y.^2)).^(-2).*(1+(-1).*(1+exp(1).^logsigma+exp(1) ...\\n  \
+.^logtheta.*x.^2).^(-1).*(exp(1).^logsigma+exp(1).^logtheta.*x.*y) ...\\n  \
+.^2.*(1+exp(1).^logsigma+exp(1).^logtheta.*y.^2).^(-1)).^(-1/2).*( ...\\n  \
+3.*exp(1).^(2.*logtheta).*y.*(5.*(1+exp(1).^logsigma).^2.*(1+2.* ...\\n  \
+exp(1).^logsigma).*x.^3+(-2).*(1+exp(1).^logsigma).*(1+2.*exp(1) ...\\n  \
+.^logsigma.*(5+7.*exp(1).^logsigma)).*x.^2.*y+(7+exp(1) ...\\n  \
+.^logsigma.*(20+exp(1).^logsigma.*(29+26.*exp(1).^logsigma))).*x.* ...\\n  \
+y.^2+(-2).*((-1)+exp(1).^(2.*logsigma).*(5+4.*exp(1).^logsigma)).* ...\\n  \
+y.^3)+exp(1).^(4.*logtheta).*y.^3.*((-2).*x.^5+(-5).*x.^3.*y.^2+( ...\\n  \
+-2).*x.^2.*y.^3+(-3).*x.*y.^4+4.*y.^5+2.*exp(1).^(2.*logsigma).*(( ...\\n  \
+-1).*x+y).^5+2.*exp(1).^logsigma.*(x+(-1).*y).^2.*((-2).*x.^3+ ...\\n  \
+x.^2.*y+(-1).*x.*y.^2+3.*y.^3))+exp(1).^(3.*logtheta).*y.*(6.*exp( ...\\n  \
+1).^(3.*logsigma).*(x+(-1).*y).^5+(-2).*exp(1).^(2.*logsigma).*(x+ ...\\n  \
+(-1).*y).^2.*((-9).*x.^3+12.*x.^2.*y+(-7).*x.*y.^2+y.^3)+2.*(3.* ...\\n  \
+x.^5+5.*x.^3.*y.^2+(-3).*x.^2.*y.^3+3.*x.*y.^4+5.*y.^5)+exp(1) ...\\n  \
+.^logsigma.*(18.*x.^5+(-30).*x.^4.*y+30.*x.^3.*y.^2+(-45).*x.^2.* ...\\n  \
+y.^3+(-6).*x.*y.^4+13.*y.^5))+2.*exp(1).^(2.*logsigma).*(3+3.* ...\\n  \
+cosh(logsigma)+sinh(logsigma)).*((-1)+2.*sinh(logsigma))+exp(1) ...\\n  \
+.^logtheta.*((-2).*(1+exp(1).^logsigma).*((-6)+exp(1).^logsigma.*( ...\\n  \
+(-20)+exp(1).^logsigma.*((-17)+2.*exp(1).^logsigma))).*x.*y+exp(1) ...\\n  \
+.^logsigma.*(1+exp(1).^logsigma).^2.*x.^2.*((-5)+4.*sinh(logsigma) ...\\n  \
+)+(-2).*exp(1).^(2.*logsigma).*y.^2.*(17+(-4).*cosh(logsigma).*(( ...\\n  \
+-5)+sinh(logsigma))+5.*sinh(logsigma))));\\n\"\>"], "Output",
+ CellChangeTimes->{3.697244066871035*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"DD2kDy2Dlogtheta", " ", "=", " ", 
+  RowBox[{
+   RowBox[{"D", "[", 
+    RowBox[{"D2kDy2", ",", " ", "logtheta"}], "]"}], "//", 
+   "FullSimplify"}]}]], "Input",
+ CellChangeTimes->{{3.697244149260682*^9, 3.697244155702305*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(", 
+   RowBox[{
+    SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"-", "2"}], " ", 
+       SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+       SuperscriptBox[
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"]}], ")"}], "2"], " ", 
+       SuperscriptBox[
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          RowBox[{"2", " ", 
+           SuperscriptBox["\[ExponentialE]", "logsigma"]}]}], ")"}], "2"]}], 
+      "+", 
+      RowBox[{
+       SuperscriptBox["\[ExponentialE]", 
+        RowBox[{"4", " ", "logtheta"}]], " ", 
+       SuperscriptBox["y", "3"], " ", 
+       RowBox[{"(", 
+        RowBox[{
+         SuperscriptBox["x", "2"], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"x", "-", "y"}], ")"}], "2"]}], "+", 
+         SuperscriptBox["y", "2"]}], ")"}], " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"2", " ", 
+          SuperscriptBox["x", "3"]}], "+", 
+         RowBox[{"2", " ", 
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "logsigma"}]], " ", 
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"x", "-", "y"}], ")"}], "3"]}], "+", 
+         RowBox[{"3", " ", "x", " ", 
+          SuperscriptBox["y", "2"]}], "+", 
+         RowBox[{"2", " ", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"2", " ", "x"}], "-", "y"}], ")"}], " ", 
+          RowBox[{"(", 
+           RowBox[{
+            SuperscriptBox["x", "2"], "-", 
+            RowBox[{"x", " ", "y"}], "+", 
+            SuperscriptBox["y", "2"]}], ")"}]}]}], ")"}]}], "+", 
+      RowBox[{
+       SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+       RowBox[{"(", 
+        RowBox[{"1", "+", 
+         SuperscriptBox["\[ExponentialE]", "logsigma"]}], ")"}], " ", 
+       RowBox[{"(", 
+        RowBox[{"1", "+", 
+         RowBox[{"2", " ", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"]}]}], ")"}], " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"3", " ", "logsigma"}]], " ", 
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"x", "-", "y"}], ")"}], "2"]}], "-", 
+         RowBox[{"12", " ", "x", " ", "y"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+          RowBox[{"(", 
+           RowBox[{
+            SuperscriptBox["x", "2"], "-", 
+            RowBox[{"36", " ", "x", " ", "y"}], "+", 
+            RowBox[{"7", " ", 
+             SuperscriptBox["y", "2"]}]}], ")"}]}], "+", 
+         RowBox[{"2", " ", 
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "logsigma"}]], " ", 
+          RowBox[{"(", 
+           RowBox[{
+            SuperscriptBox["x", "2"], "-", 
+            RowBox[{"13", " ", "x", " ", "y"}], "+", 
+            RowBox[{"7", " ", 
+             SuperscriptBox["y", "2"]}]}], ")"}]}]}], ")"}]}], "+", 
+      RowBox[{
+       SuperscriptBox["\[ExponentialE]", 
+        RowBox[{"3", " ", "logtheta"}]], " ", 
+       RowBox[{"(", 
+        RowBox[{"1", "+", 
+         SuperscriptBox["\[ExponentialE]", "logsigma"]}], ")"}], " ", "y", 
+       " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"-", "6"}], " ", 
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"3", " ", "logsigma"}]], " ", 
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"x", "-", "y"}], ")"}], "5"]}], "-", 
+         RowBox[{"2", " ", 
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "logsigma"}]], " ", 
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"x", "-", "y"}], ")"}], "2"], " ", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"9", " ", 
+             SuperscriptBox["x", "3"]}], "-", 
+            RowBox[{"12", " ", 
+             SuperscriptBox["x", "2"], " ", "y"}], "+", 
+            RowBox[{"7", " ", "x", " ", 
+             SuperscriptBox["y", "2"]}], "-", 
+            RowBox[{"7", " ", 
+             SuperscriptBox["y", "3"]}]}], ")"}]}], "-", 
+         RowBox[{"2", " ", "x", " ", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"3", " ", 
+             SuperscriptBox["x", "4"]}], "+", 
+            RowBox[{"5", " ", 
+             SuperscriptBox["x", "2"], " ", 
+             SuperscriptBox["y", "2"]}], "+", 
+            RowBox[{"3", " ", 
+             SuperscriptBox["y", "4"]}]}], ")"}]}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"-", "18"}], " ", 
+             SuperscriptBox["x", "5"]}], "+", 
+            RowBox[{"30", " ", 
+             SuperscriptBox["x", "4"], " ", "y"}], "-", 
+            RowBox[{"30", " ", 
+             SuperscriptBox["x", "3"], " ", 
+             SuperscriptBox["y", "2"]}], "+", 
+            RowBox[{"33", " ", 
+             SuperscriptBox["x", "2"], " ", 
+             SuperscriptBox["y", "3"]}], "-", 
+            RowBox[{"18", " ", "x", " ", 
+             SuperscriptBox["y", "4"]}], "+", 
+            RowBox[{"7", " ", 
+             SuperscriptBox["y", "5"]}]}], ")"}]}]}], ")"}]}], "+", 
+      RowBox[{"6", " ", 
+       SuperscriptBox["\[ExponentialE]", 
+        RowBox[{"2", " ", 
+         RowBox[{"(", 
+          RowBox[{"logsigma", "+", "logtheta"}], ")"}]}]], " ", "y", " ", 
+       RowBox[{"(", 
+        RowBox[{"3", "+", 
+         RowBox[{"3", " ", 
+          RowBox[{"Cosh", "[", "logsigma", "]"}]}], "+", 
+         RowBox[{"Sinh", "[", "logsigma", "]"}]}], ")"}], " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"-", "5"}], " ", 
+          SuperscriptBox["x", "3"]}], "+", 
+         RowBox[{"8", " ", 
+          SuperscriptBox["x", "2"], " ", "y"}], "-", 
+         RowBox[{"7", " ", "x", " ", 
+          SuperscriptBox["y", "2"]}], "+", 
+         RowBox[{"3", " ", 
+          SuperscriptBox["y", "3"]}], "+", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"-", "5"}], " ", 
+             SuperscriptBox["x", "3"]}], "+", 
+            RowBox[{"8", " ", 
+             SuperscriptBox["x", "2"], " ", "y"}], "-", 
+            RowBox[{"12", " ", "x", " ", 
+             SuperscriptBox["y", "2"]}], "+", 
+            RowBox[{"3", " ", 
+             SuperscriptBox["y", "3"]}]}], ")"}], " ", 
+          RowBox[{"Cosh", "[", "logsigma", "]"}]}], "+", 
+         RowBox[{"y", " ", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"8", " ", 
+             SuperscriptBox["x", "2"]}], "-", 
+            RowBox[{"5", " ", "x", " ", "y"}], "+", 
+            RowBox[{"3", " ", 
+             SuperscriptBox["y", "2"]}]}], ")"}], " ", 
+          RowBox[{"Sinh", "[", "logsigma", "]"}]}]}], ")"}]}]}], ")"}]}], 
+   ")"}], "/", 
+  RowBox[{"(", 
+   RowBox[{"\[Pi]", " ", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"1", "+", 
+       SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+       RowBox[{
+        SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+        SuperscriptBox["y", "2"]}]}], ")"}], "3"], " ", 
+    SqrtBox[
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"1", "+", 
+        SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+        RowBox[{
+         SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+         SuperscriptBox["x", "2"]}]}], ")"}], " ", 
+      RowBox[{"(", 
+       RowBox[{"1", "+", 
+        SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+        RowBox[{
+         SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+         SuperscriptBox["y", "2"]}]}], ")"}]}]], " ", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"1", "+", 
+       RowBox[{"2", " ", 
+        SuperscriptBox["\[ExponentialE]", "logsigma"]}], "+", 
+       RowBox[{
+        SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+        RowBox[{"(", 
+         RowBox[{
+          SuperscriptBox["x", "2"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+           SuperscriptBox[
+            RowBox[{"(", 
+             RowBox[{"x", "-", "y"}], ")"}], "2"]}], "+", 
+          SuperscriptBox["y", "2"]}], ")"}]}]}], ")"}], "2"], " ", 
+    SqrtBox[
+     RowBox[{"1", "-", 
+      FractionBox[
+       SuperscriptBox[
+        RowBox[{"(", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logtheta"], " ", "x", " ", 
+           "y"}]}], ")"}], "2"], 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+           SuperscriptBox["x", "2"]}]}], ")"}], " ", 
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+           SuperscriptBox["y", "2"]}]}], ")"}]}]]}]]}], ")"}]}]], "Output",
+ CellChangeTimes->{3.697244239077011*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ToMatlab", "[", "DD2kDy2Dlogtheta", "]"}]], "Input",
+ CellChangeTimes->{{3.697244311072061*^9, 3.69724431592776*^9}}],
+
+Cell[BoxData["\<\"exp(1).^logtheta.*pi.^(-1).*(1+exp(1).^logsigma+exp(1).^\
+logtheta.* ...\\n  \
+y.^2).^(-3).*((1+exp(1).^logsigma+exp(1).^logtheta.*x.^2).*(1+exp( ...\\n  \
+1).^logsigma+exp(1).^logtheta.*y.^2)).^(-1/2).*(1+2.*exp(1) ...\\n  \
+.^logsigma+exp(1).^logtheta.*(x.^2+exp(1).^logsigma.*(x+(-1).*y) ...\\n  \
+.^2+y.^2)).^(-2).*(1+(-1).*(1+exp(1).^logsigma+exp(1).^logtheta.* ...\\n  \
+x.^2).^(-1).*(exp(1).^logsigma+exp(1).^logtheta.*x.*y).^2.*(1+exp( ...\\n  \
+1).^logsigma+exp(1).^logtheta.*y.^2).^(-1)).^(-1/2).*((-2).*exp(1) ...\\n  \
+.^logsigma.*(1+exp(1).^logsigma).^2.*(1+2.*exp(1).^logsigma).^2+ ...\\n  \
+exp(1).^(4.*logtheta).*y.^3.*(x.^2+exp(1).^logsigma.*(x+(-1).*y) ...\\n  \
+.^2+y.^2).*(2.*x.^3+2.*exp(1).^(2.*logsigma).*(x+(-1).*y).^3+3.* ...\\n  \
+x.*y.^2+2.*exp(1).^logsigma.*(2.*x+(-1).*y).*(x.^2+(-1).*x.*y+ ...\\n  \
+y.^2))+exp(1).^logtheta.*(1+exp(1).^logsigma).*(1+2.*exp(1) ...\\n  \
+.^logsigma).*(exp(1).^(3.*logsigma).*(x+(-1).*y).^2+(-12).*x.*y+ ...\\n  \
+exp(1).^logsigma.*(x.^2+(-36).*x.*y+7.*y.^2)+2.*exp(1).^(2.* ...\\n  \
+logsigma).*(x.^2+(-13).*x.*y+7.*y.^2))+exp(1).^(3.*logtheta).*(1+ ...\\n  \
+exp(1).^logsigma).*y.*((-6).*exp(1).^(3.*logsigma).*(x+(-1).*y) ...\\n  \
+.^5+(-2).*exp(1).^(2.*logsigma).*(x+(-1).*y).^2.*(9.*x.^3+(-12).* ...\\n  \
+x.^2.*y+7.*x.*y.^2+(-7).*y.^3)+(-2).*x.*(3.*x.^4+5.*x.^2.*y.^2+3.* ...\\n  \
+y.^4)+exp(1).^logsigma.*((-18).*x.^5+30.*x.^4.*y+(-30).*x.^3.* ...\\n  \
+y.^2+33.*x.^2.*y.^3+(-18).*x.*y.^4+7.*y.^5))+6.*exp(1).^(2.*( ...\\n  \
+logsigma+logtheta)).*y.*(3+3.*cosh(logsigma)+sinh(logsigma)).*(( ...\\n  \
+-5).*x.^3+8.*x.^2.*y+(-7).*x.*y.^2+3.*y.^3+((-5).*x.^3+8.*x.^2.*y+ ...\\n  \
+(-12).*x.*y.^2+3.*y.^3).*cosh(logsigma)+y.*(8.*x.^2+(-5).*x.*y+3.* ...\\n  \
+y.^2).*sinh(logsigma)));\\n\"\>"], "Output",
+ CellChangeTimes->{3.697244316964446*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"DkDx", " ", "=", " ", 
+  RowBox[{
+   RowBox[{"D", "[", 
+    RowBox[{"k", ",", "x"}], "]"}], "//", "FullSimplify"}]}]], "Input",
+ CellChangeTimes->{{3.697244868700821*^9, 3.697244871100831*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(", 
+   RowBox[{"2", " ", 
+    SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+    RowBox[{"(", 
+     RowBox[{"1", "+", 
+      SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+      RowBox[{
+       SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+       SuperscriptBox["y", "2"]}]}], ")"}], " ", 
+    RowBox[{"(", 
+     RowBox[{"y", "+", 
+      RowBox[{
+       SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"-", "x"}], "+", "y"}], ")"}]}]}], ")"}]}], ")"}], "/", 
+  RowBox[{"(", 
+   RowBox[{"\[Pi]", " ", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"1", "+", 
+         SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+          SuperscriptBox["x", "2"]}]}], ")"}], " ", 
+       RowBox[{"(", 
+        RowBox[{"1", "+", 
+         SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+          SuperscriptBox["y", "2"]}]}], ")"}]}], ")"}], 
+     RowBox[{"3", "/", "2"}]], " ", 
+    SqrtBox[
+     RowBox[{"1", "-", 
+      FractionBox[
+       SuperscriptBox[
+        RowBox[{"(", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logtheta"], " ", "x", " ", 
+           "y"}]}], ")"}], "2"], 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+           SuperscriptBox["x", "2"]}]}], ")"}], " ", 
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+           SuperscriptBox["y", "2"]}]}], ")"}]}]]}]]}], ")"}]}]], "Output",
+ CellChangeTimes->{3.697244878130603*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ToMatlab", "[", "DkDx", "]"}]], "Input",
+ CellChangeTimes->{{3.697244926871573*^9, 3.697244933558282*^9}}],
+
+Cell[BoxData["\<\"2.*exp(1).^logtheta.*pi.^(-1).*(1+exp(1).^logsigma+exp(1) \
+...\\n  .^logtheta.*y.^2).*((1+exp(1).^logsigma+exp(1).^logtheta.*x.^2).*( \
+...\\n  1+exp(1).^logsigma+exp(1).^logtheta.*y.^2)).^(-3/2).*(y+exp(1) ...\\n \
+ .^logsigma.*((-1).*x+y)).*(1+(-1).*(1+exp(1).^logsigma+exp(1) ...\\n  \
+.^logtheta.*x.^2).^(-1).*(exp(1).^logsigma+exp(1).^logtheta.*x.*y) ...\\n  \
+.^2.*(1+exp(1).^logsigma+exp(1).^logtheta.*y.^2).^(-1)).^(-1/2);\\n\"\>"], \
+"Output",
+ CellChangeTimes->{3.697244933979711*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"DDkDxDlogsigma", " ", "=", " ", 
+  RowBox[{
+   RowBox[{"D", "[", 
+    RowBox[{"DkDx", ",", "logsigma"}], "]"}], "//", 
+   "FullSimplify"}]}]], "Input",
+ CellChangeTimes->{{3.697245003282649*^9, 3.6972450423649*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(", 
+   RowBox[{
+    SuperscriptBox["\[ExponentialE]", 
+     RowBox[{"logsigma", "+", "logtheta"}]], " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{
+       SuperscriptBox["\[ExponentialE]", 
+        RowBox[{
+         RowBox[{"2", " ", "logsigma"}], "+", "logtheta"}]], " ", 
+       SuperscriptBox[
+        RowBox[{"(", 
+         RowBox[{"x", "-", "y"}], ")"}], "3"]}], "-", 
+      RowBox[{
+       SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"4", " ", 
+          SuperscriptBox["x", "3"]}], "+", 
+         RowBox[{
+          SuperscriptBox["x", "2"], " ", "y"}], "+", 
+         SuperscriptBox["y", "3"], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+          SuperscriptBox["x", "2"], " ", 
+          RowBox[{"(", 
+           RowBox[{"x", "-", "y"}], ")"}], " ", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"2", " ", 
+             SuperscriptBox["x", "2"]}], "+", 
+            RowBox[{"x", " ", "y"}], "+", 
+            SuperscriptBox["y", "2"]}], ")"}]}]}], ")"}]}], "+", 
+      RowBox[{
+       SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"-", 
+           RowBox[{"(", 
+            RowBox[{"2", "+", 
+             RowBox[{
+              SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+              SuperscriptBox[
+               RowBox[{"(", 
+                RowBox[{"x", "-", "y"}], ")"}], "2"]}]}], ")"}]}], " ", 
+          RowBox[{"(", 
+           RowBox[{"x", "+", 
+            RowBox[{
+             SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+             SuperscriptBox["x", "2"], " ", 
+             RowBox[{"(", 
+              RowBox[{"x", "-", "y"}], ")"}]}], "+", 
+            RowBox[{"2", " ", "y"}]}], ")"}]}], "-", 
+         RowBox[{"4", " ", "y", " ", 
+          RowBox[{"Cosh", "[", "logsigma", "]"}]}], "+", 
+         RowBox[{"4", " ", "x", " ", 
+          RowBox[{"Sinh", "[", "logsigma", "]"}]}]}], ")"}]}]}], ")"}]}], 
+   ")"}], "/", 
+  RowBox[{"(", 
+   RowBox[{"\[Pi]", " ", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"1", "+", 
+       SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+       RowBox[{
+        SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+        SuperscriptBox["x", "2"]}]}], ")"}], "2"], " ", 
+    SqrtBox[
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"1", "+", 
+        SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+        RowBox[{
+         SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+         SuperscriptBox["x", "2"]}]}], ")"}], " ", 
+      RowBox[{"(", 
+       RowBox[{"1", "+", 
+        SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+        RowBox[{
+         SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+         SuperscriptBox["y", "2"]}]}], ")"}]}]], " ", 
+    RowBox[{"(", 
+     RowBox[{"1", "+", 
+      RowBox[{"2", " ", 
+       SuperscriptBox["\[ExponentialE]", "logsigma"]}], "+", 
+      RowBox[{
+       SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+       RowBox[{"(", 
+        RowBox[{
+         SuperscriptBox["x", "2"], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"x", "-", "y"}], ")"}], "2"]}], "+", 
+         SuperscriptBox["y", "2"]}], ")"}]}]}], ")"}], " ", 
+    SqrtBox[
+     RowBox[{"1", "-", 
+      FractionBox[
+       SuperscriptBox[
+        RowBox[{"(", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logtheta"], " ", "x", " ", 
+           "y"}]}], ")"}], "2"], 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+           SuperscriptBox["x", "2"]}]}], ")"}], " ", 
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+           SuperscriptBox["y", "2"]}]}], ")"}]}]]}]]}], ")"}]}]], "Output",
+ CellChangeTimes->{{3.697245037106703*^9, 3.697245066068193*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ToMatlab", "[", "DDkDxDlogsigma", "]"}]], "Input",
+ CellChangeTimes->{{3.6972450721876097`*^9, 3.6972450765688868`*^9}}],
+
+Cell[BoxData["\<\"exp(1).^(logsigma+logtheta).*pi.^(-1).*(1+exp(1).^logsigma+\
+exp(1) ...\\n  \
+.^logtheta.*x.^2).^(-2).*((1+exp(1).^logsigma+exp(1).^logtheta.* ...\\n  \
+x.^2).*(1+exp(1).^logsigma+exp(1).^logtheta.*y.^2)).^(-1/2).*(1+ ...\\n  \
+2.*exp(1).^logsigma+exp(1).^logtheta.*(x.^2+exp(1).^logsigma.*(x+( ...\\n  \
+-1).*y).^2+y.^2)).^(-1).*(1+(-1).*(1+exp(1).^logsigma+exp(1) ...\\n  \
+.^logtheta.*x.^2).^(-1).*(exp(1).^logsigma+exp(1).^logtheta.*x.*y) ...\\n  \
+.^2.*(1+exp(1).^logsigma+exp(1).^logtheta.*y.^2).^(-1)).^(-1/2).*( ...\\n  \
+exp(1).^(2.*logsigma+logtheta).*(x+(-1).*y).^3+(-1).*exp(1) ...\\n  \
+.^logtheta.*(4.*x.^3+x.^2.*y+y.^3+exp(1).^logtheta.*x.^2.*(x+(-1) ...\\n  \
+.*y).*(2.*x.^2+x.*y+y.^2))+exp(1).^logsigma.*((-1).*(2+exp(1) ...\\n  \
+.^logtheta.*(x+(-1).*y).^2).*(x+exp(1).^logtheta.*x.^2.*(x+(-1).* ...\\n  \
+y)+2.*y)+(-4).*y.*cosh(logsigma)+4.*x.*sinh(logsigma)));\\n\"\>"], "Output",
+ CellChangeTimes->{3.697245077075779*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"DDkDxDlogtheta", " ", "=", " ", 
+  RowBox[{
+   RowBox[{"D", "[", 
+    RowBox[{"DkDx", ",", "logtheta"}], "]"}], "//", 
+   "FullSimplify"}]}]], "Input",
+ CellChangeTimes->{{3.6972451368179607`*^9, 3.697245142781652*^9}}],
+
+Cell[BoxData[
+ RowBox[{"-", 
+  RowBox[{"(", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{
+      SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{
+         SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+         RowBox[{"(", 
+          RowBox[{"x", "-", "y"}], ")"}]}], "-", "y"}], ")"}], " ", 
+      RowBox[{"(", 
+       RowBox[{"2", "+", 
+        RowBox[{"2", " ", 
+         SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+         RowBox[{"(", 
+          RowBox[{"3", "+", 
+           RowBox[{"2", " ", 
+            SuperscriptBox["\[ExponentialE]", "logsigma"]}]}], ")"}]}], "+", 
+        RowBox[{
+         SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+         RowBox[{"(", 
+          RowBox[{"1", "+", 
+           SuperscriptBox["\[ExponentialE]", "logsigma"]}], ")"}], " ", 
+         RowBox[{"(", 
+          RowBox[{
+           SuperscriptBox["x", "2"], "+", 
+           RowBox[{
+            SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+            SuperscriptBox[
+             RowBox[{"(", 
+              RowBox[{"x", "-", "y"}], ")"}], "2"]}], "+", 
+           SuperscriptBox["y", "2"]}], ")"}]}], "-", 
+        RowBox[{
+         SuperscriptBox["\[ExponentialE]", 
+          RowBox[{"2", " ", "logtheta"}]], " ", 
+         SuperscriptBox["x", "2"], " ", 
+         RowBox[{"(", 
+          RowBox[{
+           SuperscriptBox["x", "2"], "+", 
+           RowBox[{
+            SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+            SuperscriptBox[
+             RowBox[{"(", 
+              RowBox[{"x", "-", "y"}], ")"}], "2"]}], "+", 
+           SuperscriptBox["y", "2"]}], ")"}]}]}], ")"}]}], ")"}], "/", 
+    RowBox[{"(", 
+     RowBox[{"\[Pi]", " ", 
+      SuperscriptBox[
+       RowBox[{"(", 
+        RowBox[{"1", "+", 
+         SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+          SuperscriptBox["x", "2"]}]}], ")"}], "2"], " ", 
+      SqrtBox[
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+           SuperscriptBox["x", "2"]}]}], ")"}], " ", 
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+           SuperscriptBox["y", "2"]}]}], ")"}]}]], " ", 
+      RowBox[{"(", 
+       RowBox[{"1", "+", 
+        RowBox[{"2", " ", 
+         SuperscriptBox["\[ExponentialE]", "logsigma"]}], "+", 
+        RowBox[{
+         SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+         RowBox[{"(", 
+          RowBox[{
+           SuperscriptBox["x", "2"], "+", 
+           RowBox[{
+            SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+            SuperscriptBox[
+             RowBox[{"(", 
+              RowBox[{"x", "-", "y"}], ")"}], "2"]}], "+", 
+           SuperscriptBox["y", "2"]}], ")"}]}]}], ")"}], " ", 
+      SqrtBox[
+       RowBox[{"1", "-", 
+        FractionBox[
+         SuperscriptBox[
+          RowBox[{"(", 
+           RowBox[{
+            SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+            RowBox[{
+             SuperscriptBox["\[ExponentialE]", "logtheta"], " ", "x", " ", 
+             "y"}]}], ")"}], "2"], 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"1", "+", 
+            SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+            RowBox[{
+             SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+             SuperscriptBox["x", "2"]}]}], ")"}], " ", 
+          RowBox[{"(", 
+           RowBox[{"1", "+", 
+            SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+            RowBox[{
+             SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+             SuperscriptBox["y", "2"]}]}], ")"}]}]]}]]}], ")"}]}], 
+   ")"}]}]], "Output",
+ CellChangeTimes->{3.697245152474225*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ToMatlab", "[", "DDkDxDlogtheta", "]"}]], "Input",
+ CellChangeTimes->{{3.697245163522134*^9, 3.697245166029954*^9}}],
+
+Cell[BoxData["\<\"(-1).*exp(1).^logtheta.*pi.^(-1).*(1+exp(1).^logsigma+exp(1)\
+ ...\\n  .^logtheta.*x.^2).^(-2).*(exp(1).^logsigma.*(x+(-1).*y)+(-1).*y).* \
+...\\n  ((1+exp(1).^logsigma+exp(1).^logtheta.*x.^2).*(1+exp(1).^logsigma+ \
+...\\n  exp(1).^logtheta.*y.^2)).^(-1/2).*(1+2.*exp(1).^logsigma+exp(1) \
+...\\n  .^logtheta.*(x.^2+exp(1).^logsigma.*(x+(-1).*y).^2+y.^2)).^(-1).*( \
+...\\n  2+2.*exp(1).^logsigma.*(3+2.*exp(1).^logsigma)+exp(1).^logtheta.*( \
+...\\n  1+exp(1).^logsigma).*(x.^2+exp(1).^logsigma.*(x+(-1).*y).^2+y.^2)+ \
+...\\n  (-1).*exp(1).^(2.*logtheta).*x.^2.*(x.^2+exp(1).^logsigma.*(x+(-1) \
+...\\n  .*y).^2+y.^2)).*(1+(-1).*(1+exp(1).^logsigma+exp(1).^logtheta.* \
+...\\n  x.^2).^(-1).*(exp(1).^logsigma+exp(1).^logtheta.*x.*y).^2.*(1+exp( \
+...\\n  1).^logsigma+exp(1).^logtheta.*y.^2).^(-1)).^(-1/2);\\n\"\>"], \
+"Output",
+ CellChangeTimes->{3.6972451675098257`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"DkDxDy", " ", "=", " ", 
+  RowBox[{
+   RowBox[{"D", "[", 
+    RowBox[{
+     RowBox[{"D", "[", 
+      RowBox[{"k", ",", "y"}], "]"}], ",", "x"}], "]"}], "//", 
+   "FullSimplify"}]}]], "Input",
+ CellChangeTimes->{{3.6972453083658953`*^9, 3.697245345015277*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(", 
+   RowBox[{"2", " ", 
+    SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+    RowBox[{"(", 
+     RowBox[{"1", "+", 
+      RowBox[{"2", " ", 
+       SuperscriptBox["\[ExponentialE]", "logsigma"]}]}], ")"}]}], ")"}], "/", 
+  RowBox[{"(", 
+   RowBox[{"\[Pi]", " ", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"1", "+", 
+         SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+          SuperscriptBox["x", "2"]}]}], ")"}], " ", 
+       RowBox[{"(", 
+        RowBox[{"1", "+", 
+         SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+          SuperscriptBox["y", "2"]}]}], ")"}]}], ")"}], 
+     RowBox[{"3", "/", "2"}]], " ", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      FractionBox[
+       RowBox[{"1", "+", 
+        RowBox[{"2", " ", 
+         SuperscriptBox["\[ExponentialE]", "logsigma"]}], "+", 
+        RowBox[{
+         SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+         RowBox[{"(", 
+          RowBox[{
+           SuperscriptBox["x", "2"], "+", 
+           RowBox[{
+            SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+            SuperscriptBox[
+             RowBox[{"(", 
+              RowBox[{"x", "-", "y"}], ")"}], "2"]}], "+", 
+           SuperscriptBox["y", "2"]}], ")"}]}]}], 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+           SuperscriptBox["x", "2"]}]}], ")"}], " ", 
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+           SuperscriptBox["y", "2"]}]}], ")"}]}]], ")"}], 
+     RowBox[{"3", "/", "2"}]]}], ")"}]}]], "Output",
+ CellChangeTimes->{{3.697245339340774*^9, 3.697245348850739*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ToMatlab", "[", "DkDxDy", "]"}]], "Input",
+ CellChangeTimes->{{3.697245353221175*^9, 3.697245361798438*^9}}],
+
+Cell[BoxData["\<\"2.*exp(1).^logtheta.*(1+2.*exp(1).^logsigma).*pi.^(-1).*((1+\
+exp(1) ...\\n  .^logsigma+exp(1).^logtheta.*x.^2).*(1+exp(1).^logsigma+exp(1) \
+...\\n  .^logtheta.*y.^2)).^(-3/2).*((1+exp(1).^logsigma+exp(1) ...\\n  \
+.^logtheta.*x.^2).^(-1).*(1+exp(1).^logsigma+exp(1).^logtheta.* ...\\n  \
+y.^2).^(-1).*(1+2.*exp(1).^logsigma+exp(1).^logtheta.*(x.^2+exp(1) ...\\n  \
+.^logsigma.*(x+(-1).*y).^2+y.^2))).^(-3/2);\\n\"\>"], "Output",
+ CellChangeTimes->{3.697245363528139*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"DDkDxDyDlogsigma", " ", "=", " ", 
+  RowBox[{
+   RowBox[{"D", "[", 
+    RowBox[{"DkDxDy", ",", "logsigma"}], "]"}], "//", 
+   "FullSimplify"}]}]], "Input",
+ CellChangeTimes->{{3.697245430732489*^9, 3.697245445856515*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(", 
+   RowBox[{
+    SuperscriptBox["\[ExponentialE]", 
+     RowBox[{"logsigma", "+", "logtheta"}]], " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"-", "2"}], "-", 
+      RowBox[{"4", " ", 
+       SuperscriptBox["\[ExponentialE]", "logsigma"]}], "+", 
+      RowBox[{
+       SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+       RowBox[{"(", 
+        RowBox[{
+         SuperscriptBox["x", "2"], "-", 
+         RowBox[{"2", " ", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"x", "-", "y"}], ")"}], "2"]}], "+", 
+         RowBox[{"6", " ", "x", " ", "y"}], "+", 
+         SuperscriptBox["y", "2"]}], ")"}]}]}], ")"}]}], ")"}], "/", 
+  RowBox[{"(", 
+   RowBox[{"\[Pi]", " ", 
+    SqrtBox[
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"1", "+", 
+        SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+        RowBox[{
+         SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+         SuperscriptBox["x", "2"]}]}], ")"}], " ", 
+      RowBox[{"(", 
+       RowBox[{"1", "+", 
+        SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+        RowBox[{
+         SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+         SuperscriptBox["y", "2"]}]}], ")"}]}]], " ", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"1", "+", 
+       RowBox[{"2", " ", 
+        SuperscriptBox["\[ExponentialE]", "logsigma"]}], "+", 
+       RowBox[{
+        SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+        RowBox[{"(", 
+         RowBox[{
+          SuperscriptBox["x", "2"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+           SuperscriptBox[
+            RowBox[{"(", 
+             RowBox[{"x", "-", "y"}], ")"}], "2"]}], "+", 
+          SuperscriptBox["y", "2"]}], ")"}]}]}], ")"}], "2"], " ", 
+    SqrtBox[
+     FractionBox[
+      RowBox[{"1", "+", 
+       RowBox[{"2", " ", 
+        SuperscriptBox["\[ExponentialE]", "logsigma"]}], "+", 
+       RowBox[{
+        SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+        RowBox[{"(", 
+         RowBox[{
+          SuperscriptBox["x", "2"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+           SuperscriptBox[
+            RowBox[{"(", 
+             RowBox[{"x", "-", "y"}], ")"}], "2"]}], "+", 
+          SuperscriptBox["y", "2"]}], ")"}]}]}], 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"1", "+", 
+         SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+          SuperscriptBox["x", "2"]}]}], ")"}], " ", 
+       RowBox[{"(", 
+        RowBox[{"1", "+", 
+         SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+          SuperscriptBox["y", "2"]}]}], ")"}]}]]]}], ")"}]}]], "Output",
+ CellChangeTimes->{3.697245450181114*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ToMatlab", "[", "DDkDxDyDlogsigma", "]"}]], "Input",
+ CellChangeTimes->{{3.6972454561430893`*^9, 3.6972454601685667`*^9}}],
+
+Cell[BoxData["\<\"exp(1).^(logsigma+logtheta).*pi.^(-1).*((1+exp(1).^logsigma+\
+exp(1) ...\\n  \
+.^logtheta.*x.^2).*(1+exp(1).^logsigma+exp(1).^logtheta.*y.^2)).^( ...\\n  \
+-1/2).*(1+2.*exp(1).^logsigma+exp(1).^logtheta.*(x.^2+exp(1) ...\\n  \
+.^logsigma.*(x+(-1).*y).^2+y.^2)).^(-2).*((1+exp(1).^logsigma+exp( ...\\n  \
+1).^logtheta.*x.^2).^(-1).*(1+exp(1).^logsigma+exp(1).^logtheta.* ...\\n  \
+y.^2).^(-1).*(1+2.*exp(1).^logsigma+exp(1).^logtheta.*(x.^2+exp(1) ...\\n  \
+.^logsigma.*(x+(-1).*y).^2+y.^2))).^(-1/2).*((-2)+(-4).*exp(1) ...\\n  \
+.^logsigma+exp(1).^logtheta.*(x.^2+(-2).*exp(1).^logsigma.*(x+(-1) ...\\n  \
+.*y).^2+6.*x.*y+y.^2));\\n\"\>"], "Output",
+ CellChangeTimes->{3.697245460735098*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"DDkDxDyDlogtheta", " ", "=", " ", 
+  RowBox[{
+   RowBox[{"D", "[", 
+    RowBox[{"DkDxDy", ",", "logtheta"}], "]"}], "//", 
+   "FullSimplify"}]}]], "Input",
+ CellChangeTimes->{{3.6972455106189957`*^9, 3.697245517102839*^9}}],
+
+Cell[BoxData[
+ RowBox[{"-", 
+  RowBox[{"(", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{
+      SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+      RowBox[{"(", 
+       RowBox[{"1", "+", 
+        RowBox[{"2", " ", 
+         SuperscriptBox["\[ExponentialE]", "logsigma"]}]}], ")"}], " ", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"-", "2"}], "-", 
+        RowBox[{"4", " ", 
+         SuperscriptBox["\[ExponentialE]", "logsigma"]}], "+", 
+        RowBox[{
+         SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+         RowBox[{"(", 
+          RowBox[{
+           SuperscriptBox["x", "2"], "+", 
+           RowBox[{
+            SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+            SuperscriptBox[
+             RowBox[{"(", 
+              RowBox[{"x", "-", "y"}], ")"}], "2"]}], "+", 
+           SuperscriptBox["y", "2"]}], ")"}]}]}], ")"}]}], ")"}], "/", 
+    RowBox[{"(", 
+     RowBox[{"\[Pi]", " ", 
+      SqrtBox[
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+           SuperscriptBox["x", "2"]}]}], ")"}], " ", 
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+           SuperscriptBox["y", "2"]}]}], ")"}]}]], " ", 
+      SuperscriptBox[
+       RowBox[{"(", 
+        RowBox[{"1", "+", 
+         RowBox[{"2", " ", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"]}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+          RowBox[{"(", 
+           RowBox[{
+            SuperscriptBox["x", "2"], "+", 
+            RowBox[{
+             SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+             SuperscriptBox[
+              RowBox[{"(", 
+               RowBox[{"x", "-", "y"}], ")"}], "2"]}], "+", 
+            SuperscriptBox["y", "2"]}], ")"}]}]}], ")"}], "2"], " ", 
+      SqrtBox[
+       FractionBox[
+        RowBox[{"1", "+", 
+         RowBox[{"2", " ", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"]}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+          RowBox[{"(", 
+           RowBox[{
+            SuperscriptBox["x", "2"], "+", 
+            RowBox[{
+             SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+             SuperscriptBox[
+              RowBox[{"(", 
+               RowBox[{"x", "-", "y"}], ")"}], "2"]}], "+", 
+            SuperscriptBox["y", "2"]}], ")"}]}]}], 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"1", "+", 
+           SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+           RowBox[{
+            SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+            SuperscriptBox["x", "2"]}]}], ")"}], " ", 
+         RowBox[{"(", 
+          RowBox[{"1", "+", 
+           SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+           RowBox[{
+            SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+            SuperscriptBox["y", "2"]}]}], ")"}]}]]]}], ")"}]}], 
+   ")"}]}]], "Output",
+ CellChangeTimes->{3.6972455224858713`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ToMatlab", "[", "DDkDxDyDlogtheta", "]"}]], "Input",
+ CellChangeTimes->{{3.697245531154381*^9, 3.697245532336545*^9}}],
+
+Cell[BoxData["\<\"(-1).*exp(1).^logtheta.*(1+2.*exp(1).^logsigma).*pi.^(-1).*(\
+(1+ ...\\n  \
+exp(1).^logsigma+exp(1).^logtheta.*x.^2).*(1+exp(1).^logsigma+exp( ...\\n  \
+1).^logtheta.*y.^2)).^(-1/2).*((-2)+(-4).*exp(1).^logsigma+exp(1) ...\\n  \
+.^logtheta.*(x.^2+exp(1).^logsigma.*(x+(-1).*y).^2+y.^2)).*(1+2.* ...\\n  \
+exp(1).^logsigma+exp(1).^logtheta.*(x.^2+exp(1).^logsigma.*(x+(-1) ...\\n  \
+.*y).^2+y.^2)).^(-2).*((1+exp(1).^logsigma+exp(1).^logtheta.*x.^2) ...\\n  \
+.^(-1).*(1+exp(1).^logsigma+exp(1).^logtheta.*y.^2).^(-1).*(1+2.* ...\\n  \
+exp(1).^logsigma+exp(1).^logtheta.*(x.^2+exp(1).^logsigma.*(x+(-1) ...\\n  \
+.*y).^2+y.^2))).^(-1/2);\\n\"\>"], "Output",
+ CellChangeTimes->{3.697245532928275*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"D3kDxDy2", " ", "=", " ", 
+  RowBox[{
+   RowBox[{"D", "[", 
+    RowBox[{
+     RowBox[{"D", "[", 
+      RowBox[{"k", ",", 
+       RowBox[{"{", 
+        RowBox[{"y", ",", "2"}], "}"}]}], "]"}], ",", "x"}], "]"}], "//", 
+   "FullSimplify"}]}]], "Input",
+ CellChangeTimes->{{3.6972457664084463`*^9, 3.697245785657116*^9}, {
+  3.697245832460763*^9, 3.697245836326591*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(", 
+   RowBox[{"6", " ", 
+    SuperscriptBox["\[ExponentialE]", 
+     RowBox[{"2", " ", "logtheta"}]], " ", 
+    RowBox[{"(", 
+     RowBox[{"1", "+", 
+      RowBox[{"2", " ", 
+       SuperscriptBox["\[ExponentialE]", "logsigma"]}]}], ")"}], " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{
+       SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+       RowBox[{"(", 
+        RowBox[{"x", "-", "y"}], ")"}]}], "-", "y"}], ")"}]}], ")"}], "/", 
+  RowBox[{"(", 
+   RowBox[{"\[Pi]", " ", 
+    SqrtBox[
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"1", "+", 
+        SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+        RowBox[{
+         SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+         SuperscriptBox["x", "2"]}]}], ")"}], " ", 
+      RowBox[{"(", 
+       RowBox[{"1", "+", 
+        SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+        RowBox[{
+         SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+         SuperscriptBox["y", "2"]}]}], ")"}]}]], " ", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"1", "+", 
+       RowBox[{"2", " ", 
+        SuperscriptBox["\[ExponentialE]", "logsigma"]}], "+", 
+       RowBox[{
+        SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+        RowBox[{"(", 
+         RowBox[{
+          SuperscriptBox["x", "2"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+           SuperscriptBox[
+            RowBox[{"(", 
+             RowBox[{"x", "-", "y"}], ")"}], "2"]}], "+", 
+          SuperscriptBox["y", "2"]}], ")"}]}]}], ")"}], "2"], " ", 
+    SqrtBox[
+     RowBox[{"1", "-", 
+      FractionBox[
+       SuperscriptBox[
+        RowBox[{"(", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logtheta"], " ", "x", " ", 
+           "y"}]}], ")"}], "2"], 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+           SuperscriptBox["x", "2"]}]}], ")"}], " ", 
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+           SuperscriptBox["y", "2"]}]}], ")"}]}]]}]]}], ")"}]}]], "Output",
+ CellChangeTimes->{{3.697245828340143*^9, 3.697245840579672*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ToMatlab", "[", "D3kDxDy2", "]"}]], "Input",
+ CellChangeTimes->{{3.6972458499804068`*^9, 3.697245862089243*^9}}],
+
+Cell[BoxData["\<\"6.*exp(1).^(2.*logtheta).*(1+2.*exp(1).^logsigma).*pi.^(-1).\
+*(exp( ...\\n  \
+1).^logsigma.*(x+(-1).*y)+(-1).*y).*((1+exp(1).^logsigma+exp(1) ...\\n  \
+.^logtheta.*x.^2).*(1+exp(1).^logsigma+exp(1).^logtheta.*y.^2)).^( ...\\n  \
+-1/2).*(1+2.*exp(1).^logsigma+exp(1).^logtheta.*(x.^2+exp(1) ...\\n  \
+.^logsigma.*(x+(-1).*y).^2+y.^2)).^(-2).*(1+(-1).*(1+exp(1) ...\\n  \
+.^logsigma+exp(1).^logtheta.*x.^2).^(-1).*(exp(1).^logsigma+exp(1) ...\\n  \
+.^logtheta.*x.*y).^2.*(1+exp(1).^logsigma+exp(1).^logtheta.*y.^2) ...\\n  \
+.^(-1)).^(-1/2);\\n\"\>"], "Output",
+ CellChangeTimes->{3.697245862576272*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"DD3kDxDy2Dlogsigma", " ", "=", " ", 
+  RowBox[{
+   RowBox[{"D", "[", 
+    RowBox[{"D3kDxDy2", ",", "logsigma"}], "]"}], "//", 
+   "FullSimplify"}]}]], "Input",
+ CellChangeTimes->{{3.697245951023664*^9, 3.697245970788001*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(", 
+   RowBox[{"3", " ", 
+    SuperscriptBox["\[ExponentialE]", 
+     RowBox[{"logsigma", "+", 
+      RowBox[{"2", " ", "logtheta"}]}]], " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"4", " ", "y"}], "+", 
+      RowBox[{"2", " ", 
+       RowBox[{"(", 
+        RowBox[{"x", "-", 
+         RowBox[{"2", " ", 
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "logsigma"}]], " ", 
+          RowBox[{"(", 
+           RowBox[{"x", "-", "y"}], ")"}]}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+          RowBox[{"(", 
+           RowBox[{"x", "+", 
+            RowBox[{"5", " ", "y"}]}], ")"}]}]}], ")"}]}], "+", 
+      RowBox[{
+       SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"2", " ", 
+          SuperscriptBox["x", "3"]}], "-", 
+         RowBox[{"2", " ", 
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "logsigma"}]], " ", 
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"x", "-", "y"}], ")"}], "3"]}], "-", 
+         RowBox[{
+          SuperscriptBox["x", "2"], " ", "y"}], "-", 
+         RowBox[{"8", " ", "x", " ", 
+          SuperscriptBox["y", "2"]}], "-", 
+         SuperscriptBox["y", "3"], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"5", " ", 
+             SuperscriptBox["x", "3"]}], "+", 
+            RowBox[{"7", " ", 
+             SuperscriptBox["x", "2"], " ", "y"}], "-", 
+            RowBox[{"13", " ", "x", " ", 
+             SuperscriptBox["y", "2"]}], "+", 
+            SuperscriptBox["y", "3"]}], ")"}]}]}], ")"}]}]}], ")"}]}], ")"}], 
+  "/", 
+  RowBox[{"(", 
+   RowBox[{"\[Pi]", " ", 
+    SqrtBox[
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"1", "+", 
+        SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+        RowBox[{
+         SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+         SuperscriptBox["x", "2"]}]}], ")"}], " ", 
+      RowBox[{"(", 
+       RowBox[{"1", "+", 
+        SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+        RowBox[{
+         SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+         SuperscriptBox["y", "2"]}]}], ")"}]}]], " ", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"1", "+", 
+       RowBox[{"2", " ", 
+        SuperscriptBox["\[ExponentialE]", "logsigma"]}], "+", 
+       RowBox[{
+        SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+        RowBox[{"(", 
+         RowBox[{
+          SuperscriptBox["x", "2"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+           SuperscriptBox[
+            RowBox[{"(", 
+             RowBox[{"x", "-", "y"}], ")"}], "2"]}], "+", 
+          SuperscriptBox["y", "2"]}], ")"}]}]}], ")"}], "3"], " ", 
+    SqrtBox[
+     RowBox[{"1", "-", 
+      FractionBox[
+       SuperscriptBox[
+        RowBox[{"(", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logtheta"], " ", "x", " ", 
+           "y"}]}], ")"}], "2"], 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+           SuperscriptBox["x", "2"]}]}], ")"}], " ", 
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+           SuperscriptBox["y", "2"]}]}], ")"}]}]]}]]}], ")"}]}]], "Output",
+ CellChangeTimes->{3.697245990862849*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ToMatlab", "[", "DD3kDxDy2Dlogsigma", "]"}]], "Input",
+ CellChangeTimes->{{3.697245994487707*^9, 3.697246010029346*^9}, {
+  3.6972460490720243`*^9, 3.697246049746048*^9}}],
+
+Cell[BoxData["\<\"3.*exp(1).^(logsigma+2.*logtheta).*pi.^(-1).*((1+exp(1).^\
+logsigma+ ...\\n  \
+exp(1).^logtheta.*x.^2).*(1+exp(1).^logsigma+exp(1).^logtheta.* ...\\n  \
+y.^2)).^(-1/2).*(1+2.*exp(1).^logsigma+exp(1).^logtheta.*(x.^2+ ...\\n  \
+exp(1).^logsigma.*(x+(-1).*y).^2+y.^2)).^(-3).*(1+(-1).*(1+exp(1) ...\\n  \
+.^logsigma+exp(1).^logtheta.*x.^2).^(-1).*(exp(1).^logsigma+exp(1) ...\\n  \
+.^logtheta.*x.*y).^2.*(1+exp(1).^logsigma+exp(1).^logtheta.*y.^2) ...\\n  \
+.^(-1)).^(-1/2).*(4.*y+2.*(x+(-2).*exp(1).^(2.*logsigma).*(x+(-1) ...\\n  \
+.*y)+exp(1).^logsigma.*(x+5.*y))+exp(1).^logtheta.*(2.*x.^3+(-2).* ...\\n  \
+exp(1).^(2.*logsigma).*(x+(-1).*y).^3+(-1).*x.^2.*y+(-8).*x.*y.^2+ ...\\n  \
+(-1).*y.^3+exp(1).^logsigma.*(5.*x.^3+7.*x.^2.*y+(-13).*x.*y.^2+ ...\\n  \
+y.^3)));\\n\"\>"], "Output",
+ CellChangeTimes->{3.697246010503001*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"DD3kDxDy2Dlogtheta", " ", "=", " ", 
+  RowBox[{
+   RowBox[{"D", "[", 
+    RowBox[{"D3kDxDy2", ",", "logtheta"}], "]"}], "//", 
+   "FullSimplify"}]}]], "Input",
+ CellChangeTimes->{{3.6972460705030746`*^9, 3.697246079121879*^9}}],
+
+Cell[BoxData[
+ RowBox[{"-", 
+  RowBox[{"(", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"3", " ", 
+      SuperscriptBox["\[ExponentialE]", 
+       RowBox[{"2", " ", "logtheta"}]], " ", 
+      RowBox[{"(", 
+       RowBox[{"1", "+", 
+        RowBox[{"2", " ", 
+         SuperscriptBox["\[ExponentialE]", "logsigma"]}]}], ")"}], " ", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{
+         SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+         RowBox[{"(", 
+          RowBox[{"x", "-", "y"}], ")"}]}], "-", "y"}], ")"}], " ", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"-", "4"}], "-", 
+        RowBox[{"8", " ", 
+         SuperscriptBox["\[ExponentialE]", "logsigma"]}], "+", 
+        RowBox[{
+         SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+         RowBox[{"(", 
+          RowBox[{
+           SuperscriptBox["x", "2"], "+", 
+           RowBox[{
+            SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+            SuperscriptBox[
+             RowBox[{"(", 
+              RowBox[{"x", "-", "y"}], ")"}], "2"]}], "+", 
+           SuperscriptBox["y", "2"]}], ")"}]}]}], ")"}]}], ")"}], "/", 
+    RowBox[{"(", 
+     RowBox[{"\[Pi]", " ", 
+      SqrtBox[
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+           SuperscriptBox["x", "2"]}]}], ")"}], " ", 
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+           SuperscriptBox["y", "2"]}]}], ")"}]}]], " ", 
+      SuperscriptBox[
+       RowBox[{"(", 
+        RowBox[{"1", "+", 
+         RowBox[{"2", " ", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"]}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+          RowBox[{"(", 
+           RowBox[{
+            SuperscriptBox["x", "2"], "+", 
+            RowBox[{
+             SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+             SuperscriptBox[
+              RowBox[{"(", 
+               RowBox[{"x", "-", "y"}], ")"}], "2"]}], "+", 
+            SuperscriptBox["y", "2"]}], ")"}]}]}], ")"}], "3"], " ", 
+      SqrtBox[
+       RowBox[{"1", "-", 
+        FractionBox[
+         SuperscriptBox[
+          RowBox[{"(", 
+           RowBox[{
+            SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+            RowBox[{
+             SuperscriptBox["\[ExponentialE]", "logtheta"], " ", "x", " ", 
+             "y"}]}], ")"}], "2"], 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"1", "+", 
+            SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+            RowBox[{
+             SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+             SuperscriptBox["x", "2"]}]}], ")"}], " ", 
+          RowBox[{"(", 
+           RowBox[{"1", "+", 
+            SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+            RowBox[{
+             SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+             SuperscriptBox["y", "2"]}]}], ")"}]}]]}]]}], ")"}]}], 
+   ")"}]}]], "Output",
+ CellChangeTimes->{3.69724609167901*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ToMatlab", "[", "DD3kDxDy2Dlogtheta", "]"}]], "Input",
+ CellChangeTimes->{{3.697246125922009*^9, 3.69724613056704*^9}}],
+
+Cell[BoxData["\<\"(-3).*exp(1).^(2.*logtheta).*(1+2.*exp(1).^logsigma).*pi.^(-\
+1).*( ...\\n  \
+exp(1).^logsigma.*(x+(-1).*y)+(-1).*y).*((1+exp(1).^logsigma+exp( ...\\n  \
+1).^logtheta.*x.^2).*(1+exp(1).^logsigma+exp(1).^logtheta.*y.^2)) ...\\n  \
+.^(-1/2).*((-4)+(-8).*exp(1).^logsigma+exp(1).^logtheta.*(x.^2+ ...\\n  \
+exp(1).^logsigma.*(x+(-1).*y).^2+y.^2)).*(1+2.*exp(1).^logsigma+ ...\\n  \
+exp(1).^logtheta.*(x.^2+exp(1).^logsigma.*(x+(-1).*y).^2+y.^2)).^( ...\\n  \
+-3).*(1+(-1).*(1+exp(1).^logsigma+exp(1).^logtheta.*x.^2).^(-1).*( ...\\n  \
+exp(1).^logsigma+exp(1).^logtheta.*x.*y).^2.*(1+exp(1).^logsigma+ ...\\n  \
+exp(1).^logtheta.*y.^2).^(-1)).^(-1/2);\\n\"\>"], "Output",
+ CellChangeTimes->{3.6972461310633373`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"D2kDx2", " ", "=", " ", 
+  RowBox[{
+   RowBox[{"D", "[", 
+    RowBox[{"k", ",", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", "2"}], "}"}]}], "]"}], "//", 
+   "FullSimplify"}]}]], "Input",
+ CellChangeTimes->{{3.6972462627552347`*^9, 3.6972462791373377`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(", 
+   RowBox[{"2", " ", 
+    SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"-", 
+        SuperscriptBox["\[ExponentialE]", "logsigma"]}], " ", 
+       RowBox[{"(", 
+        RowBox[{"1", "+", 
+         SuperscriptBox["\[ExponentialE]", "logsigma"]}], ")"}], " ", 
+       RowBox[{"(", 
+        RowBox[{"1", "+", 
+         RowBox[{"2", " ", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"]}]}], ")"}]}], "+", 
+      RowBox[{
+       SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+       RowBox[{"(", 
+        RowBox[{"1", "+", 
+         RowBox[{"2", " ", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"]}]}], ")"}], " ", "x", 
+       " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+          RowBox[{"(", 
+           RowBox[{"x", "-", 
+            RowBox[{"3", " ", "y"}]}], ")"}]}], "-", 
+         RowBox[{"3", " ", "y"}]}], ")"}]}], "+", 
+      RowBox[{
+       SuperscriptBox["\[ExponentialE]", 
+        RowBox[{"2", " ", "logtheta"}]], " ", "x", " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"2", " ", 
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "logsigma"}]], " ", 
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"x", "-", "y"}], ")"}], "3"]}], "-", 
+         RowBox[{"3", " ", 
+          SuperscriptBox["x", "2"], " ", "y"}], "-", 
+         RowBox[{"2", " ", 
+          SuperscriptBox["y", "3"]}], "+", 
+         RowBox[{"2", " ", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+          RowBox[{"(", 
+           RowBox[{"x", "-", 
+            RowBox[{"2", " ", "y"}]}], ")"}], " ", 
+          RowBox[{"(", 
+           RowBox[{
+            SuperscriptBox["x", "2"], "-", 
+            RowBox[{"x", " ", "y"}], "+", 
+            SuperscriptBox["y", "2"]}], ")"}]}]}], ")"}]}]}], ")"}]}], ")"}], 
+  "/", 
+  RowBox[{"(", 
+   RowBox[{"\[Pi]", " ", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"1", "+", 
+       SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+       RowBox[{
+        SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+        SuperscriptBox["x", "2"]}]}], ")"}], "2"], " ", 
+    SqrtBox[
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"1", "+", 
+        SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+        RowBox[{
+         SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+         SuperscriptBox["x", "2"]}]}], ")"}], " ", 
+      RowBox[{"(", 
+       RowBox[{"1", "+", 
+        SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+        RowBox[{
+         SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+         SuperscriptBox["y", "2"]}]}], ")"}]}]], " ", 
+    RowBox[{"(", 
+     RowBox[{"1", "+", 
+      RowBox[{"2", " ", 
+       SuperscriptBox["\[ExponentialE]", "logsigma"]}], "+", 
+      RowBox[{
+       SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+       RowBox[{"(", 
+        RowBox[{
+         SuperscriptBox["x", "2"], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"x", "-", "y"}], ")"}], "2"]}], "+", 
+         SuperscriptBox["y", "2"]}], ")"}]}]}], ")"}], " ", 
+    SqrtBox[
+     RowBox[{"1", "-", 
+      FractionBox[
+       SuperscriptBox[
+        RowBox[{"(", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logtheta"], " ", "x", " ", 
+           "y"}]}], ")"}], "2"], 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+           SuperscriptBox["x", "2"]}]}], ")"}], " ", 
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+           SuperscriptBox["y", "2"]}]}], ")"}]}]]}]]}], ")"}]}]], "Output",
+ CellChangeTimes->{{3.697246274267902*^9, 3.6972462870114813`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ToMatlab", "[", "D2kDx2", "]"}]], "Input",
+ CellChangeTimes->{{3.697246292312237*^9, 3.697246296273937*^9}}],
+
+Cell[BoxData["\<\"2.*exp(1).^logtheta.*pi.^(-1).*(1+exp(1).^logsigma+exp(1) \
+...\\n  .^logtheta.*x.^2).^(-2).*((1+exp(1).^logsigma+exp(1).^logtheta.* \
+...\\n  x.^2).*(1+exp(1).^logsigma+exp(1).^logtheta.*y.^2)).^(-1/2).*(1+ \
+...\\n  2.*exp(1).^logsigma+exp(1).^logtheta.*(x.^2+exp(1).^logsigma.*(x+( \
+...\\n  -1).*y).^2+y.^2)).^(-1).*(1+(-1).*(1+exp(1).^logsigma+exp(1) ...\\n  \
+.^logtheta.*x.^2).^(-1).*(exp(1).^logsigma+exp(1).^logtheta.*x.*y) ...\\n  \
+.^2.*(1+exp(1).^logsigma+exp(1).^logtheta.*y.^2).^(-1)).^(-1/2).*( ...\\n  \
+(-1).*exp(1).^logsigma.*(1+exp(1).^logsigma).*(1+2.*exp(1) ...\\n  \
+.^logsigma)+exp(1).^logtheta.*(1+2.*exp(1).^logsigma).*x.*(exp(1) ...\\n  \
+.^logsigma.*(x+(-3).*y)+(-3).*y)+exp(1).^(2.*logtheta).*x.*(2.* ...\\n  \
+exp(1).^(2.*logsigma).*(x+(-1).*y).^3+(-3).*x.^2.*y+(-2).*y.^3+2.* ...\\n  \
+exp(1).^logsigma.*(x+(-2).*y).*(x.^2+(-1).*x.*y+y.^2)));\\n\"\>"], "Output",
+ CellChangeTimes->{3.697246296709836*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"DD2kDx2Dlogsigma", " ", "=", " ", 
+  RowBox[{
+   RowBox[{"D", "[", 
+    RowBox[{"D2kDx2", ",", "logsigma"}], "]"}], "//", 
+   "FullSimplify"}]}]], "Input",
+ CellChangeTimes->{{3.697246343551804*^9, 3.697246359141211*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(", 
+   RowBox[{
+    SuperscriptBox["\[ExponentialE]", 
+     RowBox[{"logsigma", "+", "logtheta"}]], " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"3", " ", 
+       SuperscriptBox["\[ExponentialE]", 
+        RowBox[{"2", " ", "logtheta"}]], " ", "x", " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"-", "2"}], " ", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"-", "1"}], "+", 
+            RowBox[{
+             SuperscriptBox["\[ExponentialE]", 
+              RowBox[{"2", " ", "logsigma"}]], " ", 
+             RowBox[{"(", 
+              RowBox[{"5", "+", 
+               RowBox[{"4", " ", 
+                SuperscriptBox["\[ExponentialE]", "logsigma"]}]}], ")"}]}]}], 
+           ")"}], " ", 
+          SuperscriptBox["x", "3"]}], "+", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"7", "+", 
+            RowBox[{
+             SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+             RowBox[{"(", 
+              RowBox[{"20", "+", 
+               RowBox[{
+                SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+                RowBox[{"(", 
+                 RowBox[{"29", "+", 
+                  RowBox[{"26", " ", 
+                   SuperscriptBox["\[ExponentialE]", "logsigma"]}]}], 
+                 ")"}]}]}], ")"}]}]}], ")"}], " ", 
+          SuperscriptBox["x", "2"], " ", "y"}], "-", 
+         RowBox[{"2", " ", 
+          RowBox[{"(", 
+           RowBox[{"1", "+", 
+            SuperscriptBox["\[ExponentialE]", "logsigma"]}], ")"}], " ", 
+          RowBox[{"(", 
+           RowBox[{"1", "+", 
+            RowBox[{"2", " ", 
+             SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+             RowBox[{"(", 
+              RowBox[{"5", "+", 
+               RowBox[{"7", " ", 
+                SuperscriptBox["\[ExponentialE]", "logsigma"]}]}], ")"}]}]}], 
+           ")"}], " ", "x", " ", 
+          SuperscriptBox["y", "2"]}], "+", 
+         RowBox[{"5", " ", 
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"1", "+", 
+             SuperscriptBox["\[ExponentialE]", "logsigma"]}], ")"}], "2"], 
+          " ", 
+          RowBox[{"(", 
+           RowBox[{"1", "+", 
+            RowBox[{"2", " ", 
+             SuperscriptBox["\[ExponentialE]", "logsigma"]}]}], ")"}], " ", 
+          SuperscriptBox["y", "3"]}]}], ")"}]}], "+", 
+      RowBox[{
+       SuperscriptBox["\[ExponentialE]", 
+        RowBox[{"3", " ", "logtheta"}]], " ", "x", " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"10", "+", 
+            RowBox[{
+             SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+             RowBox[{"(", 
+              RowBox[{"13", "-", 
+               RowBox[{"2", " ", 
+                SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+                RowBox[{"(", 
+                 RowBox[{"1", "+", 
+                  RowBox[{"3", " ", 
+                   SuperscriptBox["\[ExponentialE]", "logsigma"]}]}], 
+                 ")"}]}]}], ")"}]}]}], ")"}], " ", 
+          SuperscriptBox["x", "5"]}], "+", 
+         RowBox[{"6", " ", 
+          RowBox[{"(", 
+           RowBox[{"1", "+", 
+            SuperscriptBox["\[ExponentialE]", "logsigma"]}], ")"}], " ", 
+          RowBox[{"(", 
+           RowBox[{"1", "+", 
+            RowBox[{
+             SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+             RowBox[{"(", 
+              RowBox[{
+               RowBox[{"-", "2"}], "+", 
+               RowBox[{"5", " ", 
+                SuperscriptBox["\[ExponentialE]", "logsigma"]}]}], ")"}]}]}], 
+           ")"}], " ", 
+          SuperscriptBox["x", "4"], " ", "y"}], "-", 
+         RowBox[{"3", " ", 
+          RowBox[{"(", 
+           RowBox[{"2", "+", 
+            RowBox[{
+             SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+             RowBox[{"(", 
+              RowBox[{"15", "+", 
+               RowBox[{"2", " ", 
+                SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+                RowBox[{"(", 
+                 RowBox[{"9", "+", 
+                  RowBox[{"10", " ", 
+                   SuperscriptBox["\[ExponentialE]", "logsigma"]}]}], 
+                 ")"}]}]}], ")"}]}]}], ")"}], " ", 
+          SuperscriptBox["x", "3"], " ", 
+          SuperscriptBox["y", "2"]}], "+", 
+         RowBox[{"10", " ", 
+          RowBox[{"(", 
+           RowBox[{"1", "+", 
+            SuperscriptBox["\[ExponentialE]", "logsigma"]}], ")"}], " ", 
+          RowBox[{"(", 
+           RowBox[{"1", "+", 
+            RowBox[{"2", " ", 
+             SuperscriptBox["\[ExponentialE]", "logsigma"]}], "+", 
+            RowBox[{"6", " ", 
+             SuperscriptBox["\[ExponentialE]", 
+              RowBox[{"2", " ", "logsigma"}]]}]}], ")"}], " ", 
+          SuperscriptBox["x", "2"], " ", 
+          SuperscriptBox["y", "3"]}], "-", 
+         RowBox[{"30", " ", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"1", "+", 
+             SuperscriptBox["\[ExponentialE]", "logsigma"]}], ")"}], "2"], 
+          " ", "x", " ", 
+          SuperscriptBox["y", "4"]}], "+", 
+         RowBox[{"6", " ", 
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"1", "+", 
+             SuperscriptBox["\[ExponentialE]", "logsigma"]}], ")"}], "3"], 
+          " ", 
+          SuperscriptBox["y", "5"]}]}], ")"}]}], "+", 
+      RowBox[{
+       SuperscriptBox["\[ExponentialE]", 
+        RowBox[{"4", " ", "logtheta"}]], " ", 
+       SuperscriptBox["x", "3"], " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"4", " ", 
+          SuperscriptBox["x", "5"]}], "+", 
+         RowBox[{"2", " ", 
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "logsigma"}]], " ", 
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"x", "-", "y"}], ")"}], "5"]}], "-", 
+         RowBox[{"3", " ", 
+          SuperscriptBox["x", "4"], " ", "y"}], "-", 
+         RowBox[{"2", " ", 
+          SuperscriptBox["x", "3"], " ", 
+          SuperscriptBox["y", "2"]}], "-", 
+         RowBox[{"5", " ", 
+          SuperscriptBox["x", "2"], " ", 
+          SuperscriptBox["y", "3"]}], "-", 
+         RowBox[{"2", " ", 
+          SuperscriptBox["y", "5"]}], "+", 
+         RowBox[{"2", " ", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"x", "-", "y"}], ")"}], "2"], " ", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"3", " ", 
+             SuperscriptBox["x", "3"]}], "-", 
+            RowBox[{
+             SuperscriptBox["x", "2"], " ", "y"}], "+", 
+            RowBox[{"x", " ", 
+             SuperscriptBox["y", "2"]}], "-", 
+            RowBox[{"2", " ", 
+             SuperscriptBox["y", "3"]}]}], ")"}]}]}], ")"}]}], "+", 
+      RowBox[{"2", " ", 
+       SuperscriptBox["\[ExponentialE]", 
+        RowBox[{"2", " ", "logsigma"}]], " ", 
+       RowBox[{"(", 
+        RowBox[{"3", "+", 
+         RowBox[{"3", " ", 
+          RowBox[{"Cosh", "[", "logsigma", "]"}]}], "+", 
+         RowBox[{"Sinh", "[", "logsigma", "]"}]}], ")"}], " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"-", "1"}], "+", 
+         RowBox[{"2", " ", 
+          RowBox[{"Sinh", "[", "logsigma", "]"}]}]}], ")"}]}], "+", 
+      RowBox[{
+       SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"-", "2"}], " ", 
+          RowBox[{"(", 
+           RowBox[{"1", "+", 
+            SuperscriptBox["\[ExponentialE]", "logsigma"]}], ")"}], " ", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"-", "6"}], "+", 
+            RowBox[{
+             SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+             RowBox[{"(", 
+              RowBox[{
+               RowBox[{"-", "20"}], "+", 
+               RowBox[{
+                SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+                RowBox[{"(", 
+                 RowBox[{
+                  RowBox[{"-", "17"}], "+", 
+                  RowBox[{"2", " ", 
+                   SuperscriptBox["\[ExponentialE]", "logsigma"]}]}], 
+                 ")"}]}]}], ")"}]}]}], ")"}], " ", "x", " ", "y"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"1", "+", 
+             SuperscriptBox["\[ExponentialE]", "logsigma"]}], ")"}], "2"], 
+          " ", 
+          SuperscriptBox["y", "2"], " ", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"-", "5"}], "+", 
+            RowBox[{"4", " ", 
+             RowBox[{"Sinh", "[", "logsigma", "]"}]}]}], ")"}]}], "-", 
+         RowBox[{"2", " ", 
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "logsigma"}]], " ", 
+          SuperscriptBox["x", "2"], " ", 
+          RowBox[{"(", 
+           RowBox[{"17", "-", 
+            RowBox[{"4", " ", 
+             RowBox[{"Cosh", "[", "logsigma", "]"}], " ", 
+             RowBox[{"(", 
+              RowBox[{
+               RowBox[{"-", "5"}], "+", 
+               RowBox[{"Sinh", "[", "logsigma", "]"}]}], ")"}]}], "+", 
+            RowBox[{"5", " ", 
+             RowBox[{"Sinh", "[", "logsigma", "]"}]}]}], ")"}]}]}], ")"}]}]}],
+      ")"}]}], ")"}], "/", 
+  RowBox[{"(", 
+   RowBox[{"\[Pi]", " ", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"1", "+", 
+       SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+       RowBox[{
+        SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+        SuperscriptBox["x", "2"]}]}], ")"}], "3"], " ", 
+    SqrtBox[
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"1", "+", 
+        SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+        RowBox[{
+         SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+         SuperscriptBox["x", "2"]}]}], ")"}], " ", 
+      RowBox[{"(", 
+       RowBox[{"1", "+", 
+        SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+        RowBox[{
+         SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+         SuperscriptBox["y", "2"]}]}], ")"}]}]], " ", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"1", "+", 
+       RowBox[{"2", " ", 
+        SuperscriptBox["\[ExponentialE]", "logsigma"]}], "+", 
+       RowBox[{
+        SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+        RowBox[{"(", 
+         RowBox[{
+          SuperscriptBox["x", "2"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+           SuperscriptBox[
+            RowBox[{"(", 
+             RowBox[{"x", "-", "y"}], ")"}], "2"]}], "+", 
+          SuperscriptBox["y", "2"]}], ")"}]}]}], ")"}], "2"], " ", 
+    SqrtBox[
+     RowBox[{"1", "-", 
+      FractionBox[
+       SuperscriptBox[
+        RowBox[{"(", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logtheta"], " ", "x", " ", 
+           "y"}]}], ")"}], "2"], 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+           SuperscriptBox["x", "2"]}]}], ")"}], " ", 
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+           SuperscriptBox["y", "2"]}]}], ")"}]}]]}]]}], ")"}]}]], "Output",
+ CellChangeTimes->{3.6972465121501703`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ToMatlab", "[", "DD2kDx2Dlogsigma", "]"}]], "Input",
+ CellChangeTimes->{{3.697246527534412*^9, 3.697246532519761*^9}}],
+
+Cell[BoxData["\<\"exp(1).^(logsigma+logtheta).*pi.^(-1).*(1+exp(1).^logsigma+\
+exp(1) ...\\n  \
+.^logtheta.*x.^2).^(-3).*((1+exp(1).^logsigma+exp(1).^logtheta.* ...\\n  \
+x.^2).*(1+exp(1).^logsigma+exp(1).^logtheta.*y.^2)).^(-1/2).*(1+ ...\\n  \
+2.*exp(1).^logsigma+exp(1).^logtheta.*(x.^2+exp(1).^logsigma.*(x+( ...\\n  \
+-1).*y).^2+y.^2)).^(-2).*(1+(-1).*(1+exp(1).^logsigma+exp(1) ...\\n  \
+.^logtheta.*x.^2).^(-1).*(exp(1).^logsigma+exp(1).^logtheta.*x.*y) ...\\n  \
+.^2.*(1+exp(1).^logsigma+exp(1).^logtheta.*y.^2).^(-1)).^(-1/2).*( ...\\n  \
+3.*exp(1).^(2.*logtheta).*x.*((-2).*((-1)+exp(1).^(2.*logsigma).*( ...\\n  \
+5+4.*exp(1).^logsigma)).*x.^3+(7+exp(1).^logsigma.*(20+exp(1) ...\\n  \
+.^logsigma.*(29+26.*exp(1).^logsigma))).*x.^2.*y+(-2).*(1+exp(1) ...\\n  \
+.^logsigma).*(1+2.*exp(1).^logsigma.*(5+7.*exp(1).^logsigma)).*x.* ...\\n  \
+y.^2+5.*(1+exp(1).^logsigma).^2.*(1+2.*exp(1).^logsigma).*y.^3)+ ...\\n  \
+exp(1).^(3.*logtheta).*x.*((10+exp(1).^logsigma.*(13+(-2).*exp(1) ...\\n  \
+.^logsigma.*(1+3.*exp(1).^logsigma))).*x.^5+6.*(1+exp(1) ...\\n  \
+.^logsigma).*(1+exp(1).^logsigma.*((-2)+5.*exp(1).^logsigma)).* ...\\n  \
+x.^4.*y+(-3).*(2+exp(1).^logsigma.*(15+2.*exp(1).^logsigma.*(9+ ...\\n  \
+10.*exp(1).^logsigma))).*x.^3.*y.^2+10.*(1+exp(1).^logsigma).*(1+ ...\\n  \
+2.*exp(1).^logsigma+6.*exp(1).^(2.*logsigma)).*x.^2.*y.^3+(-30).* ...\\n  \
+exp(1).^logsigma.*(1+exp(1).^logsigma).^2.*x.*y.^4+6.*(1+exp(1) ...\\n  \
+.^logsigma).^3.*y.^5)+exp(1).^(4.*logtheta).*x.^3.*(4.*x.^5+2.* ...\\n  \
+exp(1).^(2.*logsigma).*(x+(-1).*y).^5+(-3).*x.^4.*y+(-2).*x.^3.* ...\\n  \
+y.^2+(-5).*x.^2.*y.^3+(-2).*y.^5+2.*exp(1).^logsigma.*(x+(-1).*y) ...\\n  \
+.^2.*(3.*x.^3+(-1).*x.^2.*y+x.*y.^2+(-2).*y.^3))+2.*exp(1).^(2.* ...\\n  \
+logsigma).*(3+3.*cosh(logsigma)+sinh(logsigma)).*((-1)+2.*sinh( ...\\n  \
+logsigma))+exp(1).^logtheta.*((-2).*(1+exp(1).^logsigma).*((-6)+ ...\\n  \
+exp(1).^logsigma.*((-20)+exp(1).^logsigma.*((-17)+2.*exp(1) ...\\n  \
+.^logsigma))).*x.*y+exp(1).^logsigma.*(1+exp(1).^logsigma).^2.* ...\\n  \
+y.^2.*((-5)+4.*sinh(logsigma))+(-2).*exp(1).^(2.*logsigma).*x.^2.* ...\\n  \
+(17+(-4).*cosh(logsigma).*((-5)+sinh(logsigma))+5.*sinh(logsigma)) ...\\n  \
+));\\n\"\>"], "Output",
+ CellChangeTimes->{3.697246533370598*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"DD2kDx2Dlogtheta", " ", "=", " ", 
+  RowBox[{
+   RowBox[{"D", "[", 
+    RowBox[{"D2kDx2", ",", "logtheta"}], "]"}], "//", 
+   "FullSimplify"}]}]], "Input",
+ CellChangeTimes->{{3.697246628899102*^9, 3.697246635948676*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(", 
+   RowBox[{
+    SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"-", "2"}], " ", 
+       SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+       SuperscriptBox[
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"]}], ")"}], "2"], " ", 
+       SuperscriptBox[
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          RowBox[{"2", " ", 
+           SuperscriptBox["\[ExponentialE]", "logsigma"]}]}], ")"}], "2"]}], 
+      "+", 
+      RowBox[{
+       SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+       RowBox[{"(", 
+        RowBox[{"1", "+", 
+         SuperscriptBox["\[ExponentialE]", "logsigma"]}], ")"}], " ", 
+       RowBox[{"(", 
+        RowBox[{"1", "+", 
+         RowBox[{"2", " ", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"]}]}], ")"}], " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"3", " ", "logsigma"}]], " ", 
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"x", "-", "y"}], ")"}], "2"]}], "-", 
+         RowBox[{"12", " ", "x", " ", "y"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"7", " ", 
+             SuperscriptBox["x", "2"]}], "-", 
+            RowBox[{"36", " ", "x", " ", "y"}], "+", 
+            SuperscriptBox["y", "2"]}], ")"}]}], "+", 
+         RowBox[{"2", " ", 
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "logsigma"}]], " ", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"7", " ", 
+             SuperscriptBox["x", "2"]}], "-", 
+            RowBox[{"13", " ", "x", " ", "y"}], "+", 
+            SuperscriptBox["y", "2"]}], ")"}]}]}], ")"}]}], "-", 
+      RowBox[{
+       SuperscriptBox["\[ExponentialE]", 
+        RowBox[{"4", " ", "logtheta"}]], " ", 
+       SuperscriptBox["x", "3"], " ", 
+       RowBox[{"(", 
+        RowBox[{
+         SuperscriptBox["x", "2"], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"x", "-", "y"}], ")"}], "2"]}], "+", 
+         SuperscriptBox["y", "2"]}], ")"}], " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"2", " ", 
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "logsigma"}]], " ", 
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"x", "-", "y"}], ")"}], "3"]}], "-", 
+         RowBox[{"3", " ", 
+          SuperscriptBox["x", "2"], " ", "y"}], "-", 
+         RowBox[{"2", " ", 
+          SuperscriptBox["y", "3"]}], "+", 
+         RowBox[{"2", " ", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+          RowBox[{"(", 
+           RowBox[{"x", "-", 
+            RowBox[{"2", " ", "y"}]}], ")"}], " ", 
+          RowBox[{"(", 
+           RowBox[{
+            SuperscriptBox["x", "2"], "-", 
+            RowBox[{"x", " ", "y"}], "+", 
+            SuperscriptBox["y", "2"]}], ")"}]}]}], ")"}]}], "+", 
+      RowBox[{
+       SuperscriptBox["\[ExponentialE]", 
+        RowBox[{"3", " ", "logtheta"}]], " ", "x", " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"6", " ", 
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"4", " ", "logsigma"}]], " ", 
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"x", "-", "y"}], ")"}], "5"]}], "+", 
+         RowBox[{"2", " ", 
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"3", " ", "logsigma"}]], " ", 
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"x", "-", "y"}], ")"}], "2"], " ", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"10", " ", 
+             SuperscriptBox["x", "3"]}], "-", 
+            RowBox[{"16", " ", 
+             SuperscriptBox["x", "2"], " ", "y"}], "+", 
+            RowBox[{"21", " ", "x", " ", 
+             SuperscriptBox["y", "2"]}], "-", 
+            RowBox[{"12", " ", 
+             SuperscriptBox["y", "3"]}]}], ")"}]}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "logsigma"}]], " ", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"7", " ", "x"}], "-", 
+            RowBox[{"6", " ", "y"}]}], ")"}], " ", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"3", " ", 
+             SuperscriptBox["x", "4"]}], "-", 
+            RowBox[{"6", " ", 
+             SuperscriptBox["x", "3"], " ", "y"}], "+", 
+            RowBox[{"9", " ", 
+             SuperscriptBox["x", "2"], " ", 
+             SuperscriptBox["y", "2"]}], "-", 
+            RowBox[{"8", " ", "x", " ", 
+             SuperscriptBox["y", "3"]}], "+", 
+            RowBox[{"6", " ", 
+             SuperscriptBox["y", "4"]}]}], ")"}]}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"7", " ", 
+             SuperscriptBox["x", "5"]}], "-", 
+            RowBox[{"24", " ", 
+             SuperscriptBox["x", "4"], " ", "y"}], "+", 
+            RowBox[{"33", " ", 
+             SuperscriptBox["x", "3"], " ", 
+             SuperscriptBox["y", "2"]}], "-", 
+            RowBox[{"40", " ", 
+             SuperscriptBox["x", "2"], " ", 
+             SuperscriptBox["y", "3"]}], "+", 
+            RowBox[{"30", " ", "x", " ", 
+             SuperscriptBox["y", "4"]}], "-", 
+            RowBox[{"24", " ", 
+             SuperscriptBox["y", "5"]}]}], ")"}]}], "-", 
+         RowBox[{"2", " ", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"3", " ", 
+             SuperscriptBox["x", "4"], " ", "y"}], "+", 
+            RowBox[{"5", " ", 
+             SuperscriptBox["x", "2"], " ", 
+             SuperscriptBox["y", "3"]}], "+", 
+            RowBox[{"3", " ", 
+             SuperscriptBox["y", "5"]}]}], ")"}]}]}], ")"}]}], "+", 
+      RowBox[{"6", " ", 
+       SuperscriptBox["\[ExponentialE]", 
+        RowBox[{"2", " ", 
+         RowBox[{"(", 
+          RowBox[{"logsigma", "+", "logtheta"}], ")"}]}]], " ", "x", " ", 
+       RowBox[{"(", 
+        RowBox[{"3", "+", 
+         RowBox[{"3", " ", 
+          RowBox[{"Cosh", "[", "logsigma", "]"}]}], "+", 
+         RowBox[{"Sinh", "[", "logsigma", "]"}]}], ")"}], " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"3", " ", 
+          SuperscriptBox["x", "3"]}], "-", 
+         RowBox[{"7", " ", 
+          SuperscriptBox["x", "2"], " ", "y"}], "+", 
+         RowBox[{"8", " ", "x", " ", 
+          SuperscriptBox["y", "2"]}], "-", 
+         RowBox[{"5", " ", 
+          SuperscriptBox["y", "3"]}], "+", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"3", " ", 
+             SuperscriptBox["x", "3"]}], "-", 
+            RowBox[{"12", " ", 
+             SuperscriptBox["x", "2"], " ", "y"}], "+", 
+            RowBox[{"8", " ", "x", " ", 
+             SuperscriptBox["y", "2"]}], "-", 
+            RowBox[{"5", " ", 
+             SuperscriptBox["y", "3"]}]}], ")"}], " ", 
+          RowBox[{"Cosh", "[", "logsigma", "]"}]}], "+", 
+         RowBox[{"x", " ", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"3", " ", 
+             SuperscriptBox["x", "2"]}], "-", 
+            RowBox[{"5", " ", "x", " ", "y"}], "+", 
+            RowBox[{"8", " ", 
+             SuperscriptBox["y", "2"]}]}], ")"}], " ", 
+          RowBox[{"Sinh", "[", "logsigma", "]"}]}]}], ")"}]}]}], ")"}]}], 
+   ")"}], "/", 
+  RowBox[{"(", 
+   RowBox[{"\[Pi]", " ", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"1", "+", 
+       SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+       RowBox[{
+        SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+        SuperscriptBox["x", "2"]}]}], ")"}], "3"], " ", 
+    SqrtBox[
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"1", "+", 
+        SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+        RowBox[{
+         SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+         SuperscriptBox["x", "2"]}]}], ")"}], " ", 
+      RowBox[{"(", 
+       RowBox[{"1", "+", 
+        SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+        RowBox[{
+         SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+         SuperscriptBox["y", "2"]}]}], ")"}]}]], " ", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"1", "+", 
+       RowBox[{"2", " ", 
+        SuperscriptBox["\[ExponentialE]", "logsigma"]}], "+", 
+       RowBox[{
+        SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+        RowBox[{"(", 
+         RowBox[{
+          SuperscriptBox["x", "2"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+           SuperscriptBox[
+            RowBox[{"(", 
+             RowBox[{"x", "-", "y"}], ")"}], "2"]}], "+", 
+          SuperscriptBox["y", "2"]}], ")"}]}]}], ")"}], "2"], " ", 
+    SqrtBox[
+     RowBox[{"1", "-", 
+      FractionBox[
+       SuperscriptBox[
+        RowBox[{"(", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logtheta"], " ", "x", " ", 
+           "y"}]}], ")"}], "2"], 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+           SuperscriptBox["x", "2"]}]}], ")"}], " ", 
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+           SuperscriptBox["y", "2"]}]}], ")"}]}]]}]]}], ")"}]}]], "Output",
+ CellChangeTimes->{3.6972467050442343`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ToMatlab", "[", "DD2kDx2Dlogtheta", "]"}]], "Input",
+ CellChangeTimes->{{3.697246716225621*^9, 3.6972467207162943`*^9}}],
+
+Cell[BoxData["\<\"exp(1).^logtheta.*pi.^(-1).*(1+exp(1).^logsigma+exp(1).^\
+logtheta.* ...\\n  \
+x.^2).^(-3).*((1+exp(1).^logsigma+exp(1).^logtheta.*x.^2).*(1+exp( ...\\n  \
+1).^logsigma+exp(1).^logtheta.*y.^2)).^(-1/2).*(1+2.*exp(1) ...\\n  \
+.^logsigma+exp(1).^logtheta.*(x.^2+exp(1).^logsigma.*(x+(-1).*y) ...\\n  \
+.^2+y.^2)).^(-2).*(1+(-1).*(1+exp(1).^logsigma+exp(1).^logtheta.* ...\\n  \
+x.^2).^(-1).*(exp(1).^logsigma+exp(1).^logtheta.*x.*y).^2.*(1+exp( ...\\n  \
+1).^logsigma+exp(1).^logtheta.*y.^2).^(-1)).^(-1/2).*((-2).*exp(1) ...\\n  \
+.^logsigma.*(1+exp(1).^logsigma).^2.*(1+2.*exp(1).^logsigma).^2+ ...\\n  \
+exp(1).^logtheta.*(1+exp(1).^logsigma).*(1+2.*exp(1).^logsigma).*( ...\\n  \
+exp(1).^(3.*logsigma).*(x+(-1).*y).^2+(-12).*x.*y+exp(1) ...\\n  \
+.^logsigma.*(7.*x.^2+(-36).*x.*y+y.^2)+2.*exp(1).^(2.*logsigma).*( ...\\n  \
+7.*x.^2+(-13).*x.*y+y.^2))+(-1).*exp(1).^(4.*logtheta).*x.^3.*( ...\\n  \
+x.^2+exp(1).^logsigma.*(x+(-1).*y).^2+y.^2).*(2.*exp(1).^(2.* ...\\n  \
+logsigma).*(x+(-1).*y).^3+(-3).*x.^2.*y+(-2).*y.^3+2.*exp(1) ...\\n  \
+.^logsigma.*(x+(-2).*y).*(x.^2+(-1).*x.*y+y.^2))+exp(1).^(3.* ...\\n  \
+logtheta).*x.*(6.*exp(1).^(4.*logsigma).*(x+(-1).*y).^5+2.*exp(1) ...\\n  \
+.^(3.*logsigma).*(x+(-1).*y).^2.*(10.*x.^3+(-16).*x.^2.*y+21.*x.* ...\\n  \
+y.^2+(-12).*y.^3)+exp(1).^(2.*logsigma).*(7.*x+(-6).*y).*(3.*x.^4+ ...\\n  \
+(-6).*x.^3.*y+9.*x.^2.*y.^2+(-8).*x.*y.^3+6.*y.^4)+exp(1) ...\\n  \
+.^logsigma.*(7.*x.^5+(-24).*x.^4.*y+33.*x.^3.*y.^2+(-40).*x.^2.* ...\\n  \
+y.^3+30.*x.*y.^4+(-24).*y.^5)+(-2).*(3.*x.^4.*y+5.*x.^2.*y.^3+3.* ...\\n  \
+y.^5))+6.*exp(1).^(2.*(logsigma+logtheta)).*x.*(3+3.*cosh( ...\\n  \
+logsigma)+sinh(logsigma)).*(3.*x.^3+(-7).*x.^2.*y+8.*x.*y.^2+(-5) ...\\n  \
+.*y.^3+(3.*x.^3+(-12).*x.^2.*y+8.*x.*y.^2+(-5).*y.^3).*cosh( ...\\n  \
+logsigma)+x.*(3.*x.^2+(-5).*x.*y+8.*y.^2).*sinh(logsigma)));\\n\"\>"], \
+"Output",
+ CellChangeTimes->{3.697246721310111*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"D3kDx2Dy", " ", "=", " ", 
+  RowBox[{
+   RowBox[{"D", "[", 
+    RowBox[{
+     RowBox[{"D", "[", 
+      RowBox[{"k", ",", "y"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", "2"}], "}"}]}], "]"}], "//", 
+   "FullSimplify"}]}]], "Input",
+ CellChangeTimes->{{3.697246910377831*^9, 3.697246941939534*^9}}],
+
+Cell[BoxData[
+ RowBox[{"-", 
+  RowBox[{"(", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"6", " ", 
+      SuperscriptBox["\[ExponentialE]", 
+       RowBox[{"2", " ", "logtheta"}]], " ", 
+      RowBox[{"(", 
+       RowBox[{"1", "+", 
+        RowBox[{"2", " ", 
+         SuperscriptBox["\[ExponentialE]", "logsigma"]}]}], ")"}], " ", 
+      RowBox[{"(", 
+       RowBox[{"x", "+", 
+        RowBox[{
+         SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+         RowBox[{"(", 
+          RowBox[{"x", "-", "y"}], ")"}]}]}], ")"}]}], ")"}], "/", 
+    RowBox[{"(", 
+     RowBox[{"\[Pi]", " ", 
+      SqrtBox[
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+           SuperscriptBox["x", "2"]}]}], ")"}], " ", 
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+           SuperscriptBox["y", "2"]}]}], ")"}]}]], " ", 
+      SuperscriptBox[
+       RowBox[{"(", 
+        RowBox[{"1", "+", 
+         RowBox[{"2", " ", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"]}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+          RowBox[{"(", 
+           RowBox[{
+            SuperscriptBox["x", "2"], "+", 
+            RowBox[{
+             SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+             SuperscriptBox[
+              RowBox[{"(", 
+               RowBox[{"x", "-", "y"}], ")"}], "2"]}], "+", 
+            SuperscriptBox["y", "2"]}], ")"}]}]}], ")"}], "2"], " ", 
+      SqrtBox[
+       RowBox[{"1", "-", 
+        FractionBox[
+         SuperscriptBox[
+          RowBox[{"(", 
+           RowBox[{
+            SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+            RowBox[{
+             SuperscriptBox["\[ExponentialE]", "logtheta"], " ", "x", " ", 
+             "y"}]}], ")"}], "2"], 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"1", "+", 
+            SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+            RowBox[{
+             SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+             SuperscriptBox["x", "2"]}]}], ")"}], " ", 
+          RowBox[{"(", 
+           RowBox[{"1", "+", 
+            SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+            RowBox[{
+             SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+             SuperscriptBox["y", "2"]}]}], ")"}]}]]}]]}], ")"}]}], 
+   ")"}]}]], "Output",
+ CellChangeTimes->{3.6972469462075872`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ToMatlab", "[", "D3kDx2Dy", "]"}]], "Input",
+ CellChangeTimes->{{3.697246974685959*^9, 3.697246978601515*^9}}],
+
+Cell[BoxData["\<\"(-6).*exp(1).^(2.*logtheta).*(1+2.*exp(1).^logsigma).*pi.^(-\
+1).*( ...\\n  x+exp(1).^logsigma.*(x+(-1).*y)).*((1+exp(1).^logsigma+exp(1) \
+...\\n  .^logtheta.*x.^2).*(1+exp(1).^logsigma+exp(1).^logtheta.*y.^2)).^( \
+...\\n  -1/2).*(1+2.*exp(1).^logsigma+exp(1).^logtheta.*(x.^2+exp(1) ...\\n  \
+.^logsigma.*(x+(-1).*y).^2+y.^2)).^(-2).*(1+(-1).*(1+exp(1) ...\\n  \
+.^logsigma+exp(1).^logtheta.*x.^2).^(-1).*(exp(1).^logsigma+exp(1) ...\\n  \
+.^logtheta.*x.*y).^2.*(1+exp(1).^logsigma+exp(1).^logtheta.*y.^2) ...\\n  \
+.^(-1)).^(-1/2);\\n\"\>"], "Output",
+ CellChangeTimes->{3.6972469790800037`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"DD3kDx2DyDlogsigma", " ", "=", " ", 
+  RowBox[{
+   RowBox[{"D", "[", 
+    RowBox[{"D3kDx2Dy", ",", "logsigma"}], "]"}], "//", 
+   "FullSimplify"}]}]], "Input",
+ CellChangeTimes->{{3.697247046123611*^9, 3.6972470729803467`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(", 
+   RowBox[{"3", " ", 
+    SuperscriptBox["\[ExponentialE]", 
+     RowBox[{"logsigma", "+", 
+      RowBox[{"2", " ", "logtheta"}]}]], " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"2", " ", 
+       RowBox[{"(", 
+        RowBox[{"1", "+", 
+         RowBox[{"2", " ", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"]}]}], ")"}], " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"2", " ", "x"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+          RowBox[{"(", 
+           RowBox[{"x", "-", "y"}], ")"}]}], "+", "y"}], ")"}]}], "+", 
+      RowBox[{
+       SuperscriptBox["\[ExponentialE]", 
+        RowBox[{"logsigma", "+", "logtheta"}]], " ", 
+       RowBox[{"(", 
+        RowBox[{
+         SuperscriptBox["x", "3"], "-", 
+         RowBox[{"13", " ", 
+          SuperscriptBox["x", "2"], " ", "y"}], "+", 
+         RowBox[{"7", " ", "x", " ", 
+          SuperscriptBox["y", "2"]}], "+", 
+         RowBox[{"5", " ", 
+          SuperscriptBox["y", "3"]}], "+", 
+         RowBox[{"x", " ", 
+          RowBox[{"(", 
+           RowBox[{
+            SuperscriptBox["x", "2"], "-", 
+            RowBox[{"14", " ", "x", " ", "y"}], "+", 
+            RowBox[{"5", " ", 
+             SuperscriptBox["y", "2"]}]}], ")"}], " ", 
+          RowBox[{"Cosh", "[", "logsigma", "]"}]}], "+", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"3", " ", 
+             SuperscriptBox["x", "3"]}], "+", 
+            RowBox[{"2", " ", 
+             SuperscriptBox["x", "2"], " ", "y"}], "+", 
+            RowBox[{"7", " ", "x", " ", 
+             SuperscriptBox["y", "2"]}], "-", 
+            RowBox[{"4", " ", 
+             SuperscriptBox["y", "3"]}]}], ")"}], " ", 
+          RowBox[{"Sinh", "[", "logsigma", "]"}]}]}], ")"}]}]}], ")"}]}], 
+   ")"}], "/", 
+  RowBox[{"(", 
+   RowBox[{"\[Pi]", " ", 
+    SqrtBox[
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"1", "+", 
+        SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+        RowBox[{
+         SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+         SuperscriptBox["x", "2"]}]}], ")"}], " ", 
+      RowBox[{"(", 
+       RowBox[{"1", "+", 
+        SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+        RowBox[{
+         SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+         SuperscriptBox["y", "2"]}]}], ")"}]}]], " ", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"1", "+", 
+       RowBox[{"2", " ", 
+        SuperscriptBox["\[ExponentialE]", "logsigma"]}], "+", 
+       RowBox[{
+        SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+        RowBox[{"(", 
+         RowBox[{
+          SuperscriptBox["x", "2"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+           SuperscriptBox[
+            RowBox[{"(", 
+             RowBox[{"x", "-", "y"}], ")"}], "2"]}], "+", 
+          SuperscriptBox["y", "2"]}], ")"}]}]}], ")"}], "3"], " ", 
+    SqrtBox[
+     RowBox[{"1", "-", 
+      FractionBox[
+       SuperscriptBox[
+        RowBox[{"(", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logtheta"], " ", "x", " ", 
+           "y"}]}], ")"}], "2"], 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+           SuperscriptBox["x", "2"]}]}], ")"}], " ", 
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+           SuperscriptBox["y", "2"]}]}], ")"}]}]]}]]}], ")"}]}]], "Output",
+ CellChangeTimes->{3.697247112858356*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ToMatlab", "[", "DD3kDx2DyDlogsigma", "]"}]], "Input",
+ CellChangeTimes->{{3.69724712784095*^9, 3.6972471324848623`*^9}}],
+
+Cell[BoxData["\<\"3.*exp(1).^(logsigma+2.*logtheta).*pi.^(-1).*((1+exp(1).^\
+logsigma+ ...\\n  \
+exp(1).^logtheta.*x.^2).*(1+exp(1).^logsigma+exp(1).^logtheta.* ...\\n  \
+y.^2)).^(-1/2).*(1+2.*exp(1).^logsigma+exp(1).^logtheta.*(x.^2+ ...\\n  \
+exp(1).^logsigma.*(x+(-1).*y).^2+y.^2)).^(-3).*(1+(-1).*(1+exp(1) ...\\n  \
+.^logsigma+exp(1).^logtheta.*x.^2).^(-1).*(exp(1).^logsigma+exp(1) ...\\n  \
+.^logtheta.*x.*y).^2.*(1+exp(1).^logsigma+exp(1).^logtheta.*y.^2) ...\\n  \
+.^(-1)).^(-1/2).*(2.*(1+2.*exp(1).^logsigma).*(2.*x+exp(1) ...\\n  \
+.^logsigma.*(x+(-1).*y)+y)+exp(1).^(logsigma+logtheta).*(x.^3+( ...\\n  \
+-13).*x.^2.*y+7.*x.*y.^2+5.*y.^3+x.*(x.^2+(-14).*x.*y+5.*y.^2).* ...\\n  \
+cosh(logsigma)+(3.*x.^3+2.*x.^2.*y+7.*x.*y.^2+(-4).*y.^3).*sinh( ...\\n  \
+logsigma)));\\n\"\>"], "Output",
+ CellChangeTimes->{3.697247133585923*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"DD3kDx2DyDlogtheta", " ", "=", " ", 
+  RowBox[{
+   RowBox[{"D", "[", 
+    RowBox[{"D3kDx2Dy", ",", "logtheta"}], "]"}], "//", 
+   "FullSimplify"}]}]], "Input",
+ CellChangeTimes->{{3.69724719602326*^9, 3.697247201659133*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(", 
+   RowBox[{"3", " ", 
+    SuperscriptBox["\[ExponentialE]", 
+     RowBox[{"2", " ", "logtheta"}]], " ", 
+    RowBox[{"(", 
+     RowBox[{"1", "+", 
+      RowBox[{"2", " ", 
+       SuperscriptBox["\[ExponentialE]", "logsigma"]}]}], ")"}], " ", 
+    RowBox[{"(", 
+     RowBox[{"x", "+", 
+      RowBox[{
+       SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+       RowBox[{"(", 
+        RowBox[{"x", "-", "y"}], ")"}]}]}], ")"}], " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"-", "4"}], "-", 
+      RowBox[{"8", " ", 
+       SuperscriptBox["\[ExponentialE]", "logsigma"]}], "+", 
+      RowBox[{
+       SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+       RowBox[{"(", 
+        RowBox[{
+         SuperscriptBox["x", "2"], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"x", "-", "y"}], ")"}], "2"]}], "+", 
+         SuperscriptBox["y", "2"]}], ")"}]}]}], ")"}]}], ")"}], "/", 
+  RowBox[{"(", 
+   RowBox[{"\[Pi]", " ", 
+    SqrtBox[
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"1", "+", 
+        SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+        RowBox[{
+         SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+         SuperscriptBox["x", "2"]}]}], ")"}], " ", 
+      RowBox[{"(", 
+       RowBox[{"1", "+", 
+        SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+        RowBox[{
+         SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+         SuperscriptBox["y", "2"]}]}], ")"}]}]], " ", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"1", "+", 
+       RowBox[{"2", " ", 
+        SuperscriptBox["\[ExponentialE]", "logsigma"]}], "+", 
+       RowBox[{
+        SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+        RowBox[{"(", 
+         RowBox[{
+          SuperscriptBox["x", "2"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+           SuperscriptBox[
+            RowBox[{"(", 
+             RowBox[{"x", "-", "y"}], ")"}], "2"]}], "+", 
+          SuperscriptBox["y", "2"]}], ")"}]}]}], ")"}], "3"], " ", 
+    SqrtBox[
+     RowBox[{"1", "-", 
+      FractionBox[
+       SuperscriptBox[
+        RowBox[{"(", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logtheta"], " ", "x", " ", 
+           "y"}]}], ")"}], "2"], 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+           SuperscriptBox["x", "2"]}]}], ")"}], " ", 
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+           SuperscriptBox["y", "2"]}]}], ")"}]}]]}]]}], ")"}]}]], "Output",
+ CellChangeTimes->{3.6972472197910767`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ToMatlab", "[", "DD3kDx2DyDlogtheta", "]"}]], "Input",
+ CellChangeTimes->{{3.697247246924288*^9, 3.697247251295755*^9}}],
+
+Cell[BoxData["\<\"3.*exp(1).^(2.*logtheta).*(1+2.*exp(1).^logsigma).*pi.^(-1).\
+*(x+ ...\\n  exp(1).^logsigma.*(x+(-1).*y)).*((1+exp(1).^logsigma+exp(1) \
+...\\n  .^logtheta.*x.^2).*(1+exp(1).^logsigma+exp(1).^logtheta.*y.^2)).^( \
+...\\n  -1/2).*((-4)+(-8).*exp(1).^logsigma+exp(1).^logtheta.*(x.^2+exp(1) \
+...\\n  .^logsigma.*(x+(-1).*y).^2+y.^2)).*(1+2.*exp(1).^logsigma+exp(1) \
+...\\n  .^logtheta.*(x.^2+exp(1).^logsigma.*(x+(-1).*y).^2+y.^2)).^(-3).*( \
+...\\n  1+(-1).*(1+exp(1).^logsigma+exp(1).^logtheta.*x.^2).^(-1).*(exp(1) \
+...\\n  .^logsigma+exp(1).^logtheta.*x.*y).^2.*(1+exp(1).^logsigma+exp(1) ...\
+\\n  .^logtheta.*y.^2).^(-1)).^(-1/2);\\n\"\>"], "Output",
+ CellChangeTimes->{3.6972472519159403`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"D4kDx2Dy2", " ", "=", " ", 
+  RowBox[{
+   RowBox[{"D", "[", 
+    RowBox[{
+     RowBox[{"D", "[", 
+      RowBox[{"k", ",", 
+       RowBox[{"{", 
+        RowBox[{"y", ",", "2"}], "}"}]}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", "2"}], "}"}]}], "]"}], "//", 
+   "FullSimplify"}]}]], "Input",
+ CellChangeTimes->{{3.697247368820188*^9, 3.6972474135514383`*^9}, 
+   3.697247460080328*^9}],
+
+Cell[BoxData[
+ RowBox[{"-", 
+  RowBox[{"(", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"6", " ", 
+      SuperscriptBox["\[ExponentialE]", 
+       RowBox[{"2", " ", "logtheta"}]], " ", 
+      RowBox[{"(", 
+       RowBox[{"1", "+", 
+        RowBox[{"2", " ", 
+         SuperscriptBox["\[ExponentialE]", "logsigma"]}]}], ")"}], " ", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"-", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"]}], " ", 
+         RowBox[{"(", 
+          RowBox[{"1", "+", 
+           RowBox[{"2", " ", 
+            SuperscriptBox["\[ExponentialE]", "logsigma"]}]}], ")"}]}], "+", 
+        RowBox[{
+         SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"4", " ", 
+            SuperscriptBox["\[ExponentialE]", 
+             RowBox[{"2", " ", "logsigma"}]], " ", 
+            SuperscriptBox[
+             RowBox[{"(", 
+              RowBox[{"x", "-", "y"}], ")"}], "2"]}], "+", 
+           RowBox[{"2", " ", 
+            SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+            RowBox[{"(", 
+             RowBox[{"x", "-", 
+              RowBox[{"2", " ", "y"}]}], ")"}], " ", 
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{"2", " ", "x"}], "-", "y"}], ")"}]}], "-", 
+           RowBox[{"5", " ", "x", " ", "y"}]}], ")"}]}]}], ")"}]}], ")"}], 
+    "/", 
+    RowBox[{"(", 
+     RowBox[{"\[Pi]", " ", 
+      SqrtBox[
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+           SuperscriptBox["x", "2"]}]}], ")"}], " ", 
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+           SuperscriptBox["y", "2"]}]}], ")"}]}]], " ", 
+      SuperscriptBox[
+       RowBox[{"(", 
+        RowBox[{"1", "+", 
+         RowBox[{"2", " ", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"]}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+          RowBox[{"(", 
+           RowBox[{
+            SuperscriptBox["x", "2"], "+", 
+            RowBox[{
+             SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+             SuperscriptBox[
+              RowBox[{"(", 
+               RowBox[{"x", "-", "y"}], ")"}], "2"]}], "+", 
+            SuperscriptBox["y", "2"]}], ")"}]}]}], ")"}], "3"], " ", 
+      SqrtBox[
+       RowBox[{"1", "-", 
+        FractionBox[
+         SuperscriptBox[
+          RowBox[{"(", 
+           RowBox[{
+            SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+            RowBox[{
+             SuperscriptBox["\[ExponentialE]", "logtheta"], " ", "x", " ", 
+             "y"}]}], ")"}], "2"], 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"1", "+", 
+            SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+            RowBox[{
+             SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+             SuperscriptBox["x", "2"]}]}], ")"}], " ", 
+          RowBox[{"(", 
+           RowBox[{"1", "+", 
+            SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+            RowBox[{
+             SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+             SuperscriptBox["y", "2"]}]}], ")"}]}]]}]]}], ")"}]}], 
+   ")"}]}]], "Output",
+ CellChangeTimes->{3.697247429844843*^9, 3.697247480883153*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ToMatlab", "[", "D4kDx2Dy2", "]"}]], "Input",
+ CellChangeTimes->{{3.6972474849305696`*^9, 3.6972474888979053`*^9}}],
+
+Cell[BoxData["\<\"(-6).*exp(1).^(2.*logtheta).*(1+2.*exp(1).^logsigma).*pi.^(-\
+1).*(( ...\\n  \
+1+exp(1).^logsigma+exp(1).^logtheta.*x.^2).*(1+exp(1).^logsigma+ ...\\n  \
+exp(1).^logtheta.*y.^2)).^(-1/2).*((-1).*exp(1).^logsigma.*(1+2.* ...\\n  \
+exp(1).^logsigma)+exp(1).^logtheta.*(4.*exp(1).^(2.*logsigma).*(x+ ...\\n  \
+(-1).*y).^2+2.*exp(1).^logsigma.*(x+(-2).*y).*(2.*x+(-1).*y)+(-5) ...\\n  \
+.*x.*y)).*(1+2.*exp(1).^logsigma+exp(1).^logtheta.*(x.^2+exp(1) ...\\n  \
+.^logsigma.*(x+(-1).*y).^2+y.^2)).^(-3).*(1+(-1).*(1+exp(1) ...\\n  \
+.^logsigma+exp(1).^logtheta.*x.^2).^(-1).*(exp(1).^logsigma+exp(1) ...\\n  \
+.^logtheta.*x.*y).^2.*(1+exp(1).^logsigma+exp(1).^logtheta.*y.^2) ...\\n  \
+.^(-1)).^(-1/2);\\n\"\>"], "Output",
+ CellChangeTimes->{3.697247489369625*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"DD4kDx2Dy2Dlogsigma", " ", "=", " ", 
+  RowBox[{
+   RowBox[{"D", "[", 
+    RowBox[{"D4kDx2Dy2", ",", "logsigma"}], "]"}], "//", 
+   "FullSimplify"}]}]], "Input",
+ CellChangeTimes->{{3.697247532110882*^9, 3.6972475551901493`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(", 
+   RowBox[{"3", " ", 
+    SuperscriptBox["\[ExponentialE]", 
+     RowBox[{"logsigma", "+", 
+      RowBox[{"2", " ", "logtheta"}]}]], " ", 
+    RowBox[{"(", 
+     RowBox[{"2", "+", 
+      RowBox[{"6", " ", 
+       SuperscriptBox["\[ExponentialE]", "logsigma"]}], "-", 
+      RowBox[{"8", " ", 
+       SuperscriptBox["\[ExponentialE]", 
+        RowBox[{"3", " ", "logsigma"}]]}], "+", 
+      RowBox[{"3", " ", 
+       SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"4", " ", 
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"3", " ", "logsigma"}]], " ", 
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"x", "-", "y"}], ")"}], "2"]}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+          RowBox[{"(", 
+           RowBox[{
+            SuperscriptBox["x", "2"], "-", 
+            RowBox[{"26", " ", "x", " ", "y"}], "+", 
+            SuperscriptBox["y", "2"]}], ")"}]}], "-", 
+         RowBox[{"2", " ", 
+          RowBox[{"(", 
+           RowBox[{
+            SuperscriptBox["x", "2"], "+", 
+            RowBox[{"5", " ", "x", " ", "y"}], "+", 
+            SuperscriptBox["y", "2"]}], ")"}]}], "+", 
+         RowBox[{"4", " ", 
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "logsigma"}]], " ", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"3", " ", 
+             SuperscriptBox["x", "2"]}], "-", 
+            RowBox[{"4", " ", "x", " ", "y"}], "+", 
+            RowBox[{"3", " ", 
+             SuperscriptBox["y", "2"]}]}], ")"}]}]}], ")"}]}], "+", 
+      RowBox[{
+       SuperscriptBox["\[ExponentialE]", 
+        RowBox[{"2", " ", "logtheta"}]], " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"-", "8"}], " ", 
+          SuperscriptBox["x", "4"]}], "+", 
+         RowBox[{"8", " ", 
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"3", " ", "logsigma"}]], " ", 
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"x", "-", "y"}], ")"}], "4"]}], "+", 
+         RowBox[{"5", " ", 
+          SuperscriptBox["x", "3"], " ", "y"}], "+", 
+         RowBox[{"54", " ", 
+          SuperscriptBox["x", "2"], " ", 
+          SuperscriptBox["y", "2"]}], "+", 
+         RowBox[{"5", " ", "x", " ", 
+          SuperscriptBox["y", "3"]}], "-", 
+         RowBox[{"8", " ", 
+          SuperscriptBox["y", "4"]}], "-", 
+         RowBox[{"12", " ", 
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "logsigma"}]], " ", 
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"x", "-", "y"}], ")"}], "2"], " ", 
+          RowBox[{"(", 
+           RowBox[{
+            SuperscriptBox["x", "2"], "+", 
+            RowBox[{"7", " ", "x", " ", "y"}], "+", 
+            SuperscriptBox["y", "2"]}], ")"}]}], "-", 
+         RowBox[{"4", " ", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"7", " ", 
+             SuperscriptBox["x", "4"]}], "+", 
+            RowBox[{"7", " ", 
+             SuperscriptBox["x", "3"], " ", "y"}], "-", 
+            RowBox[{"36", " ", 
+             SuperscriptBox["x", "2"], " ", 
+             SuperscriptBox["y", "2"]}], "+", 
+            RowBox[{"7", " ", "x", " ", 
+             SuperscriptBox["y", "3"]}], "+", 
+            RowBox[{"7", " ", 
+             SuperscriptBox["y", "4"]}]}], ")"}]}]}], ")"}]}]}], ")"}]}], 
+   ")"}], "/", 
+  RowBox[{"(", 
+   RowBox[{"\[Pi]", " ", 
+    SqrtBox[
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"1", "+", 
+        SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+        RowBox[{
+         SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+         SuperscriptBox["x", "2"]}]}], ")"}], " ", 
+      RowBox[{"(", 
+       RowBox[{"1", "+", 
+        SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+        RowBox[{
+         SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+         SuperscriptBox["y", "2"]}]}], ")"}]}]], " ", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"1", "+", 
+       RowBox[{"2", " ", 
+        SuperscriptBox["\[ExponentialE]", "logsigma"]}], "+", 
+       RowBox[{
+        SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+        RowBox[{"(", 
+         RowBox[{
+          SuperscriptBox["x", "2"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+           SuperscriptBox[
+            RowBox[{"(", 
+             RowBox[{"x", "-", "y"}], ")"}], "2"]}], "+", 
+          SuperscriptBox["y", "2"]}], ")"}]}]}], ")"}], "4"], " ", 
+    SqrtBox[
+     RowBox[{"1", "-", 
+      FractionBox[
+       SuperscriptBox[
+        RowBox[{"(", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logtheta"], " ", "x", " ", 
+           "y"}]}], ")"}], "2"], 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+           SuperscriptBox["x", "2"]}]}], ")"}], " ", 
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+           SuperscriptBox["y", "2"]}]}], ")"}]}]]}]]}], ")"}]}]], "Output",
+ CellChangeTimes->{3.6972476035213213`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ToMatlab", "[", "DD4kDx2Dy2Dlogsigma", "]"}]], "Input",
+ CellChangeTimes->{{3.6972476174182*^9, 3.69724762152029*^9}}],
+
+Cell[BoxData["\<\"3.*exp(1).^(logsigma+2.*logtheta).*pi.^(-1).*((1+exp(1).^\
+logsigma+ ...\\n  \
+exp(1).^logtheta.*x.^2).*(1+exp(1).^logsigma+exp(1).^logtheta.* ...\\n  \
+y.^2)).^(-1/2).*(1+2.*exp(1).^logsigma+exp(1).^logtheta.*(x.^2+ ...\\n  \
+exp(1).^logsigma.*(x+(-1).*y).^2+y.^2)).^(-4).*(1+(-1).*(1+exp(1) ...\\n  \
+.^logsigma+exp(1).^logtheta.*x.^2).^(-1).*(exp(1).^logsigma+exp(1) ...\\n  \
+.^logtheta.*x.*y).^2.*(1+exp(1).^logsigma+exp(1).^logtheta.*y.^2) ...\\n  \
+.^(-1)).^(-1/2).*(2+6.*exp(1).^logsigma+(-8).*exp(1).^(3.* ...\\n  \
+logsigma)+3.*exp(1).^logtheta.*(4.*exp(1).^(3.*logsigma).*(x+(-1) ...\\n  \
+.*y).^2+exp(1).^logsigma.*(x.^2+(-26).*x.*y+y.^2)+(-2).*(x.^2+5.* ...\\n  \
+x.*y+y.^2)+4.*exp(1).^(2.*logsigma).*(3.*x.^2+(-4).*x.*y+3.*y.^2)) ...\\n  \
++exp(1).^(2.*logtheta).*((-8).*x.^4+8.*exp(1).^(3.*logsigma).*(x+( ...\\n  \
+-1).*y).^4+5.*x.^3.*y+54.*x.^2.*y.^2+5.*x.*y.^3+(-8).*y.^4+(-12).* ...\\n  \
+exp(1).^(2.*logsigma).*(x+(-1).*y).^2.*(x.^2+7.*x.*y+y.^2)+(-4).* ...\\n  \
+exp(1).^logsigma.*(7.*x.^4+7.*x.^3.*y+(-36).*x.^2.*y.^2+7.*x.* ...\\n  \
+y.^3+7.*y.^4)));\\n\"\>"], "Output",
+ CellChangeTimes->{3.697247622225881*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"DD4kDx2Dy2Dlogtheta", " ", "=", " ", 
+  RowBox[{
+   RowBox[{"D", "[", 
+    RowBox[{"D4kDx2Dy2", ",", "logtheta"}], "]"}], "//", 
+   "FullSimplify"}]}]], "Input",
+ CellChangeTimes->{{3.6972476721946707`*^9, 3.697247678366538*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(", 
+   RowBox[{"3", " ", 
+    SuperscriptBox["\[ExponentialE]", 
+     RowBox[{"2", " ", "logtheta"}]], " ", 
+    RowBox[{"(", 
+     RowBox[{"1", "+", 
+      RowBox[{"2", " ", 
+       SuperscriptBox["\[ExponentialE]", "logsigma"]}]}], ")"}], " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"4", " ", 
+       SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+       SuperscriptBox[
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          RowBox[{"2", " ", 
+           SuperscriptBox["\[ExponentialE]", "logsigma"]}]}], ")"}], "2"]}], 
+      "+", 
+      RowBox[{
+       SuperscriptBox["\[ExponentialE]", 
+        RowBox[{"2", " ", "logtheta"}]], " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"4", " ", 
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "logsigma"}]], " ", 
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"x", "-", "y"}], ")"}], "2"]}], "+", 
+         RowBox[{"2", " ", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+          RowBox[{"(", 
+           RowBox[{"x", "-", 
+            RowBox[{"2", " ", "y"}]}], ")"}], " ", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"2", " ", "x"}], "-", "y"}], ")"}]}], "-", 
+         RowBox[{"5", " ", "x", " ", "y"}]}], ")"}], " ", 
+       RowBox[{"(", 
+        RowBox[{
+         SuperscriptBox["x", "2"], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"x", "-", "y"}], ")"}], "2"]}], "+", 
+         SuperscriptBox["y", "2"]}], ")"}]}], "-", 
+      RowBox[{"3", " ", 
+       SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+       RowBox[{"(", 
+        RowBox[{"1", "+", 
+         RowBox[{"2", " ", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"]}]}], ")"}], " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"9", " ", 
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"2", " ", "logsigma"}]], " ", 
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"x", "-", "y"}], ")"}], "2"]}], "-", 
+         RowBox[{"10", " ", "x", " ", "y"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"9", " ", 
+             SuperscriptBox["x", "2"]}], "-", 
+            RowBox[{"20", " ", "x", " ", "y"}], "+", 
+            RowBox[{"9", " ", 
+             SuperscriptBox["y", "2"]}]}], ")"}]}]}], ")"}]}]}], ")"}]}], 
+   ")"}], "/", 
+  RowBox[{"(", 
+   RowBox[{"\[Pi]", " ", 
+    SqrtBox[
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"1", "+", 
+        SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+        RowBox[{
+         SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+         SuperscriptBox["x", "2"]}]}], ")"}], " ", 
+      RowBox[{"(", 
+       RowBox[{"1", "+", 
+        SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+        RowBox[{
+         SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+         SuperscriptBox["y", "2"]}]}], ")"}]}]], " ", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"1", "+", 
+       RowBox[{"2", " ", 
+        SuperscriptBox["\[ExponentialE]", "logsigma"]}], "+", 
+       RowBox[{
+        SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+        RowBox[{"(", 
+         RowBox[{
+          SuperscriptBox["x", "2"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logsigma"], " ", 
+           SuperscriptBox[
+            RowBox[{"(", 
+             RowBox[{"x", "-", "y"}], ")"}], "2"]}], "+", 
+          SuperscriptBox["y", "2"]}], ")"}]}]}], ")"}], "4"], " ", 
+    SqrtBox[
+     RowBox[{"1", "-", 
+      FractionBox[
+       SuperscriptBox[
+        RowBox[{"(", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logtheta"], " ", "x", " ", 
+           "y"}]}], ")"}], "2"], 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+           SuperscriptBox["x", "2"]}]}], ")"}], " ", 
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          SuperscriptBox["\[ExponentialE]", "logsigma"], "+", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "logtheta"], " ", 
+           SuperscriptBox["y", "2"]}]}], ")"}]}]]}]]}], ")"}]}]], "Output",
+ CellChangeTimes->{3.69724770361047*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ToMatlab", "[", "DD4kDx2Dy2Dlogtheta", "]"}]], "Input",
+ CellChangeTimes->{{3.697247714532674*^9, 3.697247718913836*^9}}],
+
+Cell[BoxData["\<\"3.*exp(1).^(2.*logtheta).*(1+2.*exp(1).^logsigma).*pi.^(-1).\
+*((1+ ...\\n  \
+exp(1).^logsigma+exp(1).^logtheta.*x.^2).*(1+exp(1).^logsigma+exp( ...\\n  \
+1).^logtheta.*y.^2)).^(-1/2).*(1+2.*exp(1).^logsigma+exp(1) ...\\n  \
+.^logtheta.*(x.^2+exp(1).^logsigma.*(x+(-1).*y).^2+y.^2)).^(-4).*( ...\\n  \
+1+(-1).*(1+exp(1).^logsigma+exp(1).^logtheta.*x.^2).^(-1).*(exp(1) ...\\n  \
+.^logsigma+exp(1).^logtheta.*x.*y).^2.*(1+exp(1).^logsigma+exp(1) ...\\n  \
+.^logtheta.*y.^2).^(-1)).^(-1/2).*(4.*exp(1).^logsigma.*(1+2.*exp( ...\\n  \
+1).^logsigma).^2+exp(1).^(2.*logtheta).*(4.*exp(1).^(2.*logsigma) ...\\n  \
+.*(x+(-1).*y).^2+2.*exp(1).^logsigma.*(x+(-2).*y).*(2.*x+(-1).*y)+ ...\\n  \
+(-5).*x.*y).*(x.^2+exp(1).^logsigma.*(x+(-1).*y).^2+y.^2)+(-3).* ...\\n  \
+exp(1).^logtheta.*(1+2.*exp(1).^logsigma).*(9.*exp(1).^(2.* ...\\n  \
+logsigma).*(x+(-1).*y).^2+(-10).*x.*y+exp(1).^logsigma.*(9.*x.^2+( ...\\n  \
+-20).*x.*y+9.*y.^2)));\\n\"\>"], "Output",
+ CellChangeTimes->{3.6972477197103863`*^9}]
+}, Open  ]]
+},
+WindowSize->{808, 911},
+WindowMargins->{{Automatic, 218}, {Automatic, 435}},
+FrontEndVersion->"10.0 for Linux x86 (64-bit) (June 27, 2014)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 122, 2, 32, "Input"],
+Cell[CellGroupData[{
+Cell[705, 26, 1028, 29, 129, "Input"],
+Cell[1736, 57, 879, 25, 96, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2652, 87, 129, 2, 32, "Input"],
+Cell[2784, 91, 289, 4, 99, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3110, 100, 233, 6, 32, "Input"],
+Cell[3346, 108, 2512, 70, 246, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5895, 183, 137, 2, 32, "Input"],
+Cell[6035, 187, 635, 8, 209, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6707, 200, 234, 6, 32, "Input"],
+Cell[6944, 208, 2733, 78, 246, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[9714, 291, 139, 2, 32, "Input"],
+Cell[9856, 295, 634, 8, 209, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[10527, 308, 217, 5, 32, "Input"],
+Cell[10747, 315, 2088, 58, 221, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[12872, 378, 134, 2, 32, "Input"],
+Cell[13009, 382, 513, 7, 165, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[13559, 394, 246, 6, 32, "Input"],
+Cell[13808, 402, 4316, 121, 294, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[18161, 528, 140, 2, 32, "Input"],
+Cell[18304, 532, 991, 14, 319, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[19332, 551, 248, 6, 32, "Input"],
+Cell[19583, 559, 3808, 107, 294, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[23428, 671, 140, 2, 32, "Input"],
+Cell[23571, 675, 878, 11, 275, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[24486, 691, 276, 8, 32, "Input"],
+Cell[24765, 701, 4356, 124, 294, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[29158, 830, 132, 2, 32, "Input"],
+Cell[29293, 834, 983, 13, 319, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[30313, 852, 250, 6, 32, "Input"],
+Cell[30566, 860, 11006, 296, 535, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[41609, 1161, 144, 2, 32, "Input"],
+Cell[41756, 1165, 2079, 28, 627, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[43872, 1198, 250, 6, 32, "Input"],
+Cell[44125, 1206, 9393, 257, 486, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[53555, 1468, 141, 2, 32, "Input"],
+Cell[53699, 1472, 1826, 25, 561, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[55562, 1502, 217, 5, 32, "Input"],
+Cell[55782, 1509, 2087, 59, 221, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[57906, 1573, 130, 2, 32, "Input"],
+Cell[58039, 1577, 513, 7, 165, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[58589, 1589, 239, 6, 32, "Input"],
+Cell[58831, 1597, 4370, 122, 318, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[63238, 1724, 144, 2, 32, "Input"],
+Cell[63385, 1728, 960, 13, 297, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[64382, 1746, 243, 6, 32, "Input"],
+Cell[64628, 1754, 4064, 110, 353, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[68729, 1869, 140, 2, 32, "Input"],
+Cell[68872, 1873, 894, 12, 275, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[69803, 1890, 283, 8, 32, "Input"],
+Cell[70089, 1900, 2120, 58, 129, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[72246, 1963, 132, 2, 32, "Input"],
+Cell[72381, 1967, 490, 6, 165, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[72908, 1978, 245, 6, 32, "Input"],
+Cell[73156, 1986, 3003, 84, 246, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[76196, 2075, 146, 2, 32, "Input"],
+Cell[76345, 2079, 710, 10, 231, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[77092, 2094, 247, 6, 32, "Input"],
+Cell[77342, 2102, 3264, 89, 291, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[80643, 2196, 142, 2, 32, "Input"],
+Cell[80788, 2200, 716, 10, 231, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[81541, 2215, 391, 11, 32, "Input"],
+Cell[81935, 2228, 2522, 71, 246, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[84494, 2304, 136, 2, 32, "Input"],
+Cell[84633, 2308, 620, 9, 209, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[85290, 2322, 249, 6, 32, "Input"],
+Cell[85542, 2330, 3809, 107, 295, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[89388, 2442, 195, 3, 32, "Input"],
+Cell[89586, 2447, 849, 12, 275, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[90472, 2464, 251, 6, 32, "Input"],
+Cell[90726, 2472, 3269, 90, 329, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[94032, 2567, 143, 2, 32, "Input"],
+Cell[94178, 2571, 730, 10, 231, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[94945, 2586, 280, 8, 32, "Input"],
+Cell[95228, 2596, 4249, 119, 294, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[99514, 2720, 132, 2, 32, "Input"],
+Cell[99649, 2724, 952, 12, 297, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[100638, 2741, 245, 6, 32, "Input"],
+Cell[100886, 2749, 11715, 313, 560, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[112638, 3067, 142, 2, 32, "Input"],
+Cell[112783, 3071, 2253, 31, 693, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[115073, 3107, 245, 6, 32, "Input"],
+Cell[115321, 3115, 9923, 269, 487, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[125281, 3389, 144, 2, 32, "Input"],
+Cell[125428, 3393, 1922, 27, 583, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[127387, 3425, 336, 10, 32, "Input"],
+Cell[127726, 3437, 2684, 74, 291, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[130447, 3516, 134, 2, 32, "Input"],
+Cell[130584, 3520, 617, 8, 209, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[131238, 3533, 251, 6, 32, "Input"],
+Cell[131492, 3541, 3888, 109, 295, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[135417, 3655, 145, 2, 32, "Input"],
+Cell[135565, 3659, 841, 12, 275, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[136443, 3676, 248, 6, 32, "Input"],
+Cell[136694, 3684, 3056, 87, 271, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[139787, 3776, 144, 2, 32, "Input"],
+Cell[139934, 3780, 719, 9, 231, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[140690, 3794, 422, 13, 32, "Input"],
+Cell[141115, 3809, 3561, 97, 329, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[144713, 3911, 139, 2, 32, "Input"],
+Cell[144855, 3915, 776, 11, 253, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[145668, 3931, 253, 6, 32, "Input"],
+Cell[145924, 3939, 5577, 152, 343, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[151538, 4096, 142, 2, 32, "Input"],
+Cell[151683, 4100, 1153, 16, 363, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[152873, 4121, 253, 6, 32, "Input"],
+Cell[153129, 4129, 4596, 129, 321, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[157762, 4263, 145, 2, 32, "Input"],
+Cell[157910, 4267, 1011, 14, 319, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+
