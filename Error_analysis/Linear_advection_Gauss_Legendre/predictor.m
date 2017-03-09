@@ -30,7 +30,6 @@ psi = [psi_n1n1_0b zeros(size(x_star)) zeros(size(x_star)) psi_n1n_03 psi_n1n_02
 
 L=ModelInfo.L;
 
-% calculate prediction
 f = psi*(L'\(L\y));
 
 alpha = (L'\(L\psi'));

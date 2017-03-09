@@ -3,7 +3,6 @@ clc; close all
 
 addpath ./Kernels
 addpath ./Utilities
-addpath ~/export_fig
 
 rng('default')
 
@@ -46,7 +45,6 @@ ModelInfo.hyp = log([1 1 1 1 1 1 10^-6]);
 if plt == 1
     fig = figure(1);
     set(fig,'units','normalized','outerposition',[0 0 1 .5])
-    %set(fig,'units','normalized','outerposition',[0 0 1 1])
     clf
     color2 = [217,95,2]/255;
     k = 1;
@@ -54,19 +52,15 @@ if plt == 1
     hold
     plot(xstar,Exact_solution(0,xstar),'b','LineWidth',3);
     plot(ModelInfo.x_u, ModelInfo.u,'ro','MarkerSize',12,'LineWidth',3);
-    %yLimits = get(gca,'YLim');
     xlabel('$x$')
     ylabel('$u(0,x)$')
     axis square
     ylim([-1.5 1.5]);
-    %ylim([yLimits(1) yLimits(2)]);
     set(gca,'FontSize',14);
     set(gcf, 'Color', 'w');
     tit = sprintf('Time: %.2f\n%d training points', 0,Ntr);
     title(tit);
     
-    
-    % w = waitforbuttonpress;
     drawnow;
 end
 
@@ -75,7 +69,6 @@ for i = 1:nsteps
     
     [ModelInfo.hyp,~,~] = minimize(ModelInfo.hyp, @likelihood, -5000);
     [NLML,~]=likelihood(ModelInfo.hyp);
-    % exp(ModelInfo.hyp)
     
     [Kpred, Kvar] = predictor(xstar);
     Kvar = abs(diag(Kvar));
@@ -94,25 +87,22 @@ for i = 1:nsteps
         hold
         plot(xstar,Exact,'b','LineWidth',3);
         plot(xstar, Kpred,'r--','LineWidth',3);
-        % plot(ModelInfo.x0, ModelInfo.y0,'ro','MarkerSize',12,'LineWidth',1);
         [l,p] = boundedline(xstar, Kpred, 2.0*sqrt(Kvar), ':', 'alpha','cmap', color2);
         outlinebounds(l,p);
-        %plot(ModelInfo.x0, ModelInfo.y0,'o','MarkerSize',10,'LineWidth',3);
-        %yLimits = get(gca,'YLim');
         xlabel('$x$')
         ylabel('$u(t,x)$')
         axis square
         ylim([-1.5 1.5]);
-        %ylim([yLimits(1) yLimits(2)]);
         set(gca,'FontSize',14);
         set(gcf, 'Color', 'w');
         tit = sprintf('Time: %.2f\n%d artificial data', i*dt ,Ntr_artificial);
         title(tit);
               
-        % w = waitforbuttonpress;
         drawnow;
-        
     end
     
     
 end
+
+rmpath ./Kernels
+rmpath ./Utilities

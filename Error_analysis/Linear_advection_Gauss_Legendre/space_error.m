@@ -1,5 +1,5 @@
 set(0,'defaulttextinterpreter','latex')
-addpath ~/export_fig
+addpath ./export_fig
 
 nn = 10;
 error = zeros(1,nn);
@@ -24,3 +24,4 @@ title(tit);
 export_fig ./Figures/Advection_space_error.png -r300
 % buf = sprintf('time_error_Ntr%d.txt', Ntr);
 % save(buf,'-ascii','-double', 'error');
+rmpath ./export_fig

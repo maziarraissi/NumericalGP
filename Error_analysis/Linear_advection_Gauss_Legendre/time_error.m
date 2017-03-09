@@ -1,5 +1,5 @@
 set(0,'defaulttextinterpreter','latex')
-addpath ~/export_fig
+addpath ./export_fig
 
 nn = 6;
 error = zeros(1,nn);
@@ -22,5 +22,6 @@ tit = sprintf('Time: 0.5');
 title(tit);
 
 export_fig ./Figures/Advection_time_error.png -r300
-buf = sprintf('time_error_Ntr%d.txt', Ntr);
-save(buf,'-ascii','-double', 'error');
+% buf = sprintf('time_error_Ntr%d.txt', Ntr);
+% save(buf,'-ascii','-double', 'error');
+rmpath ./export_fig
