@@ -42,7 +42,6 @@ VV = [V_nn_uu V_nn_uv;
 
 L=ModelInfo.L;
 
-% calculate prediction
 f = psi*(L'\(L\y));
 
 alpha = (L'\(L\psi'));
