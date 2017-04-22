@@ -4,6 +4,8 @@ We introduce the concept of numerical Gaussian processes, which we define as Gau
 
 For more details, please refer to the following: (https://arxiv.org/abs/1704.03144)
 
+- Raissi, Maziar, Paris Perdikaris, and George Em Karniadakis. "Numerical Gaussian Processes for Time-dependent and Non-linear Partial Differential Equations." arXiv preprint arXiv:1703.10230 (2017).
+
 ## Citation
 
     @article{raissi2017numerical,
