@@ -6,6 +6,8 @@ For more details, please refer to the following: (https://arxiv.org/abs/1703.102
 
 - Raissi, Maziar, Paris Perdikaris, and George Em Karniadakis. "Numerical Gaussian Processes for Time-dependent and Non-linear Partial Differential Equations." arXiv preprint arXiv:1703.10230 (2017).
 
+- Slides: https://icerm.brown.edu/materials/Slides/tw-17-4/Numerical_Gaussian_Processes_for_Time-dependent_and_Non-linear_Partial_Differential_Equations_%5D_Maziar_Raissi,_Brown_University.pdf
+
 ## Citation
 
     @article{raissi2017numerical,
