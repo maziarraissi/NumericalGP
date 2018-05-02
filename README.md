@@ -20,3 +20,15 @@ For more details, please refer to the following: (https://maziarraissi.github.io
       journal={arXiv preprint arXiv:1703.10230},
       year={2017}
     }
+    
+    @article{raissi2018numerical,
+      title={Numerical Gaussian Processes for Time-Dependent and Nonlinear Partial Differential Equations},
+      author={Raissi, Maziar and Perdikaris, Paris and Karniadakis, George Em},
+      journal={SIAM Journal on Scientific Computing},
+      volume={40},
+      number={1},
+      pages={A172--A198},
+      year={2018},
+      publisher={SIAM}
+    }
+
