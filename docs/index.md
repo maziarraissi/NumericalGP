@@ -2,7 +2,7 @@
 layout: default
 ---
 ### Authors
-[Maziar Raissi](http://www.dam.brown.edu/people/mraissi/), [Paris Perdikaris](https://www.seas.upenn.edu/directory/profile.php?ID=237), and [George Em Karniadakis](https://www.brown.edu/research/projects/crunch/george-karniadakis)
+[Maziar Raissi](https://maziarraissi.github.io/), [Paris Perdikaris](https://www.seas.upenn.edu/directory/profile.php?ID=237), and [George Em Karniadakis](https://www.brown.edu/research/projects/crunch/george-karniadakis)
 
 ### Abstract
 
@@ -15,7 +15,7 @@ We introduce the concept of [Numerical Gaussian Processes](https://arxiv.org/abs
 Let us try to convey the main ideas of this work by considering the [Burgers' equation](https://en.wikipedia.org/wiki/Burgers%27_equation) in one space dimension
 
 $$
-u_t + u u_x = \nu u_{xx}, 
+u_t + u u_x = \nu u_{xx},
 $$
 
 along with Dirichlet boundary conditions $$u(t,-1)=u(t,1)=0,$$ where $$u(t,x)$$ denotes the unknown solution and $$\nu=0.01/\pi$$ is a viscosity parameter. Let us assume that all we observe are noisy measurements $$\{\mathbf{x}^0, \mathbf{u}^0\}$$ of the black-box initial function $$u(0,x)$$. Given such measurements, we would like to solve the Burgers' equation while propagating through time the uncertainty associated with the noisy initial data.
@@ -62,7 +62,7 @@ The hyper-parameters $$\theta$$ and the noise parameters $$\sigma_{n}^2, \sigma_
 
 $$
 \begin{bmatrix}
-\mathbf{u}^{n}_b \\ 
+\mathbf{u}^{n}_b \\
 \mathbf{u}^{n-1}
 \end{bmatrix} \sim \mathcal{N}\left(0,\mathbf{K}\right),
 $$
@@ -91,7 +91,7 @@ where
 
 $$
 \mu^{n}(x^{n}) = \mathbf{q}^T \mathbf{K}^{-1}\begin{bmatrix}
-\mathbf{u}^{n}_b \\ 
+\mathbf{u}^{n}_b \\
 \mathbf{\mu}^{n-1}
 \end{bmatrix},
 $$
@@ -99,10 +99,10 @@ $$
 and
 
 $$
-\Sigma^{n,n}(x^{n},x^{n}) = k^{n,n}_{u,u}(x^{n},x^{n}) - \mathbf{q}^T\mathbf{K}^{-1}\mathbf{q} + 
+\Sigma^{n,n}(x^{n},x^{n}) = k^{n,n}_{u,u}(x^{n},x^{n}) - \mathbf{q}^T\mathbf{K}^{-1}\mathbf{q} +
 \mathbf{q}^T\mathbf{K}^{-1} \begin{bmatrix}
-0 & 0  \\ 
-0 & \mathbf{\Sigma}^{n-1,n-1} 
+0 & 0  \\
+0 & \mathbf{\Sigma}^{n-1,n-1}
 \end{bmatrix} \mathbf{K}^{-1}\mathbf{q}.
 $$
 
@@ -127,7 +127,7 @@ Here, $$\mathbf{\mu}^{n} = \mu^{n}(\mathbf{x}^{n})$$ and $$\mathbf{\Sigma}^{n,n}
 
 The code for this example can be found [here](http://bit.ly/2mnUiKT) and the corresponding movie is [here](http://bit.ly/2m1sKHw).
 
-![](http://www.dam.brown.edu/people/mraissi/assets/img/Burgers.png)
+![](https://maziarraissi.github.io/assets/img/Burgers.png)
 > _Burgers' equation:_ Initial data along with the posterior distribution of the solution at different time snapshots. The blue solid line represents the true data generating solution, while the dashed red line depicts the posterior mean. The shaded orange region illustrates the two standard deviations band around the mean. We are employing the backward Euler scheme with time step size 0.01. At each time step we generate 31 artificial data points randomly located in the interval according to a uniform distribution. These locations are highlighted by the ticks along the horizontal axis.
 
 * * * * *
@@ -201,7 +201,7 @@ we can capture the entire structure of the trapezoidal rule in the resulting joi
 
 The code for this example can be found [here](http://bit.ly/2m3mfnA) and the corresponding movie is [here](http://bit.ly/2mpfhNi).
 
-![](http://www.dam.brown.edu/people/mraissi/assets/img/Wave.png)
+![](https://maziarraissi.github.io/assets/img/Wave.png)
 > _Wave equation:_ Initial data along with the posterior distribution of the solution at different time snapshots. Here, v denotes the time derivative of u. The blue solid line represents the true data generating solution, while the dashed red line depicts the posterior mean. The shaded orange region illustrates the two standard deviations band around the mean. At each time step we generate 51 artificial data points for u and 49 for v, all randomly located in the interval according to a uniform distribution. These locations are highlighted by the ticks along the horizontal axis. We are employing the trapezoidal scheme with time step size 0.01.
 
 * * * * *
@@ -210,7 +210,7 @@ The code for this example can be found [here](http://bit.ly/2m3mfnA) and the cor
 
 The code for this example can be found [here](http://bit.ly/2m3JoXb) and the corresponding movie is [here](http://bit.ly/2mKHCP4).
 
-![](http://www.dam.brown.edu/people/mraissi/assets/img/Advection.png)
+![](https://maziarraissi.github.io/assets/img/Advection.png)
 > _Advection equation:_ Initial data along with the posterior distribution of the solution at different time snapshots. The blue solid line represents the true data generating solution, while the dashed red line depicts the posterior mean. The shaded orange region illustrates the two standard deviations band around the mean. At each time step we generate 25 artificial data points randomly located in the interval according to a uniform distribution. These locations are highlighted by the ticks along the horizontal axis.  We are employing the Gauss-Legendre time-stepping quadrature rule with time step size 0.1. It is worth highlighting that we are running the time stepping scheme for a very long time and with a relatively large time step size.
 
 * * * * *
@@ -219,7 +219,7 @@ The code for this example can be found [here](http://bit.ly/2m3JoXb) and the cor
 
 The code for this example can be found [here](http://bit.ly/2mnFpGS) and the corresponding movie is [here](http://bit.ly/2mq4UZt).
 
-![](http://www.dam.brown.edu/people/mraissi/assets/img/Heat.png)
+![](https://maziarraissi.github.io/assets/img/Heat.png)
 > _Heat equation:_ Initial data along with the posterior distribution of the solution at different time snapshots. The blue surface with solid lines represents the true data generating solution, while the red surface with dashed lines depicts the posterior mean. The two standard deviations band around the mean is depicted using the orange surface with dotted boundary. We are employing the trapezoidal rule with time step size 0.01. At each time step we generate 20 artificial data points randomly located  in the domain according to a uniform distribution. We employ three noiseless data-points per boundary.
 
 * * * * *
@@ -244,4 +244,3 @@ This work received support by the DARPA EQUiPS grant N66001-15-2-4055 and the AF
 	  journal={arXiv preprint arXiv:1703.10230},
 	  year={2017}
 	}
-
