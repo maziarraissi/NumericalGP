@@ -14,13 +14,6 @@ For more details, please refer to the following: (https://maziarraissi.github.io
 
 ## Citation
 
-    @article{raissi2017numerical,
-      title={Numerical Gaussian Processes for Time-dependent and Non-linear Partial Differential Equations},
-      author={Raissi, Maziar and Perdikaris, Paris and Karniadakis, George Em},
-      journal={arXiv preprint arXiv:1703.10230},
-      year={2017}
-    }
-    
     @article{raissi2018numerical,
       title={Numerical Gaussian Processes for Time-Dependent and Nonlinear Partial Differential Equations},
       author={Raissi, Maziar and Perdikaris, Paris and Karniadakis, George Em},
@@ -31,4 +24,11 @@ For more details, please refer to the following: (https://maziarraissi.github.io
       year={2018},
       publisher={SIAM}
     }
-
+    
+    @article{raissi2017numerical,
+      title={Numerical Gaussian Processes for Time-dependent and Non-linear Partial Differential Equations},
+      author={Raissi, Maziar and Perdikaris, Paris and Karniadakis, George Em},
+      journal={arXiv preprint arXiv:1703.10230},
+      year={2017}
+    }
+    
