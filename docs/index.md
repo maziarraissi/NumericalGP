@@ -6,7 +6,7 @@ layout: default
 
 ### Abstract
 
-We introduce the concept of [Numerical Gaussian Processes](https://arxiv.org/abs/1703.10230), which we define as [Gaussian Processes](http://www.gaussianprocess.org/gpml/) with covariance functions resulting from temporal discretization of time-dependent [partial differential equations](https://en.wikipedia.org/wiki/Partial_differential_equation). Numerical Gaussian processes, by construction, are designed to deal with cases where: (1) all we observe are noisy data on *black-box* initial conditions, and (2) we are interested in *quantifying the uncertainty* associated with such noisy data in our solutions to time-dependent partial differential equations. Our method circumvents the need for spatial discretization of the differential operators by proper placement of Gaussian process priors. This is an attempt to construct structured and data-efficient learning machines, which are explicitly informed by the underlying physics that possibly generated the observed data.  The effectiveness of the proposed approach is demonstrated through several benchmark problems involving linear and nonlinear time-dependent operators. In all examples, we are able to recover accurate approximations of the latent solutions, and consistently propagate uncertainty, even in cases involving very long time integration.
+We introduce the concept of [Numerical Gaussian Processes](https://epubs.siam.org/doi/abs/10.1137/17M1120762), which we define as [Gaussian Processes](http://www.gaussianprocess.org/gpml/) with covariance functions resulting from temporal discretization of time-dependent [partial differential equations](https://en.wikipedia.org/wiki/Partial_differential_equation). Numerical Gaussian processes, by construction, are designed to deal with cases where: (1) all we observe are noisy data on *black-box* initial conditions, and (2) we are interested in *quantifying the uncertainty* associated with such noisy data in our solutions to time-dependent partial differential equations. Our method circumvents the need for spatial discretization of the differential operators by proper placement of Gaussian process priors. This is an attempt to construct structured and data-efficient learning machines, which are explicitly informed by the underlying physics that possibly generated the observed data.  The effectiveness of the proposed approach is demonstrated through several benchmark problems involving linear and nonlinear time-dependent operators. In all examples, we are able to recover accurate approximations of the latent solutions, and consistently propagate uncertainty, even in cases involving very long time integration.
 
 **Methodology**
 
@@ -42,7 +42,7 @@ $$
 u^{n}(x) \sim \mathcal{GP}(0, k(x,x';\theta)),
 $$
 
-is a Gaussian process with $$\theta = \left(\sigma^{2}_0,\sigma^{2}\right)$$ denoting the hyper-parameters of the kernel $$k$$. This enables us to obtain the following [Numerical Gaussian Process](https://arxiv.org/abs/1703.10230)
+is a Gaussian process with $$\theta = \left(\sigma^{2}_0,\sigma^{2}\right)$$ denoting the hyper-parameters of the kernel $$k$$. This enables us to obtain the following [Numerical Gaussian Process](https://epubs.siam.org/doi/abs/10.1137/17M1120762)
 
 $$
 \begin{bmatrix}
@@ -237,6 +237,17 @@ This work received support by the DARPA EQUiPS grant N66001-15-2-4055 and the AF
 
 * * * * *
 ## Citation
+
+	@article{raissi2018numerical,
+	  title={Numerical Gaussian Processes for Time-Dependent and Nonlinear Partial Differential Equations},
+	  author={Raissi, Maziar and Perdikaris, Paris and Karniadakis, George Em},
+	  journal={SIAM Journal on Scientific Computing},
+	  volume={40},
+	  number={1},
+	  pages={A172--A198},
+	  year={2018},
+	  publisher={SIAM}
+	}
 
 	@article{raissi2017numerical,
 	  title={Numerical Gaussian Processes for Time-dependent and Non-linear Partial Differential Equations},

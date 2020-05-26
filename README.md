@@ -4,9 +4,9 @@ We introduce the concept of numerical Gaussian processes, which we define as Gau
 
 For more details, please refer to the following: (https://maziarraissi.github.io/NumericalGP/)
 
-- Raissi, Maziar, Paris Perdikaris, and George Em Karniadakis. "[Numerical Gaussian Processes for Time-dependent and Non-linear Partial Differential Equations](https://arxiv.org/abs/1703.10230)." arXiv preprint arXiv:1703.10230 (2017).
-
 - Raissi, Maziar, Paris Perdikaris, and George Em Karniadakis. "[Numerical Gaussian Processes for Time-Dependent and Nonlinear Partial Differential Equations](https://epubs.siam.org/doi/abs/10.1137/17M1120762)." SIAM Journal on Scientific Computing 40.1 (2018): A172-A198.
+
+- Raissi, Maziar, Paris Perdikaris, and George Em Karniadakis. "[Numerical Gaussian Processes for Time-dependent and Non-linear Partial Differential Equations](https://arxiv.org/abs/1703.10230)." arXiv preprint arXiv:1703.10230 (2017).
 
 - Slides: [Numerical Gaussian Processes](https://icerm.brown.edu/materials/Slides/tw-17-4/Numerical_Gaussian_Processes_for_Time-dependent_and_Non-linear_Partial_Differential_Equations_%5D_Maziar_Raissi,_Brown_University.pdf)
 
@@ -24,11 +24,10 @@ For more details, please refer to the following: (https://maziarraissi.github.io
       year={2018},
       publisher={SIAM}
     }
-    
+
     @article{raissi2017numerical,
       title={Numerical Gaussian Processes for Time-dependent and Non-linear Partial Differential Equations},
       author={Raissi, Maziar and Perdikaris, Paris and Karniadakis, George Em},
       journal={arXiv preprint arXiv:1703.10230},
       year={2017}
     }
-    
